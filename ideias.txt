@@ -1,0 +1,5 @@
+Um sistema de horario baseado na internet,em caso de perda de energia do ambiente.
+
+Caso a Academia esteja com algum problema tecnico (falta de energia, problema com internet, etc) usar try catch para demonstrar para o usuario que a academia esta fora do ar.
+
+Contabilizar alunos na academia matriz(principal) que migraram para suas mananciais.
