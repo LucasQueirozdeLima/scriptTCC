@@ -3,3 +3,5 @@ Um sistema de horario baseado na internet,em caso de perda de energia do ambient
 Caso a Academia esteja com algum problema tecnico (falta de energia, problema com internet, etc) usar try catch para demonstrar para o usuario que a academia esta fora do ar.
 
 Contabilizar alunos na academia matriz(principal) que migraram para suas mananciais.
+
+seria interanssante iniciar o site tendo a home page como paginal inicial fazendo um metodo para verificar se o usuario esta logado no site, ou seja index composto por uma func que verifica o usuario e logo após trás a home_page variando caso o usuario esteja logado ou não, dito isso deve-se criar duas home_pages diferentes ou utilizar PHP e HTML para não se repetir o codigo sem necessidade.
