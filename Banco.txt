@@ -1,0 +1,37 @@
+BANCO DE DADOS--
+
+create database FitRealTime;
+use FitRealTime;
+
+create table usuario(
+id_usuario int auto_increment primary key not null,
+nome varchar(50) not null,
+documento int(11),
+email varchar(50) not null,
+nickname varchar(20) unique,
+senha varchar(30) not null
+);
+
+create table usuario_admin(
+id_admin int auto_increment primary key not null,
+nome varchar(50) not null,
+documento int(11) not null,
+email varchar(50) not null,
+senha varchar(30) not null
+);
+
+create table academia (
+id_academia int auto_increment primary key not null,
+razao_social varchar(30) not null,
+cnpj int not null,
+endereco varchar (80) not null,
+capacidade_max int(4) not null 
+);
+
+CREATE TABLE admin_academia (
+    admin_id INT,
+    academia_id INT,
+    PRIMARY KEY (admin_id, academia_id),
+    FOREIGN KEY (admin_id) REFERENCES usuario_admin(id_admin),
+    FOREIGN KEY (academia_id) REFERENCES academia(id_academia)
+);
