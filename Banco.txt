@@ -35,3 +35,21 @@ CREATE TABLE admin_academia (
     FOREIGN KEY (admin_id) REFERENCES usuario_admin(id_admin),
     FOREIGN KEY (academia_id) REFERENCES academia(id_academia)
 );
+
+
+
+-- RASCUNHO -- -- RASCUNHO -- -- RASCUNHO -- -- RASCUNHO -- -- RASCUNHO -- -- RASCUNHO -- -- RASCUNHO -- -- RASCUNHO -- -- RASCUNHO ---- RASCUNHO --
+//CREATE TABLE academia (
+    id_academia INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    razao_social VARCHAR(250) NOT NULL,
+    cnpj VARCHAR(20) NOT NULL,
+    endereco VARCHAR(200) NOT NULL,
+    capacidade_max INT(4) NOT NULL,
+    telefone VARCHAR(20),             -- Telefone de contato da academia
+    email VARCHAR(100),               -- E-mail para contato
+    horario_funcionamento VARCHAR(100),-- Horário de funcionamento (ex.: "Seg-Sex 6:00-22:00")
+    site VARCHAR(100),                -- URL do site ou redes sociais da academia
+    data_fundacao DATE,               -- Data de fundação da academia
+    latitude DECIMAL(10, 8),          -- Coordenada de latitude para localização no mapa
+    longitude DECIMAL(11, 8)          -- Coordenada de longitude para localização no mapa
+);
