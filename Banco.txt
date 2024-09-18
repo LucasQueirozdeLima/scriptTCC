@@ -6,9 +6,8 @@ use FitRealTime;
 create table usuario(
 id_usuario int auto_increment primary key not null,
 nome varchar(50) not null,
-documento varchar(11),
+nome_usuario varchar (30) not null unique,
 email varchar(250) unique not null,
-nickname varchar(20) unique,
 senha varchar(30) not null
 );
 
