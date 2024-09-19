@@ -1,54 +1,218 @@
-BANCO DE DADOS--
-
-create database FitRealTime;
-use FitRealTime;
-
 create table usuario(
-id_usuario int auto_increment primary key not null,
-nome varchar(50) not null,
-nome_usuario varchar (30) not null unique,
-email varchar(250) unique not null,
-senha varchar(30) not null
-);
 
-create table usuario_admin(
-id_admin int auto_increment primary key not null,
-nome varchar(50) not null,
-documento varchar(11) not null,
-email varchar(250) not null,
-senha varchar(30) not null
-);
+    id_usuario int auto_increment primary key not null,
 
+    nome varchar(50) not null,
+
+    nome_usuario varchar (30) not null unique,
+
+    email varchar(250) unique not null,
+
+    endereco varchar(400),
+
+    senha varchar(30) not null
+
+);
+ 
+create table usuario_admin( 
+
+    id_admin int auto_increment primary key not null,
+
+    nome varchar(50) not null,
+
+    documento varchar(11) not null,
+
+    email varchar(250) not null,
+
+    cargo varchar(40) not null,
+
+    senha varchar(30) not null
+
+);
+ 
 create table academia (
-id_academia int auto_increment primary key not null,
-razao_social varchar(250) not null,
-cnpj varchar(20) not null,
-endereco varchar (200) not null,
-capacidade_max int(4) not null 
-);
 
-CREATE TABLE admin_academia (
-    PRIMARY KEY (admin_id, academia_id),
-    admin_id INT,
+    id_academia int auto_increment primary key not null,
+
+    razao_social varchar(250) not null,
+
+    cnpj varchar(20) not null,
+
+    endereco varchar (400) not null,
+
+    status varchar(25) not null,
+
+    descricao varchar(100) not null,
+
+    capacidade_max int(4) not null 
+
+);
+ 
+create table frequencia (
+
+    id_frequencia int auto_increment primary key not null,
+
+    num_atual int(4) not null,
+
+    data DATE not null,
+
     academia_id INT,
-    FOREIGN KEY (admin_id) REFERENCES usuario_admin(id_admin),
+
     FOREIGN KEY (academia_id) REFERENCES academia(id_academia)
+
 );
+ 
+-- Relacionamento -- -- Relacionamento -- -- Relacionamento -- -- Relacionamento -- -- Relacionamento --
+ 
+CREATE TABLE admin_academia (
 
+    admin_id INT,
 
+    academia_id INT,
 
+    FOREIGN KEY (admin_id) REFERENCES usuario_admin(id_admin),
+
+    FOREIGN KEY (academia_id) REFERENCES academia(id_academia)
+
+);
+ 
+CREATE TABLE favoritos (
+
+    usuario_id INT,
+
+    academia_id INT,
+
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id_usuario),
+
+    FOREIGN KEY (academia_id) REFERENCES academia(id_academia)
+
+);
+ 
+BANCO DE DADOS--
+ 
+create database FitRealTime;
+
+use FitRealTime;
+ 
+create table usuario(
+
+    id_usuario int auto_increment primary key not null,
+
+    nome varchar(50) not null,
+
+    nome_usuario varchar (30) not null unique,
+
+    email varchar(250) unique not null,
+
+    endereco varchar(400),
+
+    senha varchar(30) not null
+
+);
+ 
+create table usuario_admin( 
+
+    id_admin int auto_increment primary key not null,
+
+    nome varchar(50) not null,
+
+    documento varchar(11) not null,
+
+    email varchar(250) not null,
+
+    cargo varchar(40) not null,
+
+    senha varchar(30) not null
+
+);
+ 
+create table academia (
+
+    id_academia int auto_increment primary key not null,
+
+    razao_social varchar(250) not null,
+
+    cnpj varchar(20) not null,
+
+    endereco varchar (400) not null,
+
+    status varchar(25) not null,
+
+    descricao varchar(100) not null,
+
+    capacidade_max int(4) not null 
+
+);
+ 
+create table frequencia (
+
+    id_frequencia int auto_increment primary key not null,
+
+    num_atual int(4) not null,
+
+    data DATE not null,
+
+    academia_id INT,
+
+    FOREIGN KEY (academia_id) REFERENCES academia(id_academia)
+
+);
+ 
+-- Relacionamento -- -- Relacionamento -- -- Relacionamento -- -- Relacionamento -- -- Relacionamento --
+ 
+CREATE TABLE admin_academia (
+
+    admin_id INT,
+
+    academia_id INT,
+
+    FOREIGN KEY (admin_id) REFERENCES usuario_admin(id_admin),
+
+    FOREIGN KEY (academia_id) REFERENCES academia(id_academia)
+
+);
+ 
+CREATE TABLE favoritos (
+
+    usuario_id INT,
+
+    academia_id INT,
+
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id_usuario),
+
+    FOREIGN KEY (academia_id) REFERENCES academia(id_academia)
+
+);
+ 
+ 
 -- RASCUNHO -- -- RASCUNHO -- -- RASCUNHO -- -- RASCUNHO -- -- RASCUNHO -- -- RASCUNHO -- -- RASCUNHO -- -- RASCUNHO -- -- RASCUNHO ---- RASCUNHO --
+
 //CREATE TABLE academia (
+
     id_academia INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+
     razao_social VARCHAR(250) NOT NULL,
+
     cnpj VARCHAR(20) NOT NULL,
+
     endereco VARCHAR(200) NOT NULL,
+
     capacidade_max INT(4) NOT NULL,
+
     telefone VARCHAR(20),             -- Telefone de contato da academia
+
     email VARCHAR(100),               -- E-mail para contato
+
     horario_funcionamento VARCHAR(100),-- Horário de funcionamento (ex.: "Seg-Sex 6:00-22:00")
+
     site VARCHAR(100),                -- URL do site ou redes sociais da academia
+
     data_fundacao DATE,               -- Data de fundação da academia
+
     latitude DECIMAL(10, 8),          -- Coordenada de latitude para localização no mapa
+
     longitude DECIMAL(11, 8)          -- Coordenada de longitude para localização no mapa
+
 );
+
+ 

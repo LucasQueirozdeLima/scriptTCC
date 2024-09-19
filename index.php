@@ -25,7 +25,7 @@
 
 <main>
     <form class="form_academias" action="buscar_academias.php" method="GET">
-        <h2>Localizar Academias</h2>
+        <h2 id="nav_acad">Localizar Academias</h2>
         <div class="input-group w-75">
             <span class="input-group-text" id="search-icon">
                 <i class="bi bi-search"></i> <!-- Ícone de lupa -->
@@ -35,6 +35,7 @@
         <button type="submit" class="btn btn-primary">Pesquisar</button>
     </form>
 </main>  
+
   
 <?php include "rodape.php"; ?>
 
