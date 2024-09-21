@@ -1,4 +1,6 @@
 <?php
+//Deixar o nome do arquivo como padrão "buscarAcademia.php" (DUVIDA)
+
 if (isset($_GET['query'])) {
     $query = $_GET['query'];
 

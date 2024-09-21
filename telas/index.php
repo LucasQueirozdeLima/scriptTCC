@@ -1,4 +1,4 @@
-<?php include "cabecalho.php"; ?>
+<?php include "../esqueleto/cabecalho.php"; ?>
 
 
 <nav class="navbar navbar-expand-lg">
@@ -37,5 +37,5 @@
 </main>  
 
   
-<?php include "rodape.php"; ?>
+<?php include "../esqueleto/rodape.php"; ?>
 
