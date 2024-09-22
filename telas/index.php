@@ -1,27 +1,6 @@
 <?php include "../esqueleto/cabecalho.php"; ?>
+<?php include "../esqueleto/navbar.php"; ?>
 
-
-<nav class="navbar navbar-expand-lg">
-  <div class="container-fluid">
-    <a id="navbar_logo" href="index.php">FitRealTime</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a id="nav-link" aria-current="page" href="index.php">Home</a>
-        </li>
-        <li class="nav-item">
-          <a id="nav-link" href="sobre.php">Sobre</a>
-        </li>
-        <li class="nav-item">
-          <a id="nav-link" href="perfil.php">Perfil</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
 
 <main>
     <form class="form_academias" action="buscar_academias.php" method="GET">
@@ -34,8 +13,76 @@
         </div>
         <button type="submit" class="btn btn-primary">Pesquisar</button>
     </form>
-</main>  
 
-  
+   
+</main>
+ <!-- Gráfico de pessoas na academia -->
+ <h2 id="nav_acad" style="text-align: center;">Pessoas Presentes em Tempo Real</h2>
+<div class="chart-container">
+    <canvas id="presencaChart"></canvas>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    // Configuração do gráfico
+    const ctx = document.getElementById('presencaChart').getContext('2d');
+    const presencaChart = new Chart(ctx, {
+        type: 'bar',  // Tipo de gráfico (barra)
+        data: {
+            labels: ['Academia XYZ'], // Nome da academia
+            datasets: [{
+                label: 'Pessoas Presentes',
+                data: [15],  // Número de pessoas (pode ser atualizado dinamicamente)
+                backgroundColor: 'rgba(54, 162, 235, 0.8)',  // Cor das barras
+                borderColor: 'rgba(54, 162, 235, 1)',  // Cor da borda das barras
+                borderWidth: 2  // Largura da borda das barras
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.2)',  // Cor da grade no eixo Y
+                    },
+                    ticks: {
+                        color: '#ffffff' // Cor dos números do eixo Y
+                    }
+                },
+                x: {
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.2)',  // Cor da grade no eixo X
+                    },
+                    ticks: {
+                        color: '#ffffff' // Cor dos textos no eixo X
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ffffff', // Cor da legenda
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)',  // Fundo da tooltip
+                    titleColor: '#ffffff',  // Cor do título da tooltip
+                    bodyColor: '#ffffff'    // Cor do texto da tooltip
+                }
+            }
+        }
+    });
+
+    // Atualize os dados dinamicamente com Firebase ou outra API
+</script>
+
 <?php include "../esqueleto/rodape.php"; ?>
+
+
+
 

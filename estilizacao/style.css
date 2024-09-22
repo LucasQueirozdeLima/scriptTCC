@@ -1,101 +1,115 @@
 
-        body {
-            margin: 0;
-            padding: 0;
-            background: url(img_acad/fundo_academia.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-        }
-        main {
-            padding: 20px;
-            width:  100%;
-            height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+/* HOME */
 
-        #nav_acad{
-           font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
+body {
+    margin: 0;
+    padding: 0;
+    background: url(img_acad/fundo_academia.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
 
-        h1 {
-            color: #ffffff;
-        }
+main {
+    padding: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Alinha o conteúdo para começar no topo */
+}
+
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #333333;
+    border-radius: 5px;
+    background-color: #2c2c2c;
+    color: #ffffff;
+}
+
+button {
+    background-color: #6200ea;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px; /* Adiciona um espaço superior para separar do campo de texto */
+}
+button:hover {
+    background-color: #3700b3;
+}
 
 
-        input, button {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #333333;
-            border-radius: 5px;
-            background-color: #2c2c2c;
-            color: #ffffff;
-        }
-        input {
-            background-color: #2c2c2c;
-        }
-        button  {
-            background-color: #6200ea;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #3700b3;
-        }
-        .message {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #b0b0b0;
-        }
+/* NAVBAR */
 
-        nav {
-            font-family: Arial, sans-serif;
-            background-color: #000000;
-            color: #e0e0e0;
-            height: 10vh;
-            
-        }
+#nav_acad {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #ffffff;
+    margin-bottom: 2vw; /* Espaço entre o título e o restante */
+    text-align: center;
+}
 
-        #navbar_logo{
-            color: white;
-            font-size: xx-large;
-        }
-      
-        #nav-link{
-            color: white;
-        margin-left: 20px;
-        
-        }
+nav {
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+    color: #e0e0e0;
+    height: 10vh;
+    
+}
 
-        
-        
-        .form_academias {
-            background-color: #38333341;
-            width: 90%;
-            height: 20%;
-            color: white;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-around;
-            margin-bottom: 20%;
-            padding-bottom: 10%;
-        }
+#navbar_logo{
+    color: white;
+    font-size: xx-large;
+    
+}
 
-        .btn-primary{
-            width: 20%;
-        }
+#nav-link{
+    color: white;
+margin-left: 20px;
 
-        
+}
 
-        footer{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
+.container-fluid a {
+      text-decoration: none;
+    font-size: 30px; 
+    font-family: 'Teko', sans-serif;
+    color: rgba(24, 8, 243, 0.856);
+}
+
+/* BARRA DE PESQUISA */
+
+.form_academias {
+    background-color: rgba(56, 51, 51, 0.25);
+    width: 90%;
+    max-width: 800px;
+    color: white;
+    border-radius: 20px;
+    padding: 2vw;
+    margin-bottom: 1vw; /* Reduz a margem inferior */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vw; /* Adiciona um espaço uniforme entre os elementos do formulário */
+}
+
+/* GRAFICO DE PESSOAS */
+
+.chart-container {
+    width: 90%;
+    max-width: 700px;
+    margin: 1vw auto; /* Espaço superior reduzido */
+}
+
+#chart-container {
+    margin-top: 0;
+}
+
+/* RODAPÉ  /  FOOTER */
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 1vw;
+}
+
+
