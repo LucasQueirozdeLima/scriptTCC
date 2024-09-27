@@ -51,7 +51,7 @@ nav {
     font-family: Arial, sans-serif;
     background-color: #000000;
     color: #e0e0e0;
-    height: 10vh;
+    height: 15vh;
     
 }
 
@@ -111,5 +111,66 @@ footer {
     color: white;
     padding: 1vw;
 }
+
+
+
+
+.sobreIndex {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 4em;
+}
+
+.sobre_texto {
+    width: 30%;
+}
+
+.sobre_texto p {
+    padding-top: 2em;
+    font-size: 20px;
+    color: white;
+}
+
+.sobre_texto span {
+    background-color: rgb(59, 177, 255);
+    color: white;
+    text-align: right;
+    font-size: 25px;
+}
+
+.sobre_video video {
+    border-radius: 20px;
+    max-width: 720px;
+}
+
+.siga_nos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.siga_img {
+    margin-left: 10em;
+    margin-right: 10em;
+}
+
+.siga_img img {
+    width: 400px;
+    margin-bottom: 2em;
+}
+
+.siga_txt {
+    width: 40%;
+    margin-right: 8em;
+    margin-bottom: 2em;
+    text-align: left;
+    font-size: 20px;
+}
+
+.siga_txt h3 {
+    text-decoration: underline;
+}
+
 
 

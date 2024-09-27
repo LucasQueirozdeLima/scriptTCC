@@ -14,10 +14,8 @@
         <button type="submit" class="btn btn-primary">Pesquisar</button>
     </form>
 
-   
-</main>
- <!-- Gráfico de pessoas na academia -->
- <h2 id="nav_acad" style="text-align: center;">Pessoas Presentes em Tempo Real</h2>
+<!-- Gráfico de pessoas na academia -->
+<h2 id="nav_acad" style="text-align: center;">Pessoas Presentes em Tempo Real</h2>
 <div class="chart-container">
     <canvas id="presencaChart"></canvas>
 </div>
@@ -81,6 +79,23 @@
     // Atualize os dados dinamicamente com Firebase ou outra API
 </script>
 
+   
+      <!-- Video e texto -->
+      <div class="sobreIndex">
+        <div class="sobre_texto">
+          <span>NÃO DESANIME<br> CONTINUE TREINANDO,CUIDE DA SUA SAÚDE</span>  <br>
+          <p>Imagine você saber quantas pessoas estão presentes naquela academia que você tanto frequenta? Pois é , aqui você consegue fazer isso entra outras coisas, dê aquele ânimo antes mesmo de treinar. Aquele espaço pra treinar tranquilo, sem revezamento de aparelhos,sem aquela multidão para atrapalhar.</p>
+        </div>
+        <div class="sobre_video">
+          <video src="estilizacao/img_acad/video_acad.mp4" autoplay muted loop></video>
+        </div>
+      </div>
+
+        
+</main>
+
+
+ 
 <?php include "../esqueleto/rodape.php"; ?>
 
 
