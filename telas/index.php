@@ -15,7 +15,7 @@
     </form>
 
    
-</main>
+
  <!-- Gráfico de pessoas na academia -->
  <h2 id="nav_acad" style="text-align: center;">Pessoas Presentes em Tempo Real</h2>
 <div class="chart-container">
@@ -81,6 +81,28 @@
     // Atualize os dados dinamicamente com Firebase ou outra API
 </script>
 
+ <div class="sobreIndex">
+        <div class="sobre_texto">
+          <span>A ARTE DE FAZER DELÍCIAS NA CONSTANTE <br> BUSCA DA PERFEIÇÃO</span> <br>
+          <p>Bem-vindo à nossa doce e irresistível confeitaria! Aqui, na nossa loja de bolos de pote, cada sobremesa é uma obra de arte cuidadosamente montada em camadas, oferecendo uma explosão de sabor em cada colherada. Desde o momento em que você entra, é transportado para um mundo de aromas tentadores e cores vibrantes, onde cada bocado é uma experiência deliciosa. Nossa paixão pela confeitaria se reflete em cada detalhe, desde a seleção dos ingredientes frescos até a apresentação impecável de nossos produtos. Seja para celebrar uma ocasião especial, satisfazer um desejo por algo doce ou simplesmente desfrutar de um momento de indulgência, estamos aqui para satisfazer os seus desejos mais doces com os nossos bolos de pote feitos com amor e dedicação.</p>
+        </div>
+        <div class="sobre_video">
+          <video src="../estilizacao/img_acad/video_academia.mp4" autoplay muted loop></video>
+        </div>
+      </div>
+      <div class="siga_nos">
+        <div class="siga_img">
+          <img src="img/docinhos/emojis_brigadeiro.png" alt="Siga nós">
+        </div>
+        <div class="siga_txt">
+          <h3><strong>Siga a GihCakes</strong></h3> <br>
+          <p>Siga a página da GihCakes no Facebook ou Instagram. Fique sabendo em primeira mão das novidades, promoções, eventos e descontos exclusivos.</p> <br>
+          <p>Todas as ações que são feitas em nossa loja estarão em nossas Redes Sociais e você poderá curtir e compartilhar nossas publicações.</p>
+        </div>
+      </div>
+
+
+</main>
 <?php include "../esqueleto/rodape.php"; ?>
 
 
