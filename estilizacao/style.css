@@ -63,7 +63,8 @@ nav {
 
 #nav-link{
     color: white;
-margin-left: 20px;
+margin-left: 6vh;
+font-size: 2vh;
 
 }
 
@@ -73,6 +74,42 @@ margin-left: 20px;
     font-family: 'Teko', sans-serif;
     color: rgba(24, 8, 243, 0.856);
 }
+
+
+/* TEXTO E VIDEO */
+
+.sobreIndex {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 4em;
+}
+
+.sobre_texto {
+    width: 30%;
+}
+
+.sobre_texto p {
+    padding-top: 2em;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.575);
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.sobre_texto span {
+    background-color: rgb(8, 85, 228);
+    color: rgb(255, 255, 255);
+    text-align: right;
+    font-size: 25px;
+}
+
+.sobre_video video {
+    border-radius: 20px;
+    max-width: 720px;
+}
+
 
 /* BARRA DE PESQUISA */
 
@@ -113,65 +150,21 @@ footer {
 }
 
 
+/* LOGIN/CADASTRO */
+.main_cadastro {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+}
 
-
-.sobreIndex {
+.btn_main {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     align-items: center;
-    padding: 4em;
-    color: white;
-}
-
-.sobre_texto {
-    width: 30%;
-    color: white;
-}
-
-.sobre_texto p {
-    padding-top: 2em;
-    font-size: 20px;
-    color: white;
-}
-
-.sobre_texto span {
-    background-color: rgb(59, 177, 255);
-    color: white;
-    text-align: right;
-    font-size: 25px;
-}
-
-.sobre_video video {
-    border-radius: 20px;
-    max-width: 720px;
-}
-
-.siga_nos {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: white;
-}
-
-.siga_img {
-    margin-left: 10em;
-    margin-right: 10em;
-}
-
-.siga_img img {
-    width: 400px;
-    margin-bottom: 2em;
-}
-
-.siga_txt {
-    width: 40%;
-    margin-right: 8em;
-    margin-bottom: 2em;
-    text-align: left;
-    font-size: 20px;
-    color: white;
-}
-
-.siga_txt h3 {
-    text-decoration: underline;
+    justify-content: center;
+    gap: 20px;
+    background-color: rgba(253, 244, 244, 0.685);
+    padding: 80px;
+    border-radius: 10px;
 }
