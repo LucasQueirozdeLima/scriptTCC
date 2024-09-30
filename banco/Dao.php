@@ -14,13 +14,13 @@ class Dao {
 
     //Verificar se o login é possivel
 
-    public function verificarLoginUsuario($verificador, $senha) 
+    public function verificarLoginUsuario($verificador, $senha) //correções necessarias
     {
         $stmt = $this->pdo->query("SELECT * FROM usuario WHERE usuario='$verificador' OR email='$verificador' AND senha='$senha'");
         if ($stmt->fetch()) {
-            header("Location: home_page.php");
+            header("Location: ../telas/index.php");
         } else {
-            header("Location: index.php?erro=1");
+            header("Location: ../telas/cadastro_usuario.php?erro=1");
         }
     }
 
@@ -28,9 +28,9 @@ class Dao {
     {
         $stmt = $this->pdo->query("SELECT * FROM usuario_admin WHERE usuario='$verificador' OR email='$verificador' AND senha='$senha'");
         if ($stmt->fetch()) {
-            header("Location: home_page.php");
+            header("Location: ../telas/index.php");
         } else {
-            header("Location: index.php?erro=1");
+            header("Location: ../telas/login_page.php?erro=1");
         }
     }
 
@@ -39,7 +39,8 @@ class Dao {
     public function inserirUsuario($usuario, $senha, $telefone, $email, $endereco) 
     {
         try {
-            $stmt = $this->pdo->query("INSERT INTO login (usuario, senha, telefone, email, endereco) VALUES ('$usuario', '$senha', '$telefone', '$email', '$endereco')");
+            $stmt = $this->pdo->query("INSERT INTO endereco (rua, numero, bairro, cidade, complemento, cep) VALUES ('$rua', '$numero', '$bairro', '$cidade', '$complemento','$cep'); 
+            INSERT INTO usuario ()");
         } catch (PDOException $erroCadastro) {
             header("Location: cadastro.php?error=1");
         }

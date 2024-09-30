@@ -7,6 +7,7 @@ create table endereco (
     numero int(4) not null,
     bairro varchar(50) not null,
     cidade varchar(30) not null,
+    complemento varchar(200),
     cep int(9) not null
 
 );
@@ -27,8 +28,8 @@ create table usuario_admin(
 
     id_admin int auto_increment primary key not null,
     nome varchar(50) not null,
-    documento varchar(11) not null,
-    email varchar(250) not null,
+    documento varchar(11) unique not null,
+    email varchar(250) unique not null,
     cargo varchar(40) not null,
     senha varchar(30) not null
 
@@ -39,7 +40,7 @@ create table academia (
     id_academia int auto_increment primary key not null,
     razao_social varchar(250) not null,
     cnpj varchar(20) not null,
-    endereco_id INT,
+    endereco_id INT not null,
     status_academia varchar(25) not null,
     descricao varchar(100) not null,
     capacidade_max int(4) not null,
@@ -95,7 +96,7 @@ SELECT
     a.id_academia, 
     a.razao_social, 
     a.cnpj, 
-    a.status, 
+    a.status_academia, 
     a.descricao, 
     a.capacidade_max, 
     e.rua, 
@@ -108,6 +109,6 @@ FROM
 JOIN 
     endereco e 
 ON 
-    a.endereco_id = e.id_endereco;
+    a.endereco_id = e.id_endereco
 WHERE
     a.id_academia = ...;
