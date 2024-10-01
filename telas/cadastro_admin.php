@@ -1,4 +1,7 @@
-<?php include "cabecalho.php"; ?>
+<?php include "../esqueleto/cabecalho.php"; ?>
+
+<?php include "../esqueleto/navbar.php"; ?>
+
 <main>
     <h2>Cadastrar Admin</h2>
     <form action="processa_cadastro_admin.php" method="POST">
@@ -13,4 +16,4 @@
         <button type="submit">Cadastrar Admin</button>
     </form>
 </main>
-<?php include "rodape.php"; ?>
+<?php include "../esqueleto/rodape.php"; ?>
