@@ -20,10 +20,10 @@ input, button {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #333333;
+    border: 1px solid #ffffff;
     border-radius: 5px;
-    background-color: #2c2c2c;
-    color: #ffffff;
+    background-color: white;
+   
 }
 
 button {
@@ -31,7 +31,7 @@ button {
     border: none;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 15px; /* Adiciona um espaço superior para separar do campo de texto */
+    margin-top: 15px; 
 }
 button:hover {
     background-color: #3700b3;
@@ -43,7 +43,7 @@ button:hover {
 #nav_acad {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #ffffff;
-    margin-bottom: 2vw; /* Espaço entre o título e o restante */
+    margin-bottom: 2vw; 
     text-align: center;
 }
 
@@ -169,4 +169,12 @@ footer {
     background-color: rgba(253, 244, 244, 0.685);
     padding: 80px;
     border-radius: 10px;
+}
+
+label {
+    color: white;
+}
+
+.btn_cd_user{
+    margin-top: 15px;
 }

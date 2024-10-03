@@ -14,7 +14,7 @@ class Dao {
 
     //Verificar se o login é possivel
 
-    public function verificarLoginUsuario($verificador, $senha) //correções necessarias
+    public function verificarLogin($verificador, $senha) //correções necessarias
     {
         $stmt = $this->pdo->query("SELECT * FROM usuario WHERE usuario='$verificador' OR email='$verificador' AND senha='$senha'");
         if ($stmt->fetch()) {

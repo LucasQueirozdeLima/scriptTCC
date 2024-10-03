@@ -15,7 +15,7 @@
     </form>
 
 <!-- Gráfico de pessoas na academia -->
-<h2 id="nav_acad" style="text-align: center;">Pessoas Presentes em Tempo Real</h2>
+<h2 id="nav_acad" style="text-align: center;" >Pessoas Presentes na unidade em Tempo Real</h2>
 <div class="chart-container">
     <canvas id="presencaChart"></canvas>
 </div>
