@@ -14,22 +14,18 @@ class Dao {
 
     //Verificar se o login é possivel
 
-    public function verificarLogin($verificador, $senha) //correções necessarias
+   public function verificarLogin($verificador, $senha) //
     {
-        $stmt = $this->pdo->query("SELECT * FROM usuario WHERE usuario='$verificador' OR email='$verificador' AND senha='$senha'");
-        if ($stmt->fetch()) {
-            header("Location: ../telas/index.php");
-        } else {
-            header("Location: ../telas/cadastro_usuario.php?erro=1");
-        }
-    }
+        $usuario = $this->pdo->query("SELECT * FROM usuario WHERE nome_usuario='$verificador' OR email='$verificador' AND senha='$senha'");
 
-    public function verificarLoginUsuarioAdmin($verificador, $senha) 
-    {
-        $stmt = $this->pdo->query("SELECT * FROM usuario_admin WHERE usuario='$verificador' OR email='$verificador' AND senha='$senha'");
-        if ($stmt->fetch()) {
+        if ($usuario->fetch()) {
             header("Location: ../telas/index.php");
         } else {
+            $admin = $this->pdo->query("SELECT * FROM usuario_admin WHERE nome_usuario='$verificador' OR email='$verificador' AND senha='$senha'");
+            if ($admin->fetch()) {
+                header("Location: ../telas/index.php");
+            }
+
             header("Location: ../telas/login_page.php?erro=1");
         }
     }
@@ -55,18 +51,17 @@ class Dao {
         }
     }
 
-    public function inserirAcademia()
+    public function inserirAcademia($rua, $numero, $bairro, $cidade, $complemento,$cep, $razao_social, $cnpj, $status_academia,$descricao, $capacidade_max)
     {
         try {
-            $stmt = $this->pdo->query("INSERT INTO endereco (usuario, senha, telefone, email, endereco) VALUES ('$usuario', '$senha', '$telefone', '$email', '$endereco')");
-        } catch (PDOException $erroCadastro) {
-            header("Location: cadastro.php?error=1");
-        }
+            $endereco = $this->pdo->query("INSERT INTO endereco (rua, numero, bairro, cidade, complemento, cep) VALUES ('$rua', '$numero', '$bairro', '$cidade', '$complemento','$cep')");
 
-        try {
-            $stmt = $this->pdo->query("INSERT INTO academia (usuario, senha, telefone, email, endereco) VALUES ('$usuario', '$senha', '$telefone', '$email', '$endereco')");
+            $recuperar_idEndereco = $this->pdo->query("SELECT id_endereco FROM endereco WHERE numero='$numero' AND cep='$cep'"); //correção necessaria
+            
+            $academia = $this->pdo->query("INSERT INTO academia (razao_social, cnpj, endereco_id, status_academia,descricao, capacidade_max) VALUES ('$razao_social', '$cnpj', '$recuperar_idEndereco', '$status_academia','$descricao', '$capacidade_max')");
+
         } catch (PDOException $erroCadastro) {
-            header("Location: cadastro.php?error=1");
+            header("Location: cadastro_academia.php?error=1");
         }
     }
 
