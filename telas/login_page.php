@@ -12,20 +12,30 @@ include "../esqueleto/navbar.php";
 //}
 ?>
 
+<head>
+<link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,600,0,0"
+    />
+</head>
 
-<main>
-    <h2 style="color: white;">login</h2>
-    <form action="processa_login" method="POST">
-        <div>
-            <label for="usuario">Email</label>
-            <input type="text" name="usuario" required>
+<main class="mainLogin">
+    <div class="login">
+      <h2>Login</h2>
+
+      <form class="login-form">
+        <div class="textbox">
+          <input type="email" placeholder="Digite seu email..." />
+          <span class="material-symbols-outlined"> account_circle </span>
         </div>
-        <div>
-            <label for="senha">Senha</label>
-            <input type="password" name="senha" required>
+        <div class="textbox">
+          <input type="password" placeholder="Digite sua senha..." />
+          <span class="material-symbols-outlined"> lock </span>
         </div>
-        <button type="submit" class="btn_cd_user">Entrar</button>
-    </form>
+        <button type="submit">LOGIN</button>
+        <a href="https://website.com">Esqueceu a senha?</a>
+      </form>
+    </div>
 </main>
 
 

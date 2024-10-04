@@ -26,7 +26,7 @@ input, button {
    
 }
 
-button {
+ button {
     background-color: #6200ea;
     border: none;
     cursor: pointer;
@@ -36,7 +36,6 @@ button {
 button:hover {
     background-color: #3700b3;
 }
-
 
 /* NAVBAR */
 
@@ -142,13 +141,119 @@ font-size: 2vh;
 /* RODAPÉ  /  FOOTER */
 
 footer {
+    position: absolute;
+    width: 100vw;
+    padding-bottom: 20px;
+    background: #0a1535;
+    color: #f9f9f9;
+  }
+  
+  footer article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 50px 40px;
+    margin: -99px 20px 20px;
+    border-radius: 10px;
+    background: rgb(11,10,41);
+    background: linear-gradient(90deg, rgba(11,10,41,1) 0%, rgba(40,40,135,1) 100%);
+  }
+  
+  footer article h2 {
+    font-weight: 400;
+    color: rgb(255 255 255 / 70%);
+  }
+  
+  footer > article > button {
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: black;
-    padding: 1vw;
-    
-}
+    justify-content: space-between;
+    gap: 10px;
+    padding: 0 40px 0 44px;
+    width: 100%;
+    background: #0a1536;
+    border: 0;
+    border-radius: 30px;
+    color: #f9f9f9;
+    font-family: inherit;
+    font-size: 16px;
+  }
+  
+  footer section {
+    padding: 0 50px;
+  }
+  
+  section.top {
+    padding-top: 30px;
+    margin-bottom: 48px;
+  }
+  
+  section.top img {
+    display: block;
+    height: 90px;
+    margin: 0 0 30px;
+  }
+  
+  section.top ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (width > 480px) {
+    footer article button {
+      width: 70%;
+    }
+  
+    section.top ul {
+      padding-right: 10%;
+    }
+  }
+  
+  @media (width > 600px) {
+    footer article {
+      flex-direction: row;
+      min-height: 140px;
+      margin: -70px 20px 20px;
+      padding: 30px 50px 30px;
+    }
+  
+    footer article button {
+      width: auto;
+      padding: 0 20px 0 24px;
+    }
+  
+    section.top ul {
+      grid-template-columns: repeat(4, 1fr);
+      padding-right: 0;
+    }
+  }
+  
+  section.top ul li a {
+    display: block;
+    margin-bottom: 10px;
+    color: rgb(255 255 255 / 90%);
+  }
+  
+  section.top h3 {
+    color: rgb(255 255 255 / 40%);
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  
+  section.bottom {
+    padding-top: 10px;
+    border-top: 2px solid rgb(255 255 255 / 10%);
+    color: rgb(255 255 255 / 40%);
+    font-size: 13px;
+  }
 
 
 
@@ -178,3 +283,112 @@ label {
 .btn_cd_user{
     margin-top: 15px;
 }
+
+/* Login */
+
+.mainLogin {
+    display: grid;
+    place-items: center;
+    margin: 0;
+    padding: 0 24px;
+    background-image: url("./img_acad/bg.svg");
+    background-size: 2000px 1000px;
+    background-position: -500px 0;
+    color: #f9f9f9;
+    font-family: "Euclid Circular A";
+    animation: gradient 10s infinite alternate linear;
+    width: 100vw;
+    height: 100vh;
+}
+@keyframes gradient {
+    100% {
+      background-size: 4000px 1000px;
+    }
+  }
+
+.login {
+    width: 90%;
+    position: absolute;
+    padding: 70px 30px 44px;
+    border-radius: 22px;
+    background: #161616;
+    text-align: center;
+  }
+  
+  @media (width >= 450px) {
+    .login {
+      width: 380px;
+    }
+  }
+  
+  .login > h2 {
+    font-size: 36px;
+    font-weight: 500;
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  .login-form {
+    display: grid;
+    gap: 16px;
+    place-items: center;
+    width: 100%;
+    margin: 0;
+  }
+  
+  .textbox {
+    width: 100%;
+    position: relative;
+  }
+  
+  .textbox span {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    translate: 0 -50%;
+    color: rgba(255, 255, 255, 0.38);
+  }
+  
+  .login-form input,
+  .login-form button {
+    width: 100%;
+    height: 60px;
+    outline: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+  
+  .login-form input {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    font-size: 18px;
+    padding: 0 20px 0 50px;
+    color: inherit;
+  }
+  
+  .login-form input:focus {
+    border-color: #157ae1;
+  }
+  
+  .login-form input:focus ~ span {
+    color: #157ae1;
+  }
+
+  .login-form button {
+    cursor: pointer;
+    background: #157ae1;
+    color: #f9f9f9;
+    border: 0;
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+  
+  .login-form a {
+    color: #157ae1;
+    font-size: 16px;
+    text-align: left;
+    text-decoration: none;
+  }
+  
