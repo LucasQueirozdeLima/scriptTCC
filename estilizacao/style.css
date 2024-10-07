@@ -141,58 +141,59 @@ font-size: 2vh;
 /* RODAPÉ  /  FOOTER */
 
 footer {
-    position: absolute;
-    width: 100vw;
-    padding-bottom: 20px;
-    background: #0a1535;
-    color: #f9f9f9;
-  }
-  
-  footer article {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 20px 50px 40px;
-    margin: -99px 20px 20px;
-    border-radius: 10px;
-    background: rgb(11,10,41);
-    background: linear-gradient(90deg, rgba(11,10,41,1) 0%, rgba(40,40,135,1) 100%);
-  }
-  
-  footer article h2 {
-    font-weight: 400;
-    color: rgb(255 255 255 / 70%);
-  }
-  
-  footer > article > button {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 0 40px 0 44px;
-    width: 100%;
-    background: #0a1536;
-    border: 0;
-    border-radius: 30px;
-    color: #f9f9f9;
-    font-family: inherit;
-    font-size: 16px;
-  }
-  
-  footer section {
-    padding: 0 50px;
-  }
-  
-  section.top {
-    padding-top: 30px;
-    margin-bottom: 48px;
-  }
+  position: relative; /* Use relative em vez de absolute para não causar problemas com o layout */
+  width: 100%; /* Altere de 100vw para 100% */
+  padding: 20px 0; /* Padding superior e inferior */
+  background: #0a1535;
+  color: #f9f9f9;
+}
+
+footer article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 50px 40px;
+  margin: 0 20px; /* Remova a margem negativa */
+  border-radius: 10px;
+  background: rgb(11,10,41);
+  background: linear-gradient(90deg, rgba(11,10,41,1) 0%, rgba(40,40,135,1) 100%);
+}
+
+footer article h2 {
+  font-weight: 400;
+  color: rgb(255 255 255 / 70%);
+}
+
+footer > article > button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 40px 0 44px;
+  width: 100%;
+  background: #0a1536;
+  border: 0;
+  border-radius: 30px;
+  color: #f9f9f9;
+  font-family: inherit;
+  font-size: 16px;
+}
+
+footer section {
+  padding: 0 50px;
+}
+
+section.top {
+  padding-top: 30px;
+  margin-bottom: 48px;
+}
   
   section.top img {
     display: block;
-    height: 90px;
+    height: 150px;
+    width: 150px;
     margin: 0 0 30px;
   }
   
@@ -212,6 +213,7 @@ footer {
   
     section.top ul {
       padding-right: 10%;
+      
     }
   }
   
@@ -231,13 +233,17 @@ footer {
     section.top ul {
       grid-template-columns: repeat(4, 1fr);
       padding-right: 0;
+      margin-left: 400px;
+      margin-bottom: 10px;
     }
   }
   
   section.top ul li a {
     display: block;
     margin-bottom: 10px;
+    margin-left: 3px;
     color: rgb(255 255 255 / 90%);
+    text-decoration: none;
   }
   
   section.top h3 {
@@ -253,8 +259,7 @@ footer {
     border-top: 2px solid rgb(255 255 255 / 10%);
     color: rgb(255 255 255 / 40%);
     font-size: 13px;
-  }
-
+}
 
 
 /* LOGIN/CADASTRO */
