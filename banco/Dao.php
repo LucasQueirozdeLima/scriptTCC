@@ -32,20 +32,19 @@ class Dao {
 
     //inserção de dados
 
-    public function inserirUsuario($usuario, $senha, $telefone, $email, $endereco) 
+    public function inserirUsuario($nome, $nome_usuario, $email, $senha) 
     {
         try {
-            $stmt = $this->pdo->query("INSERT INTO endereco (rua, numero, bairro, cidade, complemento, cep) VALUES ('$rua', '$numero', '$bairro', '$cidade', '$complemento','$cep'); 
-            INSERT INTO usuario ()");
+            $inserirUser = $this->pdo->query("INSERT INTO usuario (nome, nome_usuario, email, senha) VALUES ('$nome', '$nome_usuario', '$email', '$senha'"); 
         } catch (PDOException $erroCadastro) {
             header("Location: cadastro.php?error=1");
         }
     }
 
-    public function inserirUsuarioAdmin($usuario, $senha, $telefone, $email, $endereco) 
+    public function inserirUsuarioAdmin($nome, $nome_usuario, $documento, $email, $cargo, $senha) 
     {
         try {
-            $stmt = $this->pdo->query("INSERT INTO usuario_admin (usuario, senha, telefone, email, endereco) VALUES ('$usuario', '$senha', '$telefone', '$email', '$endereco')");
+            $inserirAdmin = $this->pdo->query("INSERT INTO usuario_admin (nome, nome_usuario, documento, email, cargo, senha) VALUES ('$nome', '$nome_usuario', '$documento', '$email', '$cargo', '$senha')");
         } catch (PDOException $erroCadastro) {
             header("Location: cadastro.php?error=1");
         }

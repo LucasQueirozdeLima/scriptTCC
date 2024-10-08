@@ -18,9 +18,7 @@ create table usuario(
     nome varchar(50) not null,
     nome_usuario varchar (30) not null unique,
     email varchar(250) unique not null,
-    endereco_id INT,
     senha varchar(30) not null,
-    FOREIGN KEY (endereco_id) REFERENCES endereco(id_endereco)
 
 );
  
