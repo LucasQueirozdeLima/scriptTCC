@@ -9,7 +9,6 @@
                 <a href="cadastro_admin.php"><button class="cadastrar btn btn-secondary btn btn-lg">Cadastrar admin</button></a>
             </div>
         </main>
-      >
 
 
 

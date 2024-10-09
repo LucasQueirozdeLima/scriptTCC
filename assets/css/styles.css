@@ -1,0 +1,417 @@
+/* Layout Geral */
+body {
+    margin: 0;
+    padding: 0;
+    background: url(../images/fundo_academia.jpg) no-repeat center center fixed;
+    background-size: cover;
+    font-family: "Poppins", sans-serif;
+}
+
+main {
+    padding: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+/* Formulário de Busca */
+.form_academias {
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 2em;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 3vw;
+    color: #fff;
+}
+
+.form_academias h2 {
+    color: #fff;
+    margin-bottom: 1em;
+    text-align: left; /* Alinhar título à esquerda */
+}
+
+.input-group {
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: space-between; /* Organiza o input e o botão */
+}
+
+.input-group .form-control {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.btn-primary {
+    background-color: #0855E4;
+    border-color: #0855E4;
+}
+
+.btn-primary:hover {
+    background-color: #063aa7;
+    border-color: #063aa7;
+}
+
+/* Gráfico de Pessoas Presentes */
+.chart-container {
+    width: 90%;
+    max-width: 700px;
+    margin: 2vw auto; /* Alinhamento central com espaçamento */
+}
+
+canvas {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Texto e Vídeo */
+.sobre-index {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Alinhar no topo */
+    padding: 4em;
+    width: 100%;
+    max-width: 1200px; /* Limitando a largura máxima */
+    gap: 2em; /* Espaçamento entre os elementos */
+}
+
+.sobre_texto {
+    width: 50%; /* Distribui espaço melhor entre texto e vídeo */
+}
+
+.sobre_texto p {
+    padding: 1.5em;
+    font-size: 18px; /* Tamanho de fonte ligeiramente menor */
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    line-height: 1.6;
+}
+
+.sobre_texto span {
+    display: block;
+    background-color: #0855E4;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 24px;
+    margin-bottom: 1.5em;
+    text-align: center;
+}
+
+.sobre_video {
+    width: 45%; /* Mesmo tamanho que o texto para balancear */
+}
+
+.sobre_video video {
+    border-radius: 20px;
+    max-width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sobreIndex {
+        flex-direction: column;
+        align-items: center;
+        padding: 2em;
+    }
+
+    .sobre_texto, .sobre_video {
+        width: 100%;
+        margin-bottom: 1.5em;
+    }
+
+    .sobre_texto span {
+        font-size: 22px;
+    }
+
+    .sobre_texto p {
+        font-size: 16px;
+    }
+}
+
+/* NavBar */
+nav {
+    background-color: #050512;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    height: 72px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra adicionada */
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center; /* Alinha verticalmente logo e botão */
+}
+
+.navbar-logo {
+    height: 50px; /* Ajuste a altura conforme necessário */
+    margin-right: 20px; /* Espaçamento entre a logo e o botão */
+}
+
+.navbar-burguer {
+    width: 30px; /* Ajuste conforme o ícone que usar */
+    height: 30px; /* Ajuste conforme o ícone que usar */
+    background-image: url("../images/svg/menu.svg"); /* Ícone de hamburguer */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain; /* Mantém o ícone dentro do botão */
+    border: none; /* Remove a borda padrão do botão */
+    cursor: pointer;
+    background-color: transparent; /* Para garantir que o botão não tenha fundo branco */
+    outline: none; /* Remove a linha de contorno ao clicar */
+}
+
+/* Menu */
+.navbar-menu {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed; /* Fixa o menu na tela */
+    top: 50%; /* Alinha verticalmente no meio */
+    left: 50%; /* Alinha horizontalmente no meio */
+    transform: translate(-50%, -50%); /* Centraliza o menu */
+    width: 100%; /* Largura do menu */
+    height: 100%;
+    background: rgba(5, 5, 18, 0.9);
+    opacity: 0; /* Começa invisível */
+    visibility: hidden; /* Oculta o menu */
+    transition: opacity 0.5s ease, visibility 0.5s ease; /* Animação de transição */
+    border-radius: 10px; /* Bordas arredondadas */
+}
+
+body.open .navbar-menu {
+    opacity: 1; /* Torna o menu visível */
+    visibility: visible; /* Mostra o menu */
+}
+
+.navbar-menu > a {
+    color: #f9f9f9;
+    font-size: 32px;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    margin: 10px 0;
+    transition: color 0.3s;
+}
+
+.navbar-menu > a:hover {
+    color: #0855E4; /* Cor de hover para os links */
+}
+
+/* Botão para fechar o menu */
+.close-menu {
+    position: absolute; /* Posiciona o botão de fechar */
+    top: 10px;
+    right: 10px;
+    background: none; /* Fundo transparente */
+    border: none; /* Sem borda */
+    color: white; /* Cor do texto */
+    font-size: 24px; /* Tamanho da fonte */
+    cursor: pointer; /* Mão ao passar o mouse */
+}
+
+/* Footer */
+
+.footer {
+    background-color: #050512;
+    color: #ffffff;
+    padding: 40px 0;
+    font-family: "Poppins", sans-serif;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5); /* Sombra adicionada */
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-logo img {
+    max-width: 150px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin: 10px 0;
+}
+
+.footer-links ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.footer-links ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-contact p {
+    margin: 5px 0;
+}
+
+.footer-social a {
+    color: #ffffff; /* Cor dos ícones */
+    font-size: 24px; /* Tamanho dos ícones */
+    margin: 0 10px; /* Espaçamento entre os ícones */
+    transition: color 0.3s; /* Animação na mudança de cor */
+}
+
+.footer-social a:hover {
+    color: #0855E4; /* Cor ao passar o mouse */
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #000;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 14px;
+    color: #b0b0b0;
+}
+
+@media (max-width: 768px) {
+    .footer .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-links, .footer-contact, .footer-social {
+        text-align: center;
+        margin: 20px 0;
+    }
+}
+
+/* Login */
+
+
+/* Estilo do contêiner principal de login */
+.mainLogin {
+    display: grid;
+    place-items: center;
+    background-image: url("../images/svg/bgLogin.svg");
+    background-size: 2000px 1000px;
+    background-position: -500px 0;
+    color: #f9f9f9;
+    font-family: "Poppins", sans-serif;
+    animation: gradient 10s infinite alternate linear;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Animação de fundo */
+@keyframes gradient {
+    100% {
+        background-size: 4000px 1000px;
+    }
+}
+
+/* Estilo do formulário de login */
+.login {
+    width: 90%;
+    padding: 70px 30px 44px;
+    border-radius: 22px;
+    background: #161616;
+    text-align: center;
+    position: relative; /* Ajustado para melhor posicionamento */
+}
+
+@media (min-width: 450px) {
+    .login {
+        width: 380px;
+    }
+}
+
+.login > h2 {
+    font-size: 36px;
+    font-weight: 500;
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Estilo do formulário */
+.login-form {
+    display: grid;
+    gap: 16px;
+    width: 100%;
+    margin: 0;
+}
+
+/* Estilo dos campos de texto */
+.textbox {
+    position: relative;
+    width: 100%;
+}
+
+.textbox span {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%); /* Corrigido para melhor alinhamento vertical */
+    color: rgba(255, 255, 255, 0.38);
+}
+
+/* Estilo dos inputs e botão */
+.login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.login-form input,
+.login-form button {
+    width: 100%;
+    height: 60px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.login-form input {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    padding: 0 20px 0 50px;
+    color: inherit;
+}
+
+.login-form input:focus {
+    border-color: #157ae1;
+}
+
+.login-form input:focus ~ span {
+    color: #157ae1;
+}
+
+.login-form button {
+    cursor: pointer;
+    background: #157ae1;
+    color: #f9f9f9;
+    border: 0;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+/* Estilo do link de "Esqueceu a senha?" */
+.login-form a {
+    color: #157ae1;
+    font-size: 16px;
+    text-decoration: none;
+}
