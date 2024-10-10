@@ -6,7 +6,7 @@
     <section class="busca-academias">
         <form class="form_academias" action="buscar_academias.php" method="GET">
             <h2>Localizar Academias</h2>
-            <div class="input-group w-75">
+            <div class="input-group w-90">
                 <span class="input-group-text" id="search-icon">
                     <i class="bi bi-search"></i> <!-- Ícone de lupa -->
                 </span>
