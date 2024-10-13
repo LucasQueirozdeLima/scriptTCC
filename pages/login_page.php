@@ -1,7 +1,8 @@
 
-<?php
-include "../esqueleto/cabecalho.php";
-include "../esqueleto/navbar.php";
+<?php 
+include "../includes/cabecalho.php"; 
+ include "../includes/navbar.php"; 
+
 //include "../banco/Dao.php";
 
 //$dao = new Dao();
@@ -41,5 +42,5 @@ include "../esqueleto/navbar.php";
 
 
 <?php
-include "../esqueleto/rodape.php";
+include "../includes/rodape.php";
 ?>

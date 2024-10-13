@@ -1,5 +1,5 @@
 <?php
-// Inclui os arquivos de cabeçalho e barra de navegação
+
 include "../includes/cabecalho.php";
 include "../includes/navbar.php";
 // include "../banco/Dao.php";
@@ -15,13 +15,6 @@ include "../includes/navbar.php";
 // }
 ?>
 
-<head>
-    <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,600,0,0"
-    />
-</head>
-
 <main class="mainLogin">
     <div class="login">
         <h2>Login</h2>
@@ -35,12 +28,14 @@ include "../includes/navbar.php";
                 <span class="material-symbols-outlined">lock</span>
             </div>
             <button type="submit">LOGIN</button>
-            <a href="https://website.com">Esqueceu a senha?</a>
+            <a href="">Esqueceu a senha?</a>
+            <a href="../pages/perfil.php">Cadastrar</a>
         </form>
     </div>
 </main>
 
+
+
 <?php
-// Inclui o rodapé da página
 include "../includes/rodape.php";
 ?>

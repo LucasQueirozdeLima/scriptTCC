@@ -5,9 +5,14 @@ body {
     background: url(../images/fundo_academia.jpg) no-repeat center center fixed;
     background-size: cover;
     font-family: "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100%;
 }
 
 main {
+    flex: 1;
     padding: 2vw;
     display: flex;
     flex-direction: column;
@@ -21,16 +26,17 @@ main {
     background-color: rgba(0, 0, 0, 0.75);
     padding: 2em;
     border-radius: 10px;
-    width: 100%;
+    width: 800px;
     max-width: 800px;
     margin-bottom: 3vw;
     color: #fff;
+    text-align: center;
 }
 
 .form_academias h2 {
     color: #fff;
     margin-bottom: 1em;
-    text-align: left; /* Alinhar título à esquerda */
+    text-align: center; /* Alinhar título à esquerda */
 }
 
 .input-group {
@@ -47,6 +53,8 @@ main {
 .btn-primary {
     background-color: #0855E4;
     border-color: #0855E4;
+    width: 50%;
+    
 }
 
 .btn-primary:hover {
@@ -219,15 +227,196 @@ body.open .navbar-menu {
     cursor: pointer; /* Mão ao passar o mouse */
 }
 
+
+/* CADASTRO */
+
+.main_cadastroUser{
+  margin: 0;
+  height: 10vh;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(200deg, #638fe2, #6060bd, #4c70dd);
+}
+
+.md-textbox {
+    position: relative;
+    font-family: "Euclid Circular A";
+    margin: 10px;
+  }
+  
+  .md-textbox :is(label, span) {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    pointer-events: none;
+    color: #ffffff;
+    transition: 0.3s;
+  }
+  
+  .md-textbox > label {
+    left: 10px;
+    translate: 0 -50%;
+    padding: 4px 8px;
+  }
+  
+  .md-textbox > span {
+    right: 16px;
+    font-size: 28px;
+  }
+  
+  .md-textbox > input {
+    height: 56px;
+    width: 220px;
+    padding-left: 16px;
+    border: 2px solid #888888;
+    border-radius: 8px;
+    outline: none;
+    background: transparent;
+    color: #f9f9f9;
+    font-family: inherit;
+    font-size: 16px;
+  }
+  
+  .md-textbox > :is(input:focus, .has-value) {
+    border-color: #284beb;
+  }
+  
+  .md-textbox > :is(input:focus, .has-value) ~ span {
+    color: #f9f9f9;
+  }
+  
+  .md-textbox > :is(input:focus, .has-value) ~ label {
+    background: #151515;
+    color: rgba(255, 255, 255, 0.75);
+    translate: 0 -46px;
+  }
+
+/* Estilo do contêiner principal de login */
+.mainLogin {
+    display: grid;
+    place-items: center;
+    background-image: url("../images/svg/bgLogin.svg");
+    background-size: 2000px 1000px;
+    background-position: -500px 0;
+    color: #f9f9f9;
+    font-family: "Poppins", sans-serif;
+    animation: gradient 10s infinite alternate linear;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Animação de fundo */
+@keyframes gradient {
+    100% {
+        background-size: 4000px 1000px;
+    }
+}
+
+/* Estilo do formulário de login */
+.login {
+    width: 90%;
+    padding: 70px 30px 44px;
+    border-radius: 22px;
+    background: #161616;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    position: absolute; /* Ajustado para melhor posicionamento */
+}
+
+@media (min-width: 450px) {
+    .login {
+        width: 380px;
+    }
+}
+
+.login > h2 {
+    font-size: 36px;
+    font-weight: 500;
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Estilo do formulário */
+.login-form {
+    display: grid;
+    gap: 16px;
+    width: 100%;
+    margin: 0;
+}
+
+/* Estilo dos campos de texto */
+.textbox {
+    position: relative;
+    width: 100%;
+}
+
+.textbox span {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%); /* Corrigido para melhor alinhamento vertical */
+    color: rgba(255, 255, 255, 0.38);
+}
+
+/* Estilo dos inputs e botão */
+
+
+.login-form input,
+.login-form button {
+    width: 100%;
+    height: 60px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.login-form input {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    padding: 0 20px 0 50px;
+    color: inherit;
+}
+
+.login-form input:focus {
+    border-color: #157ae1;
+}
+
+.login-form input:focus ~ span {
+    color: #157ae1;
+}
+
+.login-form button {
+    cursor: pointer;
+    background: #157ae1;
+    color: #f9f9f9;
+    border: 0;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+/* Estilo do link de "Esqueceu a senha?" */
+.login-form a {
+    color: #157ae1;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+
+
+
 /* Footer */
 
-.footer {
-    background-color: #050512;
+footer {
+    background: linear-gradient(170deg, #0b2046, #0b0b41, #4f629e);
     color: #ffffff;
-    padding: 40px 0;
+    padding: 10px 0;
     font-family: "Poppins", sans-serif;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5); /* Sombra adicionada */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 100%;
 }
+
 
 .footer .container {
     display: flex;
@@ -276,9 +465,20 @@ body.open .navbar-menu {
 }
 
 .footer-bottom {
-    text-align: center;
-    padding: 20px 0;
+    padding: 10px 0;
     background-color: #000;
+    color: #b0b0b0;
+}
+
+
+/* Footer geral */
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 40px; /* Adicionar espaço antes da faixa */
 }
 
 .footer-bottom p {
@@ -287,131 +487,42 @@ body.open .navbar-menu {
     color: #b0b0b0;
 }
 
-@media (max-width: 768px) {
-    .footer .container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .footer-links, .footer-contact, .footer-social {
-        text-align: center;
-        margin: 20px 0;
-    }
-}
-
-/* Login */
-
-
-/* Estilo do contêiner principal de login */
-.mainLogin {
-    display: grid;
-    place-items: center;
-    background-image: url("../images/svg/bgLogin.svg");
-    background-size: 2000px 1000px;
-    background-position: -500px 0;
-    color: #f9f9f9;
-    font-family: "Poppins", sans-serif;
-    animation: gradient 10s infinite alternate linear;
-    width: 100vw;
-    height: 100vh;
-}
-
-/* Animação de fundo */
-@keyframes gradient {
-    100% {
-        background-size: 4000px 1000px;
-    }
-}
-
-/* Estilo do formulário de login */
-.login {
-    width: 90%;
-    padding: 70px 30px 44px;
-    border-radius: 22px;
-    background: #161616;
-    text-align: center;
-    position: relative; /* Ajustado para melhor posicionamento */
-}
-
-@media (min-width: 450px) {
-    .login {
-        width: 380px;
-    }
-}
-
-.login > h2 {
-    font-size: 36px;
-    font-weight: 500;
-    color: white;
-    margin-bottom: 20px;
-}
-
-/* Estilo do formulário */
-.login-form {
-    display: grid;
+article {
+    position: absolute;
+    bottom: 100px; /* Ajuste a distância do rodapé */
+    left: 48%;
+    width: 93%;
+    transform: translateX(-50%);
+    z-index: 2; /* Garanta que o artigo fique sobre o rodapé */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     gap: 16px;
-    width: 100%;
-    margin: 0;
+    padding: 10px 50px 40px;
+    margin: 0 30px;
+    margin-bottom: 155px;
+    border-radius: 10px;
+    background: rgb(11,10,41);
+    background: linear-gradient(90deg, rgba(11,10,41,1) 0%, rgba(40,40,135,1) 100%);
 }
 
-/* Estilo dos campos de texto */
-.textbox {
-    position: relative;
-    width: 100%;
+article h2 {
+    font-weight: 400;
+    color: rgb(255 255 255 / 70%);
 }
 
-.textbox span {
-    position: absolute;
-    top: 50%;
-    left: 16px;
-    transform: translateY(-50%); /* Corrigido para melhor alinhamento vertical */
-    color: rgba(255, 255, 255, 0.38);
-}
-
-/* Estilo dos inputs e botão */
-.login {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
-
-.login-form input,
-.login-form button {
-    width: 100%;
-    height: 60px;
-    border-radius: 8px;
+article > button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Alinha o conteúdo dentro do botão à direita */
+    padding: 10px 45px 0 40px;
+    width: 13%;
+    background: #0a1536;
+    border: 0;
+    border-radius: 30px;
+    color: #f9f9f9;
     font-family: inherit;
     font-size: 16px;
-}
-
-.login-form input {
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    padding: 0 20px 0 50px;
-    color: inherit;
-}
-
-.login-form input:focus {
-    border-color: #157ae1;
-}
-
-.login-form input:focus ~ span {
-    color: #157ae1;
-}
-
-.login-form button {
-    cursor: pointer;
-    background: #157ae1;
-    color: #f9f9f9;
-    border: 0;
-    font-weight: 600;
-    letter-spacing: 2px;
-}
-
-/* Estilo do link de "Esqueceu a senha?" */
-.login-form a {
-    color: #157ae1;
-    font-size: 16px;
-    text-decoration: none;
+    margin-left: auto; /* Alinha o botão à direita dentro da div article */
 }
