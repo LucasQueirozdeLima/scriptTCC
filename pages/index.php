@@ -18,7 +18,7 @@
 
     <!-- Seção do Gráfico de Pessoas Presentes -->
     <section class="presenca-academia">
-        <h2 style="text-align: center;">Pessoas Presentes na Unidade em Tempo Real</h2>
+        <h2 style="text-align: center; color: white">Pessoas Presentes na Unidade em Tempo Real</h2>
         <div class="chart-container">
             <canvas id="presencaChart"></canvas>
         </div>
@@ -74,7 +74,7 @@
             <p>Imagine saber quantas pessoas estão presentes na academia que você frequenta! Aqui você consegue verificar isso, entre outras funcionalidades. Dê aquele ânimo antes mesmo de treinar.</p>
         </div>
         <div class="sobre_video">
-            <video src="../assets/images/video_acad.mp4" autoplay muted loop></video>
+            <video src="../estilizacao/images/video_acad.mp4" autoplay muted loop></video>
         </div>
     </section>
 </main>

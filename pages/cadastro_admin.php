@@ -2,6 +2,9 @@
 <?php include "../includes/navbar.php"; ?>
 
 <main class="main_cadastroUser">
+
+<h2 style="text-align: center; color:black; margin-bottom : 20px;">CRIAR CADASTRO ADMINISTRADOR</h2>
+
     <div class="md-textbox">
       <input oninput="handleChange(event)" id="input" type="text" />
       <span class="material-symbols-outlined">account_circle</span>

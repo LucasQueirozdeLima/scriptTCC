@@ -6,16 +6,16 @@
 
             <div class="footer-links">
                 <ul>
-                    <li><a href="/pages/home.php">Home</a></li>
-                    <li><a href="/pages/sobre.php">Sobre</a></li>
-                    <li><a href="/pages/contato.php">Contato</a></li>
-                    <li><a href="/pages/privacidade.php">Política de Privacidade</a></li>
+                    <li><a href="../pages/index.php">Home</a></li>
+                    <li><a href="../pages/sobre.php">Sobre</a></li>
+                    <li><a href="../pages/contato.php">Contato</a></li>
+                    <li><a href="../pages/privacidade.php">Política de Privacidade</a></li>
                 </ul>
             </div>
 
             <div class="footer-contact">
-                <p>Endereço: Rua Exemplo, 123, Cidade, Estado</p>
-                <p>Email: contato@meusite.com</p>
+                <p>Endereço: R. Guarani, 735 - Conceição, Diadema - SP, 09991-060</p>
+                <p>Email: fitRealTime@etec.com</p>
                 <p>Telefone: (11) 1234-5678</p>
             </div>
 
@@ -27,7 +27,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2024 Meu Site. Todos os direitos reservados.</p>
+            <p>&copy; 2024 Nosso site. Todos os direitos reservados.</p>
         </div>
     </footer>
 

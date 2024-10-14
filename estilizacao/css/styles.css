@@ -277,8 +277,17 @@ body.open .navbar-menu {
     font-size: 16px;
   }
   
-  .md-textbox > :is(input:focus, .has-value) {
-    border-color: #284beb;
+  .md-textbox input {
+    height: 60px;
+    padding-left: 16px;
+    border: 2px solid #888888;
+    border-radius: 8px;
+    outline: none;
+    background: transparent;
+    color: #f9f9f9;
+    font-family: inherit;
+    font-size: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
   .md-textbox > :is(input:focus, .has-value) ~ span {
@@ -290,6 +299,29 @@ body.open .navbar-menu {
     color: rgba(255, 255, 255, 0.75);
     translate: 0 -46px;
   }
+
+  .main_cadastro {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+}
+
+.btn_main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: rgba(253, 244, 244, 0.685);
+    padding: 80px;
+    border-radius: 10px;
+}
+
+.btn_main:hover {
+    background-color: #4c70dd;
+  }
+
 
 /* Estilo do contêiner principal de login */
 .mainLogin {
@@ -405,12 +437,14 @@ body.open .navbar-menu {
 
 
 
+
+
 /* Footer */
 
 footer {
     background: linear-gradient(170deg, #0b2046, #0b0b41, #4f629e);
     color: #ffffff;
-    padding: 10px 0;
+    padding-top: 20px ;
     font-family: "Poppins", sans-serif;
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
     text-align: center;
