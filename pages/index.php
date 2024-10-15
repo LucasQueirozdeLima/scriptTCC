@@ -71,7 +71,7 @@
     <section class="sobre-index">
         <div class="sobre_texto">
             <span>NÃO DESANIME, CONTINUE TREINANDO !!<br>CUIDE DE SUA SAÚDE</span>
-            <p>Imagine saber quantas pessoas estão presentes na academia que você frequenta! Aqui você consegue verificar isso, entre outras funcionalidades. Dê aquele ânimo antes mesmo de treinar.</p>
+            <p>Imagine saber quantas pessoas estão presentes na academia que você frequenta! Aqui você consegue verificar isso, entre outras funcionalidades. Tenha aquele ânimo antes mesmo de treinar.</p>
         </div>
         <div class="sobre_video">
             <video src="../estilizacao/images/video_acad.mp4" autoplay muted loop></video>

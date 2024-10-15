@@ -22,7 +22,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css" rel="stylesheet">
     
     <link rel="stylesheet" href="../estilizacao/css/styles.css">
-
+    
 
 </head>
 <body>

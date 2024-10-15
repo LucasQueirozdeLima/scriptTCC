@@ -19,14 +19,22 @@ include "../includes/navbar.php";
     <div class="login">
         <h2>Login</h2>
         <form class="login-form" method="POST">
-            <div class="textbox">
-                <input type="email" placeholder="Digite seu email..." name="email" required />
-                <span class="material-symbols-outlined">account_circle</span>
-            </div>
-            <div class="textbox">
-                <input type="password" placeholder="Digite sua senha..." name="senha" required />
-                <span class="material-symbols-outlined">lock</span>
-            </div>
+        <div class="textbox">
+    <label for="username"> </label>
+    <div class="input-wrapper">
+        <input type="text" id="username" placeholder="Digite seu usuário">
+        <i class="fas fa-user"></i>
+    </div>
+</div>
+
+<div class="textbox">
+    <label for="password"> </label>
+    <div class="input-wrapper">
+        <input type="password" id="password" placeholder="Digite sua senha">
+        <i class="fas fa-lock"></i>
+    </div>
+</div>
+
             <button type="submit">LOGIN</button>
             <a href="">Esqueceu a senha?</a>
             <a href="../pages/perfil.php">Cadastrar</a>

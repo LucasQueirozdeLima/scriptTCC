@@ -3,7 +3,7 @@
 
 <main class="main_cadastroUser">
 
-    <h2 style="text-align: center; color:black; margin-bottom : 20px;">CRIAR CADASTRO</h2>
+    <h2 style="text-align: center; color:white; margin-bottom : 20px; font-family: Euclid Circular A;">CRIAR CADASTRO</h2>
 
 
     <div class="md-textbox">

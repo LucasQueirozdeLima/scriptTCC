@@ -36,13 +36,13 @@ main {
 .form_academias h2 {
     color: #fff;
     margin-bottom: 1em;
-    text-align: center; /* Alinhar título à esquerda */
+    text-align: center; 
 }
 
 .input-group {
     margin-bottom: 1em;
     display: flex;
-    justify-content: space-between; /* Organiza o input e o botão */
+    justify-content: space-between; 
 }
 
 .input-group .form-control {
@@ -66,7 +66,7 @@ main {
 .chart-container {
     width: 90%;
     max-width: 700px;
-    margin: 2vw auto; /* Alinhamento central com espaçamento */
+    margin: 2vw auto; 
 }
 
 canvas {
@@ -79,20 +79,20 @@ canvas {
 .sobre-index {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start; /* Alinhar no topo */
+    align-items: flex-start; 
     padding: 4em;
     width: 100%;
-    max-width: 1200px; /* Limitando a largura máxima */
-    gap: 2em; /* Espaçamento entre os elementos */
+    max-width: 1200px; 
+    gap: 2em; 
 }
 
 .sobre_texto {
-    width: 50%; /* Distribui espaço melhor entre texto e vídeo */
+    width: 50%; /
 }
 
 .sobre_texto p {
     padding: 1.5em;
-    font-size: 18px; /* Tamanho de fonte ligeiramente menor */
+    font-size: 18px; 
     color: #ffffff;
     background-color: rgba(0, 0, 0, 0.75);
     border-radius: 10px;
@@ -112,7 +112,7 @@ canvas {
 }
 
 .sobre_video {
-    width: 45%; /* Mesmo tamanho que o texto para balancear */
+    width: 45%; 
 }
 
 .sobre_video video {
@@ -151,30 +151,30 @@ nav {
     align-items: center;
     padding: 0 50px;
     height: 72px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra adicionada */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
 }
 
 .navbar-container {
     display: flex;
-    align-items: center; /* Alinha verticalmente logo e botão */
+    align-items: center; 
 }
 
 .navbar-logo {
-    height: 50px; /* Ajuste a altura conforme necessário */
-    margin-right: 20px; /* Espaçamento entre a logo e o botão */
+    height: 50px; 
+    margin-right: 20px; /
 }
 
 .navbar-burguer {
-    width: 30px; /* Ajuste conforme o ícone que usar */
-    height: 30px; /* Ajuste conforme o ícone que usar */
+    width: 30px; 
+    height: 30px; 
     background-image: url("../images/svg/menu.svg"); /* Ícone de hamburguer */
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain; /* Mantém o ícone dentro do botão */
-    border: none; /* Remove a borda padrão do botão */
+    background-size: contain; 
+    border: none; 
     cursor: pointer;
-    background-color: transparent; /* Para garantir que o botão não tenha fundo branco */
-    outline: none; /* Remove a linha de contorno ao clicar */
+    background-color: transparent; 
+    outline: none; 
 }
 
 /* Menu */
@@ -184,59 +184,61 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: fixed; /* Fixa o menu na tela */
-    top: 50%; /* Alinha verticalmente no meio */
-    left: 50%; /* Alinha horizontalmente no meio */
-    transform: translate(-50%, -50%); /* Centraliza o menu */
-    width: 100%; /* Largura do menu */
+    position: fixed; 
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 100%; 
     height: 100%;
     background: rgba(5, 5, 18, 0.9);
-    opacity: 0; /* Começa invisível */
-    visibility: hidden; /* Oculta o menu */
-    transition: opacity 0.5s ease, visibility 0.5s ease; /* Animação de transição */
-    border-radius: 10px; /* Bordas arredondadas */
+    opacity: 0; 
+    visibility: hidden; 
+    transition: opacity 0.5s ease, visibility 0.5s ease; 
+    border-radius: 10px; 
 }
 
 body.open .navbar-menu {
-    opacity: 1; /* Torna o menu visível */
-    visibility: visible; /* Mostra o menu */
+    opacity: 1; 
+    visibility: visible;
 }
 
 .navbar-menu > a {
     color: #f9f9f9;
     font-size: 32px;
-    font-family: "Poppins", sans-serif;
+    font-family: "Euclid Circular A";
     text-decoration: none;
     margin: 10px 0;
     transition: color 0.3s;
 }
 
 .navbar-menu > a:hover {
-    color: #0855E4; /* Cor de hover para os links */
+    color: #0855E4; 
 }
 
 /* Botão para fechar o menu */
 .close-menu {
-    position: absolute; /* Posiciona o botão de fechar */
+    position: absolute; 
     top: 10px;
     right: 10px;
-    background: none; /* Fundo transparente */
-    border: none; /* Sem borda */
-    color: white; /* Cor do texto */
-    font-size: 24px; /* Tamanho da fonte */
-    cursor: pointer; /* Mão ao passar o mouse */
+    background: none; 
+    border: none; 
+    color: white; 
+    font-size: 24px; 
+    cursor: pointer; 
 }
 
 
-/* CADASTRO */
+/* FORMULARIO DE CADASTRO */
+
 
 .main_cadastroUser{
   margin: 0;
   height: 10vh;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(200deg, #638fe2, #6060bd, #4c70dd);
+  background: linear-gradient(120deg, #0d0e13 , #0a296b, #326485  , #648ca4, #b1c7f1);
 }
+
 
 .md-textbox {
     position: relative;
@@ -265,9 +267,10 @@ body.open .navbar-menu {
   }
   
   .md-textbox > input {
-    height: 56px;
-    width: 220px;
+    height: 600px;
+    width: 670px;
     padding-left: 16px;
+    margin: 10px;
     border: 2px solid #888888;
     border-radius: 8px;
     outline: none;
@@ -322,121 +325,225 @@ body.open .navbar-menu {
     background-color: #4c70dd;
   }
 
+  .cadastro-page html,.cadastro-page
+  body {
+    height: 100%;
+  }
+  
+  .cadastro-page body {
+      margin: 0;
+      padding: 0;
+      background: url(../images/fundo_login.jpeg) no-repeat center center fixed;
+      background-size: cover;
+      font-family: "Poppins", sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      height: 100%;
+  }
+  
+  
+  .card-cadastro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    height: 640px;
+    border-radius: 16px;
+    background: url("../images/login2.jpeg");
+    background-size: 110%;
+    background-position: center;
+    transition: 0.5s;
+    margin-left: 25%;
+    margin-bottom: 10%;
+    margin-top: 10%;
+  }
+  
+  
+  
+  .card-cadastro button {
+    padding: 10px 30px;
+    border-radius: 50px;
+    margin: 10px;
+    border: 0;
+    background: #221e6f;
+    color: #f9f9f9;
+    font-family: inherit;
+  }
+  
 
-/* Estilo do contêiner principal de login */
+
+/* Contêiner principal de login */
 .mainLogin {
-    display: grid;
-    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-image: url("../images/svg/bgLogin.svg");
-    background-size: 2000px 1000px;
-    background-position: -500px 0;
+    background-size: cover;
+    background-position: -100px 0;
     color: #f9f9f9;
     font-family: "Poppins", sans-serif;
-    animation: gradient 10s infinite alternate linear;
     width: 100vw;
     height: 100vh;
+    animation: gradient 10s infinite alternate linear;
 }
-
-/* Animação de fundo */
 @keyframes gradient {
     100% {
         background-size: 4000px 1000px;
     }
-}
-
-/* Estilo do formulário de login */
-.login {
-    width: 90%;
-    padding: 70px 30px 44px;
-    border-radius: 22px;
-    background: #161616;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    position: absolute; /* Ajustado para melhor posicionamento */
-}
-
-@media (min-width: 450px) {
-    .login {
-        width: 380px;
+    0% {
+        background-size: 4000px 1000px;
+    }
+    100% {
+        background-size: 2000px 1000px;
     }
 }
 
+/* Formulário de login */
+.login {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.75);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin: 20px;
+   
+}
+
+/* Título do formulário */
 .login > h2 {
-    font-size: 36px;
-    font-weight: 500;
-    color: white;
+    font-size: 28px;
     margin-bottom: 20px;
+    color: #fff;
+    font-family: "Euclid Circular A";
 }
 
-/* Estilo do formulário */
+/* Campos de texto e botão */
 .login-form {
-    display: grid;
-    gap: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     width: 100%;
-    margin: 0;
 }
 
-/* Estilo dos campos de texto */
+/* Estilização dos campos de texto e posicionamento dos ícones */
 .textbox {
-    position: relative;
+    position: relative; 
     width: 100%;
 }
 
-.textbox span {
-    position: absolute;
-    top: 50%;
-    left: 16px;
-    transform: translateY(-50%); /* Corrigido para melhor alinhamento vertical */
-    color: rgba(255, 255, 255, 0.38);
-}
-
-/* Estilo dos inputs e botão */
-
-
-.login-form input,
-.login-form button {
+.textbox input {
     width: 100%;
-    height: 60px;
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 16px;
-}
-
-.login-form input {
+    height: 50px;
+    padding: 0 20px;
+    padding-right: 40px; /* Adiciona espaço para o ícone à direita */
     background: transparent;
     border: 2px solid rgba(255, 255, 255, 0.1);
-    padding: 0 20px 0 50px;
-    color: inherit;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-.login-form input:focus {
+/* Ícones dentro dos campos de texto */
+.textbox i {
+    position: absolute;
+    right: 15px; /* Posiciona o ícone à direita dentro do campo de entrada */
+    bottom: 5px;
+    transform: translateY(-50%); /* Centraliza o ícone verticalmente */
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+/* Alteração de cor do ícone ao focar no campo */
+.textbox input:focus + i {
+    color: #157ae1; /* Altera a cor do ícone ao focar no input */
+}
+
+/* Foco no campo de texto */
+.textbox input:focus {
     border-color: #157ae1;
+    background-color: rgba(21, 122, 225, 0.1); /* Efeito de fundo leve ao focar */
 }
 
-.login-form input:focus ~ span {
-    color: #157ae1;
-}
-
+/* Botão de login */
 .login-form button {
-    cursor: pointer;
-    background: #157ae1;
-    color: #f9f9f9;
-    border: 0;
+    height: 50px;
+    background-color: #157ae1;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
     font-weight: 600;
-    letter-spacing: 2px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Estilo do link de "Esqueceu a senha?" */
+.login-form button:hover {
+    background-color: #0f63ba;
+    transform: scale(1.05); /* Efeito de zoom leve no hover */
+}
+
+/* Link "Esqueceu a senha?" */
 .login-form a {
     color: #157ae1;
-    font-size: 16px;
+    font-size: 14px;
     text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-form a:hover {
+    color: #0f63ba;
 }
 
 
 
+/* Responsividade */
+@media (max-width: 768px) {
+    .login {
+        max-width: 90%;
+        padding: 20px;
+    }
 
+    .login > h2 {
+        font-size: 24px;
+    }
+
+    .textbox input {
+        height: 45px;
+    }
+
+    .login-form button {
+        height: 45px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .login > h2 {
+        font-size: 20px;
+    }
+
+    .textbox input {
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .login-form button {
+        height: 40px;
+        font-size: 14px;
+    }
+}
 
 
 /* Footer */
@@ -449,6 +556,7 @@ footer {
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
     text-align: center;
     width: 100%;
+    height: 50%;
 }
 
 
@@ -488,14 +596,14 @@ footer {
 }
 
 .footer-social a {
-    color: #ffffff; /* Cor dos ícones */
-    font-size: 24px; /* Tamanho dos ícones */
-    margin: 0 10px; /* Espaçamento entre os ícones */
-    transition: color 0.3s; /* Animação na mudança de cor */
+    color: #ffffff; 
+    font-size: 24px; 
+    margin: 0 10px; 
+    transition: color 0.3s; 
 }
 
 .footer-social a:hover {
-    color: #0855E4; /* Cor ao passar o mouse */
+    color: #0855E4;
 }
 
 .footer-bottom {
@@ -512,7 +620,7 @@ footer {
     flex-wrap: wrap;
     max-width: 1200px;
     margin: 0 auto;
-    padding-bottom: 40px; /* Adicionar espaço antes da faixa */
+    padding-bottom: 40px; 
 }
 
 .footer-bottom p {
@@ -523,7 +631,7 @@ footer {
 
 article {
     position: absolute;
-    bottom: 100px; /* Ajuste a distância do rodapé */
+    bottom: 100px; 
     left: 48%;
     width: 93%;
     transform: translateX(-50%);
@@ -549,7 +657,7 @@ article h2 {
 article > button {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Alinha o conteúdo dentro do botão à direita */
+    justify-content: flex-end; 
     padding: 10px 45px 0 40px;
     width: 13%;
     background: #0a1536;
@@ -558,5 +666,8 @@ article > button {
     color: #f9f9f9;
     font-family: inherit;
     font-size: 16px;
-    margin-left: auto; /* Alinha o botão à direita dentro da div article */
+    margin-left: auto;
 }
+
+
+
