@@ -27,7 +27,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2024 Nosso site. Todos os direitos reservados.</p>
+            <p>&copy; Todos os direitos reservados.</p>
         </div>
     </footer>
 

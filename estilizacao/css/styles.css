@@ -21,12 +21,36 @@ main {
     width: 100%;
 }
 
+@media (max-width: 768px) {
+    body {
+        font-size: 3vw;
+    }
+
+    h2 {
+        font-size: 5vw;
+    }
+}
+
+/* Para dispositivos grandes (desktop) */
+@media (max-width: 1200px) {
+    /* Ajuste o layout para desktops grandes */
+}
+
+
+@media (max-width: 992px) {
+    /* Ajuste os componentes como o formulário e o gráfico para se adaptarem a tablets */
+    .form_academias, .chart-container {
+        width: 100%;
+        padding: 1em;
+    }
+}
+
 /* Formulário de Busca */
 .form_academias {
     background-color: rgba(0, 0, 0, 0.75);
     padding: 2em;
     border-radius: 10px;
-    width: 800px;
+    width: 100%;
     max-width: 800px;
     margin-bottom: 3vw;
     color: #fff;
@@ -36,7 +60,8 @@ main {
 .form_academias h2 {
     color: #fff;
     margin-bottom: 1em;
-    text-align: center; 
+    text-align: center;
+     
 }
 
 .input-group {
@@ -62,6 +87,40 @@ main {
     border-color: #063aa7;
 }
 
+@media (max-width: 768px) {
+    .sobre-index {
+        flex-direction: column;
+        padding: 2em;
+    }
+
+    .form_academias, .chart-container {
+        width: 90%;
+    }
+
+    .mainLogin {
+        background-position: center;
+    }
+}
+
+
+
+/* Para telas muito pequenas */
+@media (max-width: 480px) {
+    /* Ajuste a tipografia e margens para telas muito pequenas */
+    .login h2 {
+        font-size: 20px;
+    }
+
+    .login-form button {
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .textbox input {
+        height: 40px;
+        font-size: 14px;
+    }
+}
 /* Gráfico de Pessoas Presentes */
 .chart-container {
     width: 90%;
@@ -355,7 +414,7 @@ body.open .navbar-menu {
     background-size: 110%;
     background-position: center;
     transition: 0.5s;
-    margin-left: 25%;
+    margin-left: 35%;
     margin-bottom: 10%;
     margin-top: 10%;
   }
@@ -372,7 +431,34 @@ body.open .navbar-menu {
     font-family: inherit;
   }
   
+/* Estilos do card para diferentes tamanhos de tela */
 
+/* Estilo para telas maiores */
+@media (min-width: 769px) {
+    #card-cadastro {
+      width: 500px;
+      height: 300px;
+      transform: none; /* Define sem rotação inicial */
+      transition: transform 0.2s ease; /* Suaviza a animação */
+    }
+  }
+  
+  /* Estilo para telas médias */
+  @media (max-width: 768px) {
+    #card-cadastro {
+      width: 350px;
+      height: 250px;
+    }
+  }
+  
+  /* Estilo para telas pequenas (mobile) */
+  @media (max-width: 480px) {
+    #card-cadastro {
+      width: 300px;
+      height: 200px;
+    }
+  }
+  
 
 /* Contêiner principal de login */
 .mainLogin {
@@ -399,6 +485,7 @@ body.open .navbar-menu {
         background-size: 2000px 1000px;
     }
 }
+
 
 /* Formulário de login */
 .login {
@@ -545,6 +632,10 @@ body.open .navbar-menu {
     }
 }
 
+img, video {
+    max-width: 100%;
+    height: auto;
+}
 
 /* Footer */
 
