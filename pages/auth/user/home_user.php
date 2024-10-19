@@ -17,37 +17,37 @@
   </head>
   <body>
     <button type="button" class="burger" onclick="toggleSidebar()">
-      <img class="burger-avatar" src=""/>
+      <img class="burger-avatar" src="../../../estilizacao/images/svg/avatar.png"/>
       <span class="burger-icon"></span>
     </button>
     <div class="overlay"></div>
     <aside class="sidebar">
-      <img class="sidebar-avatar" height="100" width="100" src="../../../estilizacao/images/devs/b.jpeg" />
+      <img class="sidebar-avatar" height="100" width="100" src="../../../estilizacao/images/user-avatar.png" />
       <div class="sidebar-username">Vinicius</div>
       <div class="sidebar-role">Frontend Developer</div>
       <nav class="sidebar-menu">
         <button type="button">
-          <img src="./assets/icon-home.svg" />
+          <img src="../../../estilizacao/images/svg/icon-home.svg" />
           <span>Home</span>
         </button>
         <button type="button">
-          <img src="./assets/icon-settings.svg" />
+          <img src="../../../estilizacao/images/svg/icon-settings.svg" />
           <span>Settings</span>
         </button>
         <button type="button">
-          <img src="./assets/icon-accounts.svg" />
+          <img src="../../../estilizacao/images/svg/icon-accounts.svg" />
           <span>Profile</span>
         </button>
       </nav>
       <nav class="sidebar-menu bottom">
         <button type="button">
-          <img src="./assets/icon-lock.svg" />
+          <img src="../../../estilizacao/images/svg/icon-lock.svg" />
           <span>Sign Out</span>
         </button>
       </nav>
     </aside>
+    <a href="../../index.php"><img src="../../../estilizacao/images/logo_nav.png" class="user-logo"></a>
 
-    <a href="../../index.php"><img src="../../../estilizacao/images/logo_nav.png" alt="Logo" class="user-logo" width="100" height="100"/></a>
 
     <script type="text/javascript">
       const toggleSidebar = () => document.body.classList.toggle("open");
