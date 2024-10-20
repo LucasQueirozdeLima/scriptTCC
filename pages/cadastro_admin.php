@@ -1,45 +1,45 @@
 <?php include "../includes/cabecalho.php"; ?>
 <?php include "../includes/navbar.php"; ?>
 
-<main class="main_cadastroUser">
+<main style="background: linear-gradient(120deg, #0d0e13 , #0a296b, #326485  , #648ca4, #b1c7f1);">
 
 <h2 style="text-align: center; color:white; margin-bottom : 20px; font-family: Euclid Circular A;">CRIAR CADASTRO ADMINISTRADOR</h2>
 
     <div class="md-textbox">
       <input oninput="handleChange(event)" id="input" type="text" />
       <span class="material-symbols-outlined">account_circle</span>
-      <label htmlFor="input">Nome</label>
+      <label for="input">Nome</label>
     </div>
     
     <div class="md-textbox">
       <input oninput="handleChange(event)" id="input" type="text" />
       <span class="material-symbols-outlined">account_circle</span>
-      <label htmlFor="input">Nickname</label>
+      <label for="input">Nickname</label>
     </div>
 
     <div class="md-textbox">
       <input oninput="handleChange(event)" id="input" type="text" />
       <span class="material-symbols-outlined">account_circle</span>
-      <label htmlFor="input">E-mail</label>
+      <label for="input">E-mail</label>
     </div>
     
     <div class="md-textbox">
       <input oninput="handleChange(event)" id="input" type="text" />
       <span class="material-symbols-outlined">account_circle</span>
-      <label htmlFor="input">Documento</label>
+      <label for="input">Documento</label>
     </div>
     
     <div class="md-textbox">
       <input oninput="handleChange(event)" id="input" type="text" />
       <span class="material-symbols-outlined">account_circle</span>
-      <label htmlFor="input">Cargo</label>
+      <label for="input">Cargo</label>
     </div>
 
 
     <div class="md-textbox">
-      <input oninput="handleChange(event)" id="input" type="text" />
+      <input oninput="handleChange(event)" id="input" type="password" />
       <span class="material-symbols-outlined">account_circle</span>
-      <label htmlFor="input">Senha</label>
+      <label for="input">Senha</label>
     </div>
 </main>
 

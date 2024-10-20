@@ -108,6 +108,7 @@ body.open .burger-icon {
   filter: blur(10px);
   transition-property: filter, visibility, opacity;
   transition-duration: 0.6s;
+ 
 }
 
 @media (width >= 330px) {

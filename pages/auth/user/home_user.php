@@ -17,14 +17,14 @@
   </head>
   <body>
     <button type="button" class="burger" onclick="toggleSidebar()">
-      <img class="burger-avatar" src="../../../estilizacao/images/svg/avatar.png"/>
+      <img class="burger-avatar" src="../../../estilizacao/images/user-avatar.png"/>
       <span class="burger-icon"></span>
     </button>
     <div class="overlay"></div>
     <aside class="sidebar">
       <img class="sidebar-avatar" height="100" width="100" src="../../../estilizacao/images/user-avatar.png" />
       <div class="sidebar-username">Vinicius</div>
-      <div class="sidebar-role">Frontend Developer</div>
+      <div class="sidebar-role">Usuário</div>
       <nav class="sidebar-menu">
         <button type="button">
           <img src="../../../estilizacao/images/svg/icon-home.svg" />

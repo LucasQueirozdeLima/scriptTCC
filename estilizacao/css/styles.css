@@ -289,58 +289,32 @@ body.open .navbar-menu {
 
 /* FORMULARIO DE CADASTRO */
 
+.container-cd {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    background: url("../images/login2.jpeg");
+    background-size: 110%;
+    background-position: center;
+    transition: 0.5s;
+    margin-top: 5%;
+  }
 
-.main_cadastroUser{
-  margin: 0;
-  height: 10vh;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(120deg, #0d0e13 , #0a296b, #326485  , #648ca4, #b1c7f1);
-}
 
 
-.md-textbox {
+  .md-textbox {
     position: relative;
     font-family: "Euclid Circular A";
     margin: 10px;
-  }
-  
-  .md-textbox :is(label, span) {
-    position: absolute;
-    top: 50%;
-    translate: 0 -50%;
-    pointer-events: none;
-    color: #ffffff;
-    transition: 0.3s;
-  }
-  
-  .md-textbox > label {
-    left: 10px;
-    translate: 0 -50%;
-    padding: 4px 8px;
-  }
-  
-  .md-textbox > span {
-    right: 16px;
-    font-size: 28px;
-  }
-  
-  .md-textbox > input {
-    height: 600px;
-    width: 670px;
-    padding-left: 16px;
-    margin: 10px;
-    border: 2px solid #888888;
-    border-radius: 8px;
-    outline: none;
-    background: transparent;
-    color: #f9f9f9;
-    font-family: inherit;
-    font-size: 16px;
-  }
-  
-  .md-textbox input {
+    width: 100%;
+    text-align: center;
+}
+
+.md-textbox > input {
     height: 60px;
+    width: 40%;
     padding-left: 16px;
     border: 2px solid #888888;
     border-radius: 8px;
@@ -350,24 +324,76 @@ body.open .navbar-menu {
     font-family: inherit;
     font-size: 16px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .md-textbox > :is(input:focus, .has-value) ~ span {
-    color: #f9f9f9;
-  }
-  
-  .md-textbox > :is(input:focus, .has-value) ~ label {
+}
+
+.md-textbox :is(label, span) {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    pointer-events: none;
+    color: #ffffff;
+    transition: 0.3s ease;
+}
+
+.md-textbox > label {
+    left: 31%;
+    background: transparent;
+    padding: 4px;
+    font-size: 16px;
+}
+
+.md-textbox > span {
+    right: 31%;
+    font-size: 28px;
+}
+
+/* Efeito de placeholder: label dentro do input */
+.md-textbox > :is(input:focus, .has-value) ~ label {
     background: #151515;
     color: rgba(255, 255, 255, 0.75);
-    translate: 0 -46px;
-  }
-
-  .main_cadastro {
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    height: 100vh; 
+    translate: 0 -120%;  /* Mover para cima */
+    font-size: 12px;     /* Reduzir o tamanho do texto */
 }
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .md-textbox {
+        margin: 10px 0;
+    }
+
+    .md-textbox > input {
+        height: 50px;
+        font-size: 14px;
+    }
+
+    .btn_main {
+        padding: 20px;
+        gap: 10px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+}
+
+/* Responsividade para telas muito pequenas, como smartphones */
+@media (max-width: 480px) {
+    .md-textbox > input {
+        height: 45px;
+        font-size: 12px;
+    }
+
+    .btn_main {
+        padding: 10px;
+        gap: 5px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}
+
+
 
 .btn_main {
     display: flex;
@@ -376,66 +402,23 @@ body.open .navbar-menu {
     justify-content: center;
     gap: 20px;
     background-color: rgba(253, 244, 244, 0.685);
-    padding: 80px;
+    padding: 40px;
     border-radius: 10px;
+    width: 90%;
+    max-width: 400px; /* Limita a largura em telas maiores */
 }
 
 .btn_main:hover {
     background-color: #4c70dd;
   }
 
-  .cadastro-page html,.cadastro-page
-  body {
-    height: 100%;
-  }
   
-  .cadastro-page body {
-      margin: 0;
-      padding: 0;
-      background: url(../images/fundo_login.jpeg) no-repeat center center fixed;
-      background-size: cover;
-      font-family: "Poppins", sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      height: 100%;
-  }
-  
-  
-  .card-cadastro {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 1000px;
-    height: 640px;
-    border-radius: 16px;
-    background: url("../images/login2.jpeg");
-    background-size: 110%;
-    background-position: center;
-    transition: 0.5s;
-    margin-left: 35%;
-    margin-bottom: 10%;
-    margin-top: 10%;
-  }
-  
-  
-  
-  .card-cadastro button {
-    padding: 10px 30px;
-    border-radius: 50px;
-    margin: 10px;
-    border: 0;
-    background: #221e6f;
-    color: #f9f9f9;
-    font-family: inherit;
-  }
   
 /* Estilos do card para diferentes tamanhos de tela */
 
 /* Estilo para telas maiores */
 @media (min-width: 769px) {
-    #card-cadastro {
+    .container-cd {
       width: 500px;
       height: 300px;
       transform: none; /* Define sem rotação inicial */
@@ -445,7 +428,7 @@ body.open .navbar-menu {
   
   /* Estilo para telas médias */
   @media (max-width: 768px) {
-    #card-cadastro {
+    .container-cd {
       width: 350px;
       height: 250px;
     }
@@ -453,7 +436,7 @@ body.open .navbar-menu {
   
   /* Estilo para telas pequenas (mobile) */
   @media (max-width: 480px) {
-    #card-cadastro {
+    .container-cd {
       width: 300px;
       height: 200px;
     }
