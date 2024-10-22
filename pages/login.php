@@ -18,11 +18,11 @@ include "../includes/navbar.php";
 <main class="mainLogin">
     <div class="login">
         <h2>Login</h2>
-        <form class="login-form" method="POST">
+        <form class="login-form" action="../intermediarios/verificarLogin.php" method="post">
         <div class="textbox">
     <label for="username"> </label>
     <div class="input-wrapper">
-        <input type="text" id="username" placeholder="Digite seu usuário">
+        <input type="text" id="username" name="verificador" placeholder="Digite seu usuário">
         <i class="fas fa-user"></i>
     </div>
 </div>
@@ -30,7 +30,7 @@ include "../includes/navbar.php";
 <div class="textbox">
     <label for="password"> </label>
     <div class="input-wrapper">
-        <input type="password" id="password" placeholder="Digite sua senha">
+        <input type="password" id="password" name="senha" placeholder="Digite sua senha">
         <i class="fas fa-lock"></i>
     </div>
 </div>

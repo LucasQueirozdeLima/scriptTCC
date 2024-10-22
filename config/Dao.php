@@ -19,14 +19,14 @@ class Dao {
         $usuario = $this->pdo->query("SELECT * FROM usuario WHERE nome_usuario='$verificador' OR email='$verificador' AND senha='$senha'");
 
         if ($usuario->fetch()) {
-            header("Location: ../telas/index.php");
+            header("Location: ../pages/index.php");
         } else {
             $admin = $this->pdo->query("SELECT * FROM usuario_admin WHERE nome_usuario='$verificador' OR email='$verificador' AND senha='$senha'");
             if ($admin->fetch()) {
-                header("Location: ../telas/index.php");
+                header("Location: ../pages/index.php");
+            } else {
+                header("Location: ../pages/login.php?erro=1");
             }
-
-            header("Location: ../telas/login_page.php?erro=1");
         }
     }
 
@@ -35,9 +35,10 @@ class Dao {
     public function inserirUsuario($nome, $nome_usuario, $email, $senha) 
     {
         try {
-            $inserirUser = $this->pdo->query("INSERT INTO usuario (nome, nome_usuario, email, senha) VALUES ('$nome', '$nome_usuario', '$email', '$senha'"); 
+            $inserirUser = $this->pdo->query("INSERT INTO usuario (nome, nome_usuario, email, senha) VALUES ('$nome', '$nome_usuario', '$email', '$senha')"); 
+            header("Location: ../pages/login.php");
         } catch (PDOException $erroCadastro) {
-            header("Location: cadastro.php?error=1");
+            header("Location: ../pages/cadastro_usuario.php?error=1");
         }
     }
 
@@ -45,8 +46,10 @@ class Dao {
     {
         try {
             $inserirAdmin = $this->pdo->query("INSERT INTO usuario_admin (nome, nome_usuario, documento, email, cargo, senha) VALUES ('$nome', '$nome_usuario', '$documento', '$email', '$cargo', '$senha')");
+            header("Location: ../pages/login.php");
         } catch (PDOException $erroCadastro) {
-            header("Location: cadastro.php?error=1");
+            //header("Location: ../pages/cadastro_admin.php?error=1");
+            echo $erroCadastro;
         }
     }
 

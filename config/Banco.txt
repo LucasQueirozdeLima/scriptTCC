@@ -1,5 +1,8 @@
 BANCO DE DADOS
 
+create database fitrealtime;
+use fitrealtime;
+
 create table endereco (
 
     id_endereco int auto_increment primary key not null,
@@ -18,7 +21,7 @@ create table usuario(
     nome varchar(50) not null,
     nome_usuario varchar (30) not null unique,
     email varchar(250) unique not null,
-    senha varchar(30) not null,
+    senha varchar(30) not null
 
 );
  
@@ -51,7 +54,7 @@ create table frequencia (
 
     id_frequencia int auto_increment primary key not null,
     num_atual int(4) not null,
-    data DATE not null,
+    data DATETIME not null,
     academia_id INT,
     FOREIGN KEY (academia_id) REFERENCES academia(id_academia)
 
