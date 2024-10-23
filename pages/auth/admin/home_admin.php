@@ -39,19 +39,16 @@
           <input type="radio" id="settings" name="sidebar" />
           <label for="settings">
             <i class="ai-gear"></i>
-            <p>Settings</p>
+            <p>Configurações</p>
             <i class="ai-chevron-down-small"></i>
           </label>
           <div class="sub-menu">
             <ul>
               <li>
-                <button type="button">Display</button>
+                <button type="button">Alterar Dados</button>
               </li>
               <li>
-                <button type="button">Appearance</button>
-              </li>
-              <li>
-                <button type="button">Preferences</button>
+                <button type="button">###</button>
               </li>
             </ul>
           </div>
@@ -60,22 +57,22 @@
           <input type="radio" id="create" name="sidebar" />
           <label for="create">
             <i class="ai-folder-add"></i>
-            <p>Create</p>
+            <p>Academias</p>
             <i class="ai-chevron-down-small"></i>
           </label>
           <div class="sub-menu">
             <ul>
               <li>
-                <button type="button">Article</button>
+                <button type="button">Cadastrar</button>
               </li>
               <li>
-                <button type="button">Document</button>
+                <button type="button">Listar</button>
               </li>
               <li>
-                <button type="button">Video</button>
+                <button type="button">###</button>
               </li>
               <li>
-                <button type="button">Presentation</button>
+                <button type="button">###</button>
               </li>
             </ul>
           </div>
@@ -84,16 +81,16 @@
           <input type="radio" id="profile" name="sidebar" />
           <label for="profile">
             <i class="ai-person"></i>
-            <p>Profile</p>
+            <p>Perfil</p>
             <i class="ai-chevron-down-small"></i>
           </label>
           <div class="sub-menu">
             <ul>
               <li>
-                <button type="button">Avatar</button>
+                <button type="button">Dados Pessoais</button>
               </li>
               <li>
-                <button type="button">Theme</button>
+                <button type="button">###</button>
               </li>
             </ul>
           </div>
@@ -102,21 +99,15 @@
           <input type="radio" id="notifications" name="sidebar" />
           <label for="notifications">
             <i class="ai-bell"></i>
-            <p>Notifications</p>
+            <p>Notificação</p>
           </label>
         </li>
-        <li>
-          <input type="radio" id="products" name="sidebar" />
-          <label for="products">
-            <i class="ai-cart"></i>
-            <p>Products</p>
-          </label>
-        </li>
+        
         <li>
           <input type="radio" id="account" name="sidebar" />
           <label for="account">
             <i class="ai-lock-on"></i>
-            <p>Account</p>
+            <p>Sair</p>
           </label>
         </li>
       </ul>

@@ -44,14 +44,15 @@
         .content {
             text-align: center;
             padding: 50px 20px;
+            background-color: #333;
         }
         .content h2 {
-            color: #333333;
+            color: #c8c8c8;
             font-size: 24px;
             margin-bottom: 20px;
         }
         .content p {
-            color: #333;
+            color: #c8c8c8;
             font-size: 18px;
             line-height: 1.6;
             margin-bottom: 20px;

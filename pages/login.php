@@ -37,7 +37,7 @@ include "../includes/navbar.php";
 
             <button type="submit">LOGIN</button>
             <a href="">Esqueceu a senha?</a>
-            <a href="../pages/perfil.php">Cadastrar</a>
+            <a href="../pages/login_cadastro.php">Cadastrar</a>
         </form>
     </div>
 </main>

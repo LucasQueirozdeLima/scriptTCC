@@ -2,7 +2,6 @@
 <?php include "../includes/navbar.php"; ?>
 
 <main>
-    <!-- Seção de Localização de Academias -->
     <section class="busca-academias">
         <form class="form_academias" action="buscar_academias.php" method="GET">
             <h2>Localizar Academias</h2>
@@ -16,7 +15,7 @@
         </form>
     </section>
 
-    <!-- Seção do Gráfico de Pessoas Presentes -->
+    <!--  Gráfico -->
     <section class="presenca-academia">
         <h2 style="text-align: center; color: white">Pessoas Presentes na Unidade em Tempo Real</h2>
         <div class="chart-container">
@@ -32,10 +31,10 @@
         const presencaChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Academia XYZ'], // Nome da academia
+                labels: ['Academia XYZ'], 
                 datasets: [{
                     label: 'Pessoas Presentes',
-                    data: [15],  // Número de pessoas (pode ser atualizado dinamicamente)
+                    data: [15],  
                     backgroundColor: 'rgba(54, 162, 235, 0.8)',
                     borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 2
@@ -64,10 +63,9 @@
             }
         });
 
-        // Atualização dinâmica dos dados com Firebase ou outra API
     </script>
 
-    <!-- Seção Motivacional com Vídeo -->
+    
     <section class="sobre-index">
         <div class="sobre_texto">
             <span>NÃO DESANIME, CONTINUE TREINANDO !!<br>CUIDE DE SUA SAÚDE</span>

@@ -8,7 +8,6 @@
     <a href="index.php" style="animation-delay: 0.1s" onclick="toggleMenu()">Home</a>
     <a href="login.php" style="animation-delay: 0.2s" onclick="toggleMenu()">Login</a>
     <a href="sobre.php" style="animation-delay: 0.3s" onclick="toggleMenu()">Sobre</a>
-    <a href="#" style="animation-delay: 0.4s" onclick="toggleMenu()">Produtos</a>
     <a href="contato.php" style="animation-delay: 0.5s" onclick="toggleMenu()">Contato</a>
 </div>
 

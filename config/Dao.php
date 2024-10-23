@@ -19,11 +19,11 @@ class Dao {
         $usuario = $this->pdo->query("SELECT * FROM usuario WHERE nome_usuario='$verificador' OR email='$verificador' AND senha='$senha'");
 
         if ($usuario->fetch()) {
-            header("Location: ../pages/index.php");
+            header("Location: ../pages/auth/user/home_user.php");
         } else {
             $admin = $this->pdo->query("SELECT * FROM usuario_admin WHERE nome_usuario='$verificador' OR email='$verificador' AND senha='$senha'");
             if ($admin->fetch()) {
-                header("Location: ../pages/index.php");
+                header("Location: ../pages/auth/admin/home_admin.php");
             } else {
                 header("Location: ../pages/login.php?erro=1");
             }

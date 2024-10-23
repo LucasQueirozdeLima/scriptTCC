@@ -10,30 +10,31 @@
     <h2 style="text-align: center; color:white; margin-bottom : 20px; font-family: Euclid Circular A;">CRIAR CADASTRO</h2>
 
       <div class="md-textbox">
-        <input oninput="handleChange(event)" id="input" type="text" name="nome">
+        <input oninput="handleChange(event)" id="input" type="text" name="nome" placeholder="Digite seu nome">
       <span class="material-symbols-outlined">account_circle</span>
       <label for="input">Nome</label>
     </div>
     
     <div class="md-textbox">
-      <input oninput="handleChange(event)" id="input" type="text" name="nome_usuario">
+      <input oninput="handleChange(event)" id="input" type="text" name="nome_usuario" placeholder="Digite seu apelido">
       <span class="material-symbols-outlined">account_circle</span>
       <label for="input">Nickname</label>
     </div>
 
     <div class="md-textbox">
-      <input oninput="handleChange(event)" id="input" type="text" name="email">
+      <input oninput="handleChange(event)" id="input" type="text" name="email" placeholder="Digite seu e-mail">
       <span class="material-symbols-outlined">account_circle</span>
       <label for="input">E-mail</label>
     </div>
 
     <div class="md-textbox">
-      <input oninput="handleChange(event)" id="input" type="password" name="senha">
+      <input oninput="handleChange(event)" id="input" type="password" name="senha" placeholder="Digite sua senha">
       <span class="material-symbols-outlined">account_circle</span>
       <label for="input">Senha</label>
     </div>
 
     <button type="submit">CADASTRAR</button>
+    <a href="./login_cadastro.php">VOLTAR</a>
   </form>
   </main>
 

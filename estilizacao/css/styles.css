@@ -33,12 +33,11 @@ main {
 
 /* Para dispositivos grandes (desktop) */
 @media (max-width: 1200px) {
-    /* Ajuste o layout para desktops grandes */
 }
 
 
 @media (max-width: 992px) {
-    /* Ajuste os componentes como o formulário e o gráfico para se adaptarem a tablets */
+    /*  tablets */
     .form_academias, .chart-container {
         width: 100%;
         padding: 1em;
@@ -289,20 +288,48 @@ body.open .navbar-menu {
 
 /* FORMULARIO DE CADASTRO */
 
-.container-cd {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 16px;
-    background: url("../images/login2.jpeg");
-    background-size: 110%;
-    background-position: center;
-    transition: 0.5s;
-    margin-top: 5%;
-  }
 
 
+main form {
+    position: relative;
+    font-family: "Euclid Circular A";
+    margin: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+main > form > button{
+    height: 50px;
+    background-color: #020e1a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+main > form >  a{
+    height: 50px;
+    background-color: #020e1a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    padding: 16px;
+    text-decoration: none;
+}
+ 
+  input::placeholder{
+    color: white;
+    font-family: "Euclid Circular A";
+  }   
 
   .md-textbox {
     position: relative;
@@ -336,10 +363,10 @@ body.open .navbar-menu {
 }
 
 .md-textbox > label {
-    left: 31%;
+    left: 24%;
     background: transparent;
     padding: 4px;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .md-textbox > span {
@@ -366,9 +393,19 @@ body.open .navbar-menu {
         font-size: 14px;
     }
 
+    .md-textbox > label {
+        font-size: 16px;
+        left: 8px;
+    }
+
     .btn_main {
         padding: 20px;
         gap: 10px;
+    }
+
+    button {
+        font-size: 14px;
+        height: 45px;
     }
 
     h2 {
@@ -386,6 +423,15 @@ body.open .navbar-menu {
     .btn_main {
         padding: 10px;
         gap: 5px;
+    }
+    button {
+        font-size: 12px;
+        height: 40px;
+    }
+
+    .md-textbox > label {
+        font-size: 16px;
+       left: 5px;
     }
 
     h2 {
@@ -443,7 +489,58 @@ body.open .navbar-menu {
   }
   
 
-/* Contêiner principal de login */
+/* Contêiner principal de login E CADASTRO PAGE */
+
+.container-cd {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 16px;
+    margin-top: 5%;
+    overflow: hidden; 
+    
+}
+
+.background-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../images/login2.jpeg");
+    background-size: 110%;
+    background-position: center;
+    filter: blur(3px); 
+    z-index: 1;
+    transition: 0.5s;
+}
+
+.container-cd .content {
+    position: relative;
+    z-index: 2;
+}
+
+.cadastrar {
+    z-index: 2;
+    margin: 10px;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.cadastrar:hover {
+    background-color: #025f9b;
+    color: #fff;
+}
+
+.container-cd a {
+    text-decoration: none;
+}
+
+
 .mainLogin {
     display: flex;
     justify-content: center;
