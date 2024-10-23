@@ -9,7 +9,7 @@
                     <li><a href="../pages/index.php">Home</a></li>
                     <li><a href="../pages/sobre.php">Sobre</a></li>
                     <li><a href="../pages/contato.php">Contato</a></li>
-                    <li><a href="../pages/privacidade.php">Política de Privacidade</a></li>
+                    <li><a href="../pages/##.php">Política de Privacidade</a></li>
                 </ul>
             </div>
 
