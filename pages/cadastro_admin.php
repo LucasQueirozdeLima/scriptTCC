@@ -14,9 +14,9 @@
     </div>
     
     <div class="md-textbox">
-      <input oninput="handleChange(event)" id="input" type="text" name="nome_usuario" placeholder="Digite seu apelido"/>
+      <input oninput="handleChange(event)" id="input" type="text" name="nome_usuario" placeholder="Digite seu nome de usuário"/>
       <span class="material-symbols-outlined">account_circle</span>
-      <label for="input">Nickname</label>
+      <label for="input">Apelido</label>
     </div>
 
     <div class="md-textbox">

@@ -3,9 +3,7 @@
 
   <?php include "sidebar_admin.php"; ?>
 
+ 
 
-  
- 
- <?php include "rodape.php"; ?>
-    
- 
+
+<?php include "rodape.php"; ?>

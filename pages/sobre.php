@@ -128,27 +128,27 @@
             <div class="team-member">
                 <img alt="a" height="100" src="../estilizacao/images/devs/a.jpeg" width="100"/>
                 <p>Deborah Oliveira</p>
-                <a href="https://github.com/deborahbezerrolv"><img class="logoGit" src="../estilizacao/images/GitHub-logo.png" alt="Logo github">deborahbezerrolv</a>
+                <a href="https://github.com/deborahbezerrolv"><img class="logoGit" src="../estilizacao/images/GitHub-logo.png" alt="Logo github"></a>
             </div>
             <div class="team-member">
                 <img alt="b" height="100" src="../estilizacao/images/devs/c.jpeg" width="100"/>
                 <p>Lucas Queiroz de Lima </p>
-                <a href="https://github.com/LucasQueirozdeLima"><img class="logoGit" src="../estilizacao/images/GitHub-logo.png" alt="Logo github">LucasQueirozdeLima</a>
+                <a href="https://github.com/LucasQueirozdeLima"><img class="logoGit" src="../estilizacao/images/GitHub-logo.png" alt="Logo github"></a>
             </div>
             <div class="team-member">
                 <img alt="a" height="100" src="../estilizacao/images/devs/d.jpeg" width="100"/>
                 <p>Gabriel Silva </p>
-                <a href="https://github.com/kimkimdev"><img class="logoGit" src="../estilizacao/images/GitHub-logo.png" alt="Logo github">kimkimdev</a>
+                <a href="https://github.com/kimkimdev"><img class="logoGit" src="../estilizacao/images/GitHub-logo.png" alt="Logo github"></a>
             </div>
             <div class="team-member">
                 <img alt="a" height="100" src="../estilizacao/images/devs/b.jpeg" width="100"/>
                 <p>Vinicius da Silva Generoso</p>
-                <a href="https://github.com/vinicimxt"><img class="logoGit" src="../estilizacao/images/GitHub-logo.png" alt="Logo github">vinicimxt</a>
+                <a href="https://github.com/vinicimxt"><img class="logoGit" src="../estilizacao/images/GitHub-logo.png" alt="Logo github"></a>
             </div>
             <div class="team-member">
                 <img alt="a" height="100" src="../estilizacao/images/devs/e.jpeg" width="100"/>
                 <p>Thiago de Araujo Souza</p>
-                <a href="https://github.com/ThiagoAraujoSouza"><img class="logoGit" src="../estilizacao/images/GitHub-logo.png" alt="Logo github">ThiagoAraujoSouza</a>
+                <a href="https://github.com/ThiagoAraujoSouza"><img class="logoGit" src="../estilizacao/images/GitHub-logo.png" alt="Logo github"></a>
             </div>
         </div>
     </div>
