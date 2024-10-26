@@ -21,6 +21,29 @@ main {
     width: 100%;
 }
 
+.info-presenca {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    color: white;
+    margin-top: 15px;
+    
+}
+
+.info-item {
+    font-size: 1.2em;
+    background-color: black;
+    padding: 10px;
+}
+
+.info-presenca p {
+    font-size: 1.2em;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+
+
 @media (max-width: 768px) {
     body {
         font-size: 3vw;

@@ -7,7 +7,7 @@
             <h2>Localizar Academias</h2>
             <div class="input-group w-90">
                 <span class="input-group-text" id="search-icon">
-                    <i class="bi bi-search"></i> <!-- Ícone de lupa -->
+                    <i class="bi bi-search"></i> 
                 </span>
                 <input type="text" class="form-control" name="query" id="searchInput" placeholder="Ex.: São Paulo ou Academia XYZ" aria-label="Search" aria-describedby="search-icon" required>
             </div>
@@ -15,18 +15,27 @@
         </form>
     </section>
 
-    <!--  Gráfico -->
+    <!-- Gráfico -->
     <section class="presenca-academia">
         <h2 style="text-align: center; color: white">Pessoas Presentes na Unidade em Tempo Real</h2>
         <div class="chart-container">
             <canvas id="presencaChart"></canvas>
+        </div>
+
+        <!-- Informações abaixo do gráfico -->
+        <div class="info-presenca">
+            <div class="info-item">
+                <p><strong>Pessoas Presentes:</strong> 15</p>
+            </div>
+            <div class="info-item">
+                <p><strong>Número Máximo Suportado:</strong> 50</p>
+            </div>
         </div>
     </section>
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Configuração do gráfico
         const ctx = document.getElementById('presencaChart').getContext('2d');
         const presencaChart = new Chart(ctx, {
             type: 'bar',
@@ -62,10 +71,8 @@
                 }
             }
         });
-
     </script>
 
-    
     <section class="sobre-index">
         <div class="sobre_texto">
             <span>NÃO DESANIME, CONTINUE TREINANDO !!<br>CUIDE DE SUA SAÚDE</span>
@@ -77,4 +84,4 @@
     </section>
 </main>
 
-<?php include "../includes/rodape.php"; ?>
+<?php include "../includes/rodape.php"; ?> 
