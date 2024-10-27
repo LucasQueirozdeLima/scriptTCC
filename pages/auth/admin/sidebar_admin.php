@@ -1,7 +1,7 @@
 <div class="background-blur"></div>
 
 <button type="button" class="burger" onclick="toggleSidebar()">
-    <img class="burger-avatar" src="../../../estilizacao/images/logo_acad.jpeg"/>
+    <img class="burger-avatar" src="../../../estilizacao/images/logo_nav.png"/>
     <span class="burger-icon"></span>
 </button>
 <div class="overlay"></div>
@@ -11,7 +11,7 @@
 </script>
 
 <aside class="sidebar">
-    <a href="../../index.php"><img class="sidebar-avatar" height="100" width="100" src="../../../estilizacao/images/logo_acad.jpeg"/></a>
+    <a href="../../index.php"><img class="sidebar-avatar" height="100" width="100" src="../../../estilizacao/images/logo_nav.png"/></a>
     <div class="sidebar-username">FitRealTime</div>
     <div class="sidebar-role">ADMIN</div>
 
@@ -42,8 +42,6 @@
         <div id="academia-submenu" class="submenu">
             <a href="cadastro_academia.php">Cadastrar Academia</a>
             <a href="listar_academias.php">Listar Academias</a>
-            <a href="opcao3.php">Opção 3</a>
-            <a href="opcao4.php">Opção 4</a>
         </div>
 
         <a href="perfil.php">

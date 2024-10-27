@@ -63,7 +63,7 @@ class Dao {
             $academia = $this->pdo->query("INSERT INTO academia (razao_social, cnpj, endereco_id, status_academia,descricao, capacidade_max) VALUES ('$razao_social', '$cnpj', '$recuperar_idEndereco', '$status_academia','$descricao', '$capacidade_max')");
 
         } catch (PDOException $erroCadastro) {
-            header("Location: cadastro_academia.php?error=1");
+            header("Location: ../pages/auth/admin/cadastro_academia.php?error=1");
         }
     }
 
