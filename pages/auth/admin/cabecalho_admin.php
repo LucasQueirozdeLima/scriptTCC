@@ -20,6 +20,58 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
+
+   
+
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+  
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" type="text/css" href="../../../estilizacao/shared-assets/css/reset.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../estilizacao/shared-assets/css/layout.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../estilizacao/shared-assets/css/shared.css"
+    />
+    <link rel="stylesheet" type="text/css" href="shared-assets/css/cards.css" />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../estilizacao/dashboard-2-assets/css/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../estilizacao/dashboard-2-assets/css/chartist.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../estilizacao/dashboard-2-assets/css/leaflet.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../estilizacao/dashboard-2-assets/css/layout.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../estilizacao/dashboard-2-assets/css/cards.css"
+    />
+
     <script src="https://unpkg.com/akar-icons-fonts"></script>
   </head>
   <body>
