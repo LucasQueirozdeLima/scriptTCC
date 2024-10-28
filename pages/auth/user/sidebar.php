@@ -1,6 +1,6 @@
 
 <button type="button" class="burger" onclick="toggleSidebar()">
-      <img class="burger-avatar" src="../../../estilizacao/images/user-avatar.png"/>
+      <img class="burger-avatar" src="../../../estilizacao/images/svg/icon-user.svg"/>
       <span class="burger-icon"></span>
     </button>
     <div class="overlay"></div>
@@ -11,8 +11,8 @@
 
 
 <aside class="sidebar">
-  <img class="sidebar-avatar" height="100" width="100" src="../../../estilizacao/images/user-avatar.png" />
-  <div class="sidebar-username">Vinicius</div>
+  <img class="sidebar-avatar" height="100" width="100" src="../../../estilizacao/images/svg/icon-user.svg" />
+  <div class="sidebar-username">Bem-Vindo</div>
   <div class="sidebar-role">Usuário</div>
 
   <!-- Menu da Sidebar -->
@@ -27,7 +27,7 @@
     <a href="config_user.php">
       <button type="button">
         <img src="../../../estilizacao/images/svg/icon-settings.svg" />
-        <span>Settings</span>
+        <span>Configurações</span>
       </button>
     </a>
     

@@ -3,7 +3,7 @@
 
 <div class="main-content">
     <div class="form-container">
-        <h2>Cadastro de Usuário Administrador</h2>
+        <h2>Alterar Dados</h2>
         <form action="processar_cadastro_usuario.php" method="POST">
             <div class="form-group">
                 <label for="nome">Nome Completo:</label>
@@ -29,7 +29,11 @@
                 <label for="senha">Senha:</label>
                 <input type="password" id="senha" name="senha" required>
             </div>
-            <button type="submit">Cadastrar Usuário</button>
+            <div class="form-group">
+                <label for="senha">Nova senha:</label>
+                <input type="password" id="senha" name="senha" required>
+            </div>
+            <button type="submit">Atualizar</button>
         </form>
     </div>
 </div>

@@ -4,9 +4,6 @@
   <?php include "sidebar_admin.php"; ?>
 
 
-  <?php include "cabecalho_admin.php"; ?>
-<?php include "sidebar_admin.php"; ?>
-
 <div class="main-content-lista">
 <div class="list-container">
   <h2>Lista de Academias Cadastradas</h2>
@@ -20,7 +17,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="tr-1">
+      <tr>
         <td data-label="Nome da Academia">Academia X</td>
         <td data-label="Endereço">Rua A, 123</td>
         <td data-label="Capacidade Máxima">50</td>
@@ -66,6 +63,5 @@
 <?php include "rodape.php"; ?>
 
  
- <?php include "rodape.php"; ?>
     
  

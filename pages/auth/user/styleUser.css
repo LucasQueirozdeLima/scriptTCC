@@ -8,7 +8,9 @@ body {
   font-family: "Poppins";
   color: #f9f9f9;
   display: flex;
+  overflow: hidden; /* Evita scroll */
 }
+
 
 button {
   background: transparent;
@@ -201,6 +203,12 @@ body.open .sidebar {
   translate: 0 1px;
 }
 
+/* HOME PAGE */
+
+.home_h2 {
+  text-align: center;
+  color: black;
+}
 
 .box {
     background-color: rgba(255, 255, 255, 0.753);
@@ -217,4 +225,295 @@ body.open .sidebar {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+
+/* Favoritos */
+
+
+/* Estilo para o container de listagem */
+.list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  background-color: #1866da;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Alinhamento para iniciar no lado esquerdo em telas pequenas */
+.main-content-lista {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+  margin-left: 250px; 
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.list-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+/* Estilo para telas menores, como iPhones, Galaxy e iPads */
+@media (max-width: 768px) {
+  .main-content-lista {
+    justify-content: flex-start; 
+    margin-left: 10px; 
+    padding: 10px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content-lista {
+    margin-left: 5px; 
+  }
+}
+
+
+
+/* Para telas pequenas, como iPhone SE, Galaxy S8 e similares */
+@media (max-width: 375px) {
+ 
+  .main-content h2 {
+    font-size: 20px;
+  }
+}
+
+/* Para telas intermediárias, como iPhone 12 e Galaxy S20 */
+@media (max-width: 425px) {
+ 
+  .main-content h2 {
+    font-size: 22px;
+  }
+}
+
+
+/* Para tablets em paisagem e telas maiores */
+
+
+
+
+.academia-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.academia-table tr{
+  background-color: white;
+}
+
+.academia-table th,
+.academia-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+  font-size: 16px;
+  color: black;
+}
+
+
+.academia-table th {
+  background-color: #eff3f7;
+  color: #0f0808;
+}
+
+.academia-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Ajustes para dispositivos menores */
+@media (max-width: 768px) {
+  .academia-table th,
+  .academia-table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Estilo de tabela "card" para telas muito pequenas */
+  .academia-table, .academia-table thead, .academia-table tbody, .academia-table th, .academia-table td, .academia-table tr {
+    display: block;
+    width: 100%;
+  }
+  
+  /* Oculta o cabeçalho para telas pequenas */
+  .academia-table thead {
+    display: none;
+  }
+
+  /* Cada célula se torna um bloco completo */
+  .academia-table tr {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .academia-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  /* Adiciona um título de cabeçalho na frente de cada célula */
+  .academia-table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #fafafa;
+    width: 50%;
+    display: inline-block;
+  }
+}
+
+/* PAGINA DE CONFIG USER / ATUALIZAR */ 
+
+.main-content form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 600px;
+  z-index: 1;
+}
+
+/* Estilo para telas maiores */
+.main-content {
+flex-grow: 1;
+display: flex;
+justify-content: center; 
+align-items: center;
+padding: 20px;
+min-height: 100vh;
+margin-left: 250px; 
+box-sizing: border-box;
+z-index: 1;
+}
+
+/* Estilo para telas menores, como iPhones, Galaxy e iPads */
+@media (max-width: 768px) {
+.main-content {
+  justify-content: flex-start; 
+  margin-left: 10px; 
+  padding: 10px; 
+}
+}
+
+@media (max-width: 480px) {
+.main-content {
+  margin-left: 5px; 
+}
+}
+
+
+@media (min-width: 1200px) {
+.main-content form {
+  max-width: 900px; 
+}
+}
+
+/* Para telas pequenas, como iPhone SE, Galaxy S8 e similares */
+@media (max-width: 375px) {
+.main-content form {
+  width: 95%;
+  padding: 15px;
+  font-size: 14px;
+}
+.main-content h2 {
+  font-size: 20px;
+}
+}
+
+/* Para telas intermediárias, como iPhone 12 e Galaxy S20 */
+@media (max-width: 425px) {
+.main-content form {
+  width: 90%;
+  padding: 20px;
+}
+.main-content h2 {
+  font-size: 22px;
+}
+}
+
+/* Para tablets como iPad e Galaxy Tab */
+@media (max-width: 768px) {
+.main-content form {
+  width: 85%;
+  padding: 25px;
+  max-width: 700px;
+}
+}
+
+/* Para tablets em paisagem e telas maiores */
+@media (min-width: 769px) and (max-width: 1024px) {
+.main-content form {
+  width: 80%;
+  padding: 30px;
+  max-width: 800px;
+}
+}
+
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  background-color: #1866da;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: black;
+  
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #0e0e0e;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
