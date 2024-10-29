@@ -3,7 +3,12 @@
 
 <?php include "sidebar.php"; ?>
 
-<div class="main-content">
+<div class="boxbox">
+<div class="box">
+    
+
+
+
     <div class="form-container">
         <h2>Alterar Dados</h2>
         <form action="processar_cadastro_usuario.php" method="POST">
@@ -30,6 +35,10 @@
             <button type="submit">Atualizar</button>
         </form>
     </div>
+
+
+</div>
+
 </div>
 
  <?php include "rodapeUser.php"; ?>

@@ -1,7 +1,9 @@
 <?php include "cabecalho_user.php"; ?>
 <?php include "sidebar.php";?>
 
-<div class="main-content-lista">
+<div class="boxbox">
+<div class="box">
+  
     <div class="list-container">
     <h2>ACADEMIAS FAVORITAS</h2>
   <table class="academia-table">
@@ -25,7 +27,9 @@
 </tbody>
   </table>
 </div>
+
+
 </div>
- 
+</div>
 
 <?php include "rodapeUser.php"; ?>

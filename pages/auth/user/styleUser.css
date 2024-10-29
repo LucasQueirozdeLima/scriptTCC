@@ -205,57 +205,141 @@ body.open .sidebar {
 
 /* HOME PAGE */
 
-.home_h2 {
-  text-align: center;
-  color: black;
-}
-
-.box {
-    background-color: rgba(255, 255, 255, 0.753);
-   width: 1200px;
-   height: 700px;
-   margin-top: 5%;
-   margin-left: 5%;
-   box-shadow: 4px 4px 4px 4px;
-   border-radius: 5px;
-}
-
-.favorito {
+/* Estilo para .boxbox e .box centralizados */
+.boxbox {
   flex-grow: 1;
   display: flex;
-  align-items: center;
   justify-content: center;
-}
-
-
-/* Favoritos */
-
-
-/* Estilo para o container de listagem */
-.list-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 600px;
-  background-color: #1866da;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Alinhamento para iniciar no lado esquerdo em telas pequenas */
-.main-content-lista {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center; 
   align-items: center;
   padding: 20px;
   min-height: 100vh;
-  margin-left: 250px; 
+  margin-left: 250px;
   box-sizing: border-box;
   z-index: 1;
 }
+
+
+/* Centralização e estilo da box */
+.box {
+  background-color: rgba(255, 255, 255, 0.753);
+  width: 90%;
+  max-width: 1200px;
+  height: 700px;
+  margin-top: 5%;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza o conteúdo dentro da box */
+  justify-content: center;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .boxbox {
+    justify-content: center;
+    margin-left: 0;
+    padding: 10px;
+  }
+  .box {
+    width: 85%;
+    height: auto;
+    padding: 15px;
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 480px) {
+  .boxbox {
+    margin-left: 0;
+  }
+  .box {
+    width: 95%;
+    padding: 10px;
+    max-width: 600px;
+  }
+}
+
+
+
+
+/* Ajuste do título para tamanhos menores */
+.list-container h2,
+.home_h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+@media (max-width: 375px) {
+  .home_h2,
+  .list-container h2 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 425px) {
+  .home_h2,
+  .list-container h2 {
+    font-size: 22px;
+  }
+}
+
+
+
+/* boxboxs */
+
+
+/* Estilo para o container de listagem */
+
+
+/* Centraliza .list-container em telas grandes */
+.list-container {
+  width: 80%; /* Define a largura da lista */
+  max-width: 1200px; /* Limita a largura máxima */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  background-color: #1866da; /* Cor de fundo para contraste */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo do título */
+.list-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+/* Estilo para dispositivos menores, como iPhones, Galaxy e iPads */
+@media (max-width: 768px) {
+
+  .list-container {
+    width: 95%; /* Maior ocupação de tela em dispositivos menores */
+    padding: 15px;
+  }
+}
+
+/* Ajustes para telas muito pequenas, como iPhone SE, Galaxy S8 e similares */
+@media (max-width: 480px) {
+
+  .list-container h2 {
+    font-size: 20px;
+  }
+}
+
+/* Para telas intermediárias, como iPhone 12 e Galaxy S20 */
+@media (max-width: 425px) {
+  .list-container h2 {
+    font-size: 22px;
+  }
+}
+
+/* Alinhamento para iniciar no lado esquerdo em telas pequenas */
 
 .list-container h2 {
   text-align: center;
@@ -264,43 +348,8 @@ body.open .sidebar {
   color: #ffffff;
 }
 
-/* Estilo para telas menores, como iPhones, Galaxy e iPads */
-@media (max-width: 768px) {
-  .main-content-lista {
-    justify-content: flex-start; 
-    margin-left: 10px; 
-    padding: 10px; 
-  }
-}
-
-@media (max-width: 480px) {
-  .main-content-lista {
-    margin-left: 5px; 
-  }
-}
-
-
-
-/* Para telas pequenas, como iPhone SE, Galaxy S8 e similares */
-@media (max-width: 375px) {
- 
-  .main-content h2 {
-    font-size: 20px;
-  }
-}
-
-/* Para telas intermediárias, como iPhone 12 e Galaxy S20 */
-@media (max-width: 425px) {
- 
-  .main-content h2 {
-    font-size: 22px;
-  }
-}
-
 
 /* Para tablets em paisagem e telas maiores */
-
-
 
 
 .academia-table {
@@ -379,7 +428,7 @@ body.open .sidebar {
 
 /* PAGINA DE CONFIG USER / ATUALIZAR */ 
 
-.main-content form {
+ form {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -389,67 +438,34 @@ body.open .sidebar {
   z-index: 1;
 }
 
-/* Estilo para telas maiores */
-.main-content {
-flex-grow: 1;
-display: flex;
-justify-content: center; 
-align-items: center;
-padding: 20px;
-min-height: 100vh;
-margin-left: 250px; 
-box-sizing: border-box;
-z-index: 1;
-}
-
-/* Estilo para telas menores, como iPhones, Galaxy e iPads */
-@media (max-width: 768px) {
-.main-content {
-  justify-content: flex-start; 
-  margin-left: 10px; 
-  padding: 10px; 
-}
-}
-
-@media (max-width: 480px) {
-.main-content {
-  margin-left: 5px; 
-}
-}
 
 
 @media (min-width: 1200px) {
-.main-content form {
+ form {
   max-width: 900px; 
 }
 }
 
 /* Para telas pequenas, como iPhone SE, Galaxy S8 e similares */
 @media (max-width: 375px) {
-.main-content form {
+form {
   width: 95%;
   padding: 15px;
   font-size: 14px;
-}
-.main-content h2 {
-  font-size: 20px;
 }
 }
 
 /* Para telas intermediárias, como iPhone 12 e Galaxy S20 */
 @media (max-width: 425px) {
-.main-content form {
+form {
   width: 90%;
   padding: 20px;
-}
-.main-content h2 {
-  font-size: 22px;
 }
 }
 
 /* Para tablets como iPad e Galaxy Tab */
 @media (max-width: 768px) {
-.main-content form {
+form {
   width: 85%;
   padding: 25px;
   max-width: 700px;
@@ -458,7 +474,7 @@ z-index: 1;
 
 /* Para tablets em paisagem e telas maiores */
 @media (min-width: 769px) and (max-width: 1024px) {
-.main-content form {
+ form {
   width: 80%;
   padding: 30px;
   max-width: 800px;

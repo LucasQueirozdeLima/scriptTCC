@@ -3,9 +3,9 @@
 
   <?php include "sidebar.php"; ?>
 
- <div class="favorito">
+ <div class="boxbox">
   <div class="box">
-    <h2 class="home_h2">VOCÊ ESTÁ NA HOME MEU MANO</h2>
+    <h2 style="color: black;">VOCÊ ESTÁ NA HOME MEU MANO</h2>
 
     <div class="content-home">
       
