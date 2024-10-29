@@ -10,7 +10,21 @@
     display: flex;
     overflow: hidden; /* Evita scroll */
   }
-  
+
+.b_dashboard{
+  margin: 0;
+  background: #202124;
+  font-family: "Poppins";
+  color: #f9f9f9;
+  display: grid;
+  place-items: center;
+  padding: 0 30px;
+  overflow: hidden; /* Evita scroll */
+  font-family: "Euclid Circular A", "Poppins";
+  height: 100vh;
+  z-index: 2;
+
+}
 
   .background-blur {
     position: absolute;
@@ -41,52 +55,129 @@
     transition: 0.4s;
   }
   
-  body.open .overlay {
-    opacity: 1;
-    visibility: visible;
+
+  /* DASHBOARD */
+
+
+  h2,
+h3 {
+  margin: 0;
+  font-weight: 400;
+}
+
+.dashboard {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 180px);
+  gap: 24px;
+  z-index: 2;
+}
+
+
+@media (min-width: 1024px) {
+  .dashboard {
+    width: 80%;
   }
-  
-  .burger {
-    position: fixed;
-    z-index: 3;
-    top: 20px;
-    left: 12px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+}
+
+
+
+@media (width >= 620px) {
+  .card {
+    min-width: 33.33%;
   }
-  
-  @media (width >= 500px) {
-    .burger {
-      display: none;
-    }
+
+  .card-icon img:first-child {
+    width: 5vw;
+    max-width: 40px;
   }
-  
-  .burger-avatar {
-    width: 30px;
-    height: 30px;
-    transition: 0.4s;
+
+  .dashboard {
+    grid-template-columns: repeat(3, 1fr);
   }
+}
+
+.card {
+  padding: 20px;
+  border-radius: 16px;
+  background-color: #323947;
+  box-shadow: 7px 7px 29px #191931, -7px -7px 29px #2569e6;
   
-  body.open .burger-avatar {
-    translate: 40px 0;
-    opacity: 0;
-    visibility: hidden;
-  }
-  
-  .burger-icon {
-    display: block;
-    width: 30px;
-    height: 30px;
-    background-image: url("../../../estilizacao/images/svg/icon-burger.svg");
-    background-repeat: no-repeat;
-    background-position: center center;
-  }
-  
-  body.open .burger-icon {
-    background-image: url("../../../estilizacao/images/svg/icon-close.svg");
-  }
-  
+}
+
+.card .more {
+  margin-bottom: 16px;
+ 
+}
+
+.card h2 {
+  font-size: 16px;
+}
+
+.card h3 {
+  font-size: 12px;
+  opacity: 0.5;
+  margin-bottom: 16px;
+}
+
+.card var {
+  font-style: normal;
+  font-size: 38px;
+}
+
+.card var abbr {
+  font-size: 12px;
+  opacity: 0.4;
+}
+
+
+.card-icon,
+.card-progress {
+  height: 120px;
+  display: flex;
+}
+
+.card-icon {
+  gap: 12px;
+  align-items: center;
+}
+
+.card-icon img:last-child {
+  margin-left: auto;
+}
+
+.card-icon h3 {
+  margin: 0;
+}
+
+.card-progress {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card progress {
+  display: block;
+  width: 100%;
+  appearance: none;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  height: 8px;
+}
+
+.card progress::-webkit-progress-bar {
+  background: rgb(255 255 255 / 6%);
+  border-radius: 10px;
+}
+
+.card progress::-webkit-progress-value {
+  background-color: rgb(17, 94, 209);
+  border-radius: 10px;
+}
+
+
+  /* FORMULÁRIOS DE LISTAR, CADASTRAR E ATUALIZAR */
+
 
   .main-content form {
     background-color: #fff;
@@ -402,9 +493,10 @@ button[type="submit"] {
   .submenu a {
     display: block;
     padding: 5px 10px;
-    color: #f9f9f9;
+    color: #f9f9f9cc;
     font-size: 11px;
     text-decoration: none;
+    
   }
   .submenu a:hover {
     background: rgba(255, 255, 255, 0.1);
@@ -420,7 +512,56 @@ button[type="submit"] {
     text-align: left;
   }
   
+/* SIDEBAR */
+
+body.open .overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+.burger {
+  position: fixed;
+  z-index: 3;
+  top: 20px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (width >= 500px) {
+  .burger {
+    display: none;
+  }
+}
+
+.burger-avatar {
+  width: 30px;
+  height: 30px;
+  transition: 0.4s;
+}
+
+body.open .burger-avatar {
+  translate: 40px 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.burger-icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-image: url("../../../estilizacao/images/svg/icon-burger.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+body.open .burger-icon {
+  background-image: url("../../../estilizacao/images/svg/icon-close.svg");
+}
+
  /* Estilos padrões para desktop e telas grandes */
+
  
  .sidebar header {
    display: flex;
@@ -508,6 +649,35 @@ body.open .sidebar {
   padding-left: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.16);
 }
+
+/* Adicionando breakpoints para tablets e alguns laptops */
+@media (max-width: 1024px) { /* Inclui iPads e a maioria dos tablets */
+  .sidebar {
+    translate: -100% 0;
+    width: 180px;
+    transition: 0.4s;
+    border-left: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .burger {
+    display: flex;
+  }
+}
+
+/* Ajuste adicional para telas de laptops menores (como Asus ZenBook) */
+@media (max-width: 1280px) { /* Inclui alguns laptops e dispositivos dobráveis */
+  .sidebar {
+    translate: -100% 0;
+    width: 180px;
+    transition: 0.4s;
+    border-left: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .burger {
+    display: flex;
+  }
+}
+
 
 @media (width >= 350px) {
   .sidebar-menu {
