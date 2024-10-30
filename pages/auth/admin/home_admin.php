@@ -1,9 +1,13 @@
+<?php
 
-<?php include "cabecalho_admin.php"; ?>
+session_start();
 
-  <?php include "sidebar_admin.php"; ?>
+include "cabecalho_admin.php";
 
- 
- <?php include "rodape.php"; ?>
-    
- 
+if (isset($_SESSION["verificador"])) {
+  include "sidebar_admin.php";
+} else {
+  header("Location: ../../index.php?error=auth");
+}
+
+include "rodape.php";

@@ -1,7 +1,11 @@
 
-<?php include "cabecalho_admin.php"; ?>
+<?php 
+session_start();
 
-  <?php include "sidebar_admin.php"; ?>
+if (isset($_SESSION["verificador"])) {
+include "cabecalho_admin.php";
+include "sidebar_admin.php"; 
+?>
 
 
   <body class="b_dashboard">
@@ -70,4 +74,10 @@
 
     </body>
 
-<?php include "rodape.php"; ?>
+<?php 
+} else {
+  header("Location: ../../index.php?error=auth");
+}
+
+include "rodape.php"; 
+?>

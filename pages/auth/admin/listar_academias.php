@@ -1,38 +1,41 @@
+<?php
+session_start();
 
-<?php include "cabecalho_admin.php"; ?>
+if (isset($_SESSION["verificador"])) {
+  include "cabecalho_admin.php";
+  include "sidebar_admin.php";
+?>
 
-  <?php include "sidebar_admin.php"; ?>
+
+  <div class="main-content-lista">
+    <div class="list-container">
+      <h2>Lista de Academias Cadastradas</h2>
+      <table class="academia-table">
+        <thead>
+          <tr>
+            <th>Nome da Academia</th>
+            <th>Endereço</th>
+            <th>Capacidade Máxima</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Nome da Academia">Academia X</td>
+            <td data-label="Endereço">Rua A, 123</td>
+            <td data-label="Capacidade Máxima">50</td>
+            <td data-label="Status">Ativa</td>
+          </tr>
+          <tr>
+            <td data-label="Nome da Academia">Academia Y</td>
+            <td data-label="Endereço">Rua B, 456</td>
+            <td data-label="Capacidade Máxima">100</td>
+            <td data-label="Status">Inativa</td>
+          </tr>
 
 
-<div class="main-content-lista">
-<div class="list-container">
-  <h2>Lista de Academias Cadastradas</h2>
-  <table class="academia-table">
-    <thead>
-      <tr>
-        <th>Nome da Academia</th>
-        <th>Endereço</th>
-        <th>Capacidade Máxima</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td data-label="Nome da Academia">Academia X</td>
-        <td data-label="Endereço">Rua A, 123</td>
-        <td data-label="Capacidade Máxima">50</td>
-        <td data-label="Status">Ativa</td>
-      </tr>
-      <tr>
-        <td data-label="Nome da Academia">Academia Y</td>
-        <td data-label="Endereço">Rua B, 456</td>
-        <td data-label="Capacidade Máxima">100</td>
-        <td data-label="Status">Inativa</td>
-      </tr>
-  
-
-                <?php
-               /*
+          <?php
+          /*
                 require_once "../../../config/Dao.php";
 
                 $query = "SELECT razao_social, endereco_id, capacidade_max, status_academia, descricao FROM academia";
@@ -53,15 +56,17 @@
                 }
                 $conn->close(); 
                 */
-                ?>
+          ?>
 
-</tbody>
-  </table>
-</div>
-</div>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-<?php include "rodape.php"; ?>
+<?php
+} else {
+  header("Location: ../../index.php?error=auth");
+}
 
- 
-    
- 
+include "rodape.php";
+?>
