@@ -8,8 +8,8 @@
                 <ul>
                     <li><a href="../pages/index.php">Home</a></li>
                     <li><a href="../pages/sobre.php">Sobre</a></li>
-                    <li><a href="../pages/contato.php">Contato</a></li>
-                    <li><a href="../pages/##.php">Política de Privacidade</a></li>
+                    <li><a href="">Contato</a></li>
+                    <li><a href="">Política de Privacidade</a></li>
                 </ul>
             </div>
 
@@ -20,9 +20,9 @@
             </div>
 
             <div class="footer-social">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href=""><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/fitrealtime/profilecard/?igsh=dXA5cTdtNGY1cmwz" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href=""><i class="fab fa-twitter"></i></a>
             </div>
         </div>
 

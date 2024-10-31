@@ -17,7 +17,7 @@
 
     <!-- Gráfico -->
     <section class="presenca-academia">
-        <h2 style="text-align: center; color: white">Pessoas Presentes na Unidade em Tempo Real</h2>
+        <h2 class="h2-person" >Pessoas Presentes na Unidade em Tempo Real</h2>
         <div class="chart-container">
             <canvas id="presencaChart"></canvas>
         </div>
@@ -73,9 +73,10 @@
         });
     </script>
 
+
     <section class="sobre-index">
         <div class="sobre_texto">
-            <span>NÃO DESANIME, CONTINUE TREINANDO !!<br>CUIDE DE SUA SAÚDE</span>
+            <span>NÃO DESANIME, CONTINUE TREINANDO !<br>CUIDE DE SUA SAÚDE</span>
             <p>Imagine saber quantas pessoas estão presentes na academia que você frequenta! Aqui você consegue verificar isso, entre outras funcionalidades. Tenha aquele ânimo antes mesmo de treinar.</p>
         </div>
         <div class="sobre_video">

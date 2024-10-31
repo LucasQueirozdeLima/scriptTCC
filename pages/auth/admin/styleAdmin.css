@@ -1,68 +1,69 @@
 * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    margin: 0;
-    background: #202124;
-    font-family: "Poppins";
-    color: #f9f9f9;
-    display: flex;
-    overflow: hidden; /* Evita scroll */
-  }
+  box-sizing: border-box;
+}
 
-.b_dashboard{
+body {
+  margin: 0;
+  background: #202124;
+  font-family: "Poppins";
+  color: #f9f9f9;
+  display: flex;
+  overflow: hidden; /* Evita scroll */
+}
+
+
+
+.background-blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../../estilizacao/images/admin_fundo.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 30%;
+  filter: blur(4px); 
+  
+}
+
+
+.overlay {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.4s;
+}
+
+
+/* DASHBOARD */
+
+.b_dashboard {
   margin: 0;
   background: #202124;
   font-family: "Poppins";
   color: #f9f9f9;
   display: grid;
   place-items: center;
-  padding: 0 30px;
+  padding: 0 30px; /* Mantenha o padding lateral */
+  padding-top: 10px; /* Ajuste o padding superior para mover o dashboard para cima */
   overflow: hidden; /* Evita scroll */
   font-family: "Euclid Circular A", "Poppins";
   height: 100vh;
   z-index: 2;
-
 }
 
-  .background-blur {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("../../../estilizacao/images/admin_fundo.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 30%;
-    filter: blur(4px); 
-    
-  }
-
-
-  .overlay {
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(3px);
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.4s;
-  }
-  
-
-  /* DASHBOARD */
-
-
-  h2,
+h2,
 h3 {
-  margin: 0;
-  font-weight: 400;
+margin: 0;
+font-weight: 400;
 }
 
 .dashboard {
@@ -72,347 +73,295 @@ h3 {
   grid-template-rows: repeat(2, 180px);
   gap: 24px;
   z-index: 2;
+  margin-top: -30%; /* Ajuste o valor conforme necessário */
 }
 
 
 @media (min-width: 1024px) {
-  .dashboard {
-    width: 80%;
-  }
+.dashboard {
+  width: 80%;
+}
 }
 
 
 
 @media (width >= 620px) {
-  .card {
-    min-width: 33.33%;
-  }
+.card {
+  min-width: 33.33%;
+}
 
-  .card-icon img:first-child {
-    width: 5vw;
-    max-width: 40px;
-  }
+.card-icon img:first-child {
+  width: 5vw;
+  max-width: 40px;
+}
 
-  .dashboard {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.dashboard {
+  grid-template-columns: repeat(3, 1fr);
+}
 }
 
 .card {
-  padding: 20px;
-  border-radius: 16px;
-  background-color: #323947;
-  box-shadow: 7px 7px 29px #191931, -7px -7px 29px #2569e6;
-  
+padding: 20px;
+border-radius: 16px;
+background-color: #323947;
+box-shadow: 7px 7px 29px #191931, -7px -7px 29px #2569e6;
+
 }
 
 .card .more {
-  margin-bottom: 16px;
- 
+margin-bottom: 16px;
+
 }
 
 .card h2 {
-  font-size: 16px;
+font-size: 16px;
 }
 
 .card h3 {
-  font-size: 12px;
-  opacity: 0.5;
-  margin-bottom: 16px;
+font-size: 12px;
+opacity: 0.5;
+margin-bottom: 16px;
 }
 
 .card var {
-  font-style: normal;
-  font-size: 38px;
+font-style: normal;
+font-size: 38px;
 }
 
 .card var abbr {
-  font-size: 12px;
-  opacity: 0.4;
+font-size: 12px;
+opacity: 0.4;
 }
 
 
 .card-icon,
 .card-progress {
-  height: 120px;
-  display: flex;
+height: 120px;
+display: flex;
 }
 
 .card-icon {
-  gap: 12px;
-  align-items: center;
+gap: 12px;
+align-items: center;
 }
 
 .card-icon img:last-child {
-  margin-left: auto;
+margin-left: auto;
 }
 
 .card-icon h3 {
-  margin: 0;
+margin: 0;
 }
 
 .card-progress {
-  flex-direction: column;
-  justify-content: center;
+flex-direction: column;
+justify-content: center;
 }
 
 .card progress {
-  display: block;
-  width: 100%;
-  appearance: none;
-  border-radius: 10px;
-  margin-bottom: 8px;
-  height: 8px;
+display: block;
+width: 100%;
+appearance: none;
+border-radius: 10px;
+margin-bottom: 8px;
+height: 8px;
 }
 
 .card progress::-webkit-progress-bar {
-  background: rgb(255 255 255 / 6%);
-  border-radius: 10px;
+background: rgb(255 255 255 / 6%);
+border-radius: 10px;
 }
 
 .card progress::-webkit-progress-value {
-  background-color: rgb(17, 94, 209);
-  border-radius: 10px;
+background-color: rgb(17, 94, 209);
+border-radius: 10px;
 }
 
 
-  /* FORMULÁRIOS DE LISTAR, CADASTRAR E ATUALIZAR */
+/* FORMULÁRIOS DE LISTAR, CADASTRAR E ATUALIZAR */
 
 
-  .main-content form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 600px;
-    z-index: 1;
-  }
-  
- /* Estilo para telas maiores */
-.main-content {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center; 
-  align-items: center;
+.main-content form {
+  background-color: #fff;
   padding: 20px;
-  min-height: 100vh;
-  margin-left: 250px; 
-  box-sizing: border-box;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 600px;
   z-index: 1;
 }
 
-/* Estilo para telas menores, como iPhones, Galaxy e iPads */
+/* Estilo para telas maiores */
+.main-content {
+flex-grow: 1;
+display: flex;
+justify-content: center; 
+align-items: center;
+padding: 20px;
+min-height: 100vh;
+margin-left: 250px; 
+box-sizing: border-box;
+z-index: 1;
+}
+
+.form-row {
+  display: flex; 
+  justify-content: space-between; 
+}
+
+.half-width {
+  flex: 1; 
+  margin-right: 10px;
+}
+
+.half-width:last-child {
+  margin-right: 0; 
+}
+
+/* Se necessário, ajuste as larguras em telas menores */
 @media (max-width: 768px) {
-  .main-content {
-    justify-content: flex-start; 
-    margin-left: 10px; 
-    padding: 10px; 
+  .half-width {
+      flex: 1 1 100%;
+      margin-right: 0;
+  }
+}
+.form-row {
+  display: flex; 
+  justify-content: space-between; 
+}
+
+.half-width {
+  flex: 1; 
+  margin-right: 10px; 
+}
+
+.half-width:last-child {
+  margin-right: 0; 
+}
+
+/* Se necessário, ajuste as larguras em telas menores */
+@media (max-width: 768px) {
+  .half-width {
+      flex: 1 1 100%; 
+      margin-right: 0; 
   }
 }
 
-@media (max-width: 480px) {
-  .main-content {
-    margin-left: 5px; 
+.form-group {
+  margin-bottom: 15px; 
+  display: flex; 
+  flex-direction: column; 
+}
+
+.form-group label {
+  margin-bottom: 5px; 
+}
+
+textarea {
+  width: 100%; 
+  height: 100px; 
+  resize: vertical; 
+}
+
+/* Para o container do formulário */
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .main-content form {
+      padding: 15px;
   }
+
+  .form-row {
+      flex-direction: column; 
+  }
+
+  .half-width {
+      width: 100%;
+  }
+}
+
+
+/* Estilo para telas menores, como iPhones, Galaxy e iPads */
+@media (max-width: 768px) {
+.main-content {
+  justify-content: flex-start; 
+  margin-left: 10px; 
+  padding: 10px; 
+}
+}
+
+@media (max-width: 480px) {
+.main-content {
+  margin-left: 5px; 
+}
 }
 
 
 @media (min-width: 1200px) {
-  .main-content form {
-    max-width: 900px; 
-  }
+.main-content form {
+  max-width: 900px; 
+}
 }
 
 /* Para telas pequenas, como iPhone SE, Galaxy S8 e similares */
 @media (max-width: 375px) {
-  .main-content form {
-    width: 95%;
-    padding: 15px;
-    font-size: 14px;
-  }
-  .main-content h2 {
-    font-size: 20px;
-  }
+.main-content form {
+  width: 60%;
+  padding: 15px;
+  font-size: 14px;
+}
+.main-content h2 {
+  font-size: 20px;
+}
+
 }
 
 /* Para telas intermediárias, como iPhone 12 e Galaxy S20 */
 @media (max-width: 425px) {
-  .main-content form {
-    width: 90%;
-    padding: 20px;
-  }
-  .main-content h2 {
-    font-size: 22px;
-  }
+.main-content form {
+  width: 90%;
+  padding: 20px;
+}
+.main-content h2 {
+  font-size: 22px;
+}
 }
 
 /* Para tablets como iPad e Galaxy Tab */
 @media (max-width: 768px) {
-  .main-content form {
-    width: 85%;
-    padding: 25px;
-    max-width: 700px;
-  }
+.main-content form {
+  width: 85%;
+  padding: 25px;
+  max-width: 700px;
+}
 }
 
 /* Para tablets em paisagem e telas maiores */
 @media (min-width: 769px) and (max-width: 1024px) {
-  .main-content form {
-    width: 80%;
-    padding: 30px;
-    max-width: 800px;
+.main-content form {
+  width: 80%;
+  padding: 30px;
+  max-width: 800px;
+}
+}
+
+
+
+/* Mídia query para telas menores que 1200px */
+@media (max-width: 1200px) {
+  .form-container {
+      max-height: 90vh;
+      overflow-y: auto; 
+      
   }
 }
 
 
 .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 600px;
-    background-color: #1866da;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.form-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #ffffff;
-}
-
-.form-group {
-    margin-bottom: 15px;
-    width: 100%;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: black;
-    
-}
-
-input[type="text"],
-input[type="number"],
-input[type="password"],
-input[type="email"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #0e0e0e;
-    border-radius: 4px;
-}
-
-.form-group textarea{
-  max-height:300px;
-  max-width:400px;
-}
-
-button[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-
-/* Listar Academias */
-
-
-/* Título da listagem */
-.list-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #ffffff;
-}
-
-/* Estilo base para a tabela */
-.academia-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-.academia-table tr{
-  background-color: white;
-}
-
-.academia-table th,
-.academia-table td {
-  padding: 10px;
-  border: 1px solid #ddd;
-  text-align: left;
-  font-size: 16px;
-  color: black;
-}
-
-
-.academia-table th {
-  background-color: #eff3f7;
-  color: #0f0808;
-}
-
-.academia-table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-/* Ajustes para dispositivos menores */
-@media (max-width: 768px) {
-  .academia-table th,
-  .academia-table td {
-    padding: 8px;
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 480px) {
-  /* Estilo de tabela "card" para telas muito pequenas */
-  .academia-table, .academia-table thead, .academia-table tbody, .academia-table th, .academia-table td, .academia-table tr {
-    display: block;
-    width: 100%;
-  }
-  
-  /* Oculta o cabeçalho para telas pequenas */
-  .academia-table thead {
-    display: none;
-  }
-
-  /* Cada célula se torna um bloco completo */
-  .academia-table tr {
-    margin-bottom: 15px;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .academia-table td {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    font-size: 14px;
-  }
-
-  /* Adiciona um título de cabeçalho na frente de cada célula */
-  .academia-table td::before {
-    content: attr(data-label);
-    font-weight: bold;
-    color: #fafafa;
-    width: 50%;
-    display: inline-block;
-  }
-}
-
-
-/* Estilo para o container de listagem */
-.list-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -424,57 +373,203 @@ button[type="submit"] {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Alinhamento para iniciar no lado esquerdo em telas pequenas */
-.main-content-lista {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-  padding: 20px;
-  min-height: 100vh;
-  margin-left: 250px; 
-  box-sizing: border-box;
-  z-index: 1;
-}
-
-.list-container h2{
+.form-container h2 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 24px;
   color: #ffffff;
 }
 
-/* Estilo para telas menores, como iPhones, Galaxy e iPads */
+.form-group {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: black;
+  
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #0e0e0e;
+  border-radius: 4px;
+}
+
+.form-group textarea{
+max-height:300px;
+max-width:400px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+/* Listar Academias */
+
+
+/* Título da listagem */
+.list-container h2 {
+text-align: center;
+margin-bottom: 20px;
+font-size: 24px;
+color: #ffffff;
+}
+
+/* Estilo base para a tabela */
+.academia-table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 20px;
+}
+
+.academia-table tr{
+background-color: white;
+}
+
+.academia-table th,
+.academia-table td {
+padding: 10px;
+border: 1px solid #ddd;
+text-align: left;
+font-size: 16px;
+color: black;
+}
+
+
+.academia-table th {
+background-color: #eff3f7;
+color: #0f0808;
+}
+
+.academia-table tr:nth-child(even) {
+background-color: #f2f2f2;
+}
+
+/* Ajustes para dispositivos menores */
 @media (max-width: 768px) {
-  .main-content-lista {
-    justify-content: flex-start; 
-    margin-left: 10px; 
-    padding: 10px; 
-  }
+.academia-table th,
+.academia-table td {
+  padding: 8px;
+  font-size: 14px;
+}
 }
 
 @media (max-width: 480px) {
-  .main-content-lista {
-    margin-left: 5px; 
-  }
+/* Estilo de tabela "card" para telas muito pequenas */
+.academia-table, .academia-table thead, .academia-table tbody, .academia-table th, .academia-table td, .academia-table tr {
+  display: block;
+  width: 100%;
+}
+
+/* Oculta o cabeçalho para telas pequenas */
+.academia-table thead {
+  display: none;
+}
+
+/* Cada célula se torna um bloco completo */
+.academia-table tr {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.academia-table td {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  font-size: 14px;
+}
+
+/* Adiciona um título de cabeçalho na frente de cada célula */
+.academia-table td::before {
+  content: attr(data-label);
+  font-weight: bold;
+  color: #fafafa;
+  width: 50%;
+  display: inline-block;
+}
+}
+
+
+/* Estilo para o container de listagem */
+.list-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 100%;
+max-width: 600px;
+background-color: #1866da;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Alinhamento para iniciar no lado esquerdo em telas pequenas */
+.main-content-lista {
+flex-grow: 1;
+display: flex;
+justify-content: center; 
+align-items: center;
+padding: 20px;
+min-height: 100vh;
+margin-left: 250px; 
+box-sizing: border-box;
+z-index: 1;
+}
+
+.list-container h2{
+text-align: center;
+margin-bottom: 20px;
+font-size: 24px;
+color: #ffffff;
+}
+
+/* Estilo para telas menores, como iPhones, Galaxy e iPads */
+@media (max-width: 768px) {
+.main-content-lista {
+  justify-content: flex-start; 
+  margin-left: 10px; 
+  padding: 10px; 
+}
+}
+
+@media (max-width: 480px) {
+.main-content-lista {
+  margin-left: 5px; 
+}
 }
 
 
 
 /* Para telas pequenas, como iPhone SE, Galaxy S8 e similares */
 @media (max-width: 375px) {
- 
-  .main-content h2 {
-    font-size: 20px;
-  }
+
+.main-content h2 {
+  font-size: 20px;
+}
 }
 
 /* Para telas intermediárias, como iPhone 12 e Galaxy S20 */
 @media (max-width: 425px) {
- 
-  .main-content h2 {
-    font-size: 22px;
-  }
+
+.main-content h2 {
+  font-size: 22px;
+}
 }
 
 
@@ -483,234 +578,233 @@ button[type="submit"] {
 
 /* SIDEBAR PARA CELULARES*/
 
-  .submenu {
-    display: none;
-    padding-left: 20px;
-  }
-  .submenu.open {
-    display: block;
-  }
-  .submenu a {
-    display: block;
-    padding: 5px 10px;
-    color: #f9f9f9cc;
-    font-size: 11px;
-    text-decoration: none;
-    
-  }
-  .submenu a:hover {
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-
-  button,
-  label {
-    background: transparent;
-    border: 0;
-    padding: 0;
-    cursor: pointer;
-    text-align: left;
-  }
+.submenu {
+  display: none;
+  padding-left: 20px;
+}
+.submenu.open {
+  display: block;
+}
+.submenu a {
+  display: block;
+  padding: 5px 10px;
+  color: #f9f9f9cc;
+  font-size: 11px;
+  text-decoration: none;
   
+}
+.submenu a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+
+button,
+label {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
 /* SIDEBAR */
 
 body.open .overlay {
-  opacity: 1;
-  visibility: visible;
+opacity: 1;
+visibility: visible;
 }
 
 .burger {
-  position: fixed;
-  z-index: 3;
-  top: 20px;
-  left: 12px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+position: fixed;
+z-index: 3;
+top: 20px;
+left: 12px;
+display: flex;
+align-items: center;
+gap: 6px;
 }
 
 @media (width >= 500px) {
-  .burger {
-    display: none;
-  }
+.burger {
+  display: none;
+}
 }
 
 .burger-avatar {
-  width: 30px;
-  height: 30px;
-  transition: 0.4s;
+width: 30px;
+height: 30px;
+transition: 0.4s;
 }
 
 body.open .burger-avatar {
-  translate: 40px 0;
-  opacity: 0;
-  visibility: hidden;
+translate: 40px 0;
+opacity: 0;
+visibility: hidden;
 }
 
 .burger-icon {
-  display: block;
-  width: 30px;
-  height: 30px;
-  background-image: url("../../../estilizacao/images/svg/icon-burger.svg");
-  background-repeat: no-repeat;
-  background-position: center center;
+display: block;
+width: 30px;
+height: 30px;
+background-image: url("../../../estilizacao/images/svg/icon-burger.svg");
+background-repeat: no-repeat;
+background-position: center center;
 }
 
 body.open .burger-icon {
-  background-image: url("../../../estilizacao/images/svg/icon-close.svg");
+background-image: url("../../../estilizacao/images/svg/icon-close.svg");
 }
 
- /* Estilos padrões para desktop e telas grandes */
+/* Estilos padrões para desktop e telas grandes */
 
- 
- .sidebar header {
-   display: flex;
-   align-items: center;
-   height: 72px;
-   padding-top: 10px;
-   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
- }
+
+.sidebar header {
+ display: flex;
+ align-items: center;
+ height: 72px;
+ padding-top: 10px;
+ border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
 /* Estilos padrões para desktop e telas grandes */
 .sidebar {
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  padding: 40px 20px;
-  background: #000000c9;
-  opacity: 0;
-  visibility: hidden;
-  transition-property: filter, visibility, opacity;
-  transition-duration: 0.6s;
- 
+position: absolute;
+z-index: 2;
+top: 0;
+left: 0;
+display: flex;
+align-items: center;
+flex-direction: column;
+width: 100%;
+height: 100%;
+padding: 40px 20px;
+background: #000000c9;
+opacity: 0;
+visibility: hidden;
+transition-property: filter, visibility, opacity;
+transition-duration: 0.6s;
+
 }
 
 @media (width >= 330px) {
-  .sidebar {
-    transition-property: translate;
-  }
+.sidebar {
+  transition-property: translate;
+}
 }
 
 @media (width >= 400px) {
-  .sidebar {
-    translate: -100% 0;
-    width: 180px;
-    transition: 0.4s;
-    border-left: 1px solid rgba(255, 255, 255, 0.16);
-  }
+.sidebar {
+  translate: -100% 0;
+  width: 180px;
+  transition: 0.4s;
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+}
 }
 
 @media (width >= 500px) {
-  .sidebar {
-    translate: 0 0;
-
-    opacity: 1;
-    visibility: visible;
-    filter: blur(0);
-  }
-}
-
-body.open .sidebar {
+.sidebar {
   translate: 0 0;
+
   opacity: 1;
   visibility: visible;
   filter: blur(0);
 }
+}
+
+body.open .sidebar {
+translate: 0 0;
+opacity: 1;
+visibility: visible;
+filter: blur(0);
+}
 
 .sidebar-avatar {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 20px;
+width: 80px;
+height: 80px;
+margin-bottom: 20px;
 }
 
 .sidebar-username {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.96);
+margin: 0;
+font-size: 14px;
+font-weight: 500;
+color: rgba(255, 255, 255, 0.96);
 }
 
 .sidebar-role {
-  margin: 0 0 20px;
-  font-size: 9px;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.57);
+margin: 0 0 20px;
+font-size: 9px;
+font-weight: 400;
+color: rgba(255, 255, 255, 0.57);
 }
 
 .sidebar-menu {
-  display: grid;
-  width: 100%;
-  padding: 10px 0;
-  padding-left: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
+display: grid;
+width: 100%;
+padding: 10px 0;
+padding-left: 20px;
+border-top: 1px solid rgba(255, 255, 255, 0.16);
 }
 
 /* Adicionando breakpoints para tablets e alguns laptops */
 @media (max-width: 1024px) { /* Inclui iPads e a maioria dos tablets */
-  .sidebar {
-    translate: -100% 0;
-    width: 180px;
-    transition: 0.4s;
-    border-left: 1px solid rgba(255, 255, 255, 0.16);
-  }
+.sidebar {
+  translate: -100% 0;
+  width: 180px;
+  transition: 0.4s;
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+}
 
-  .burger {
-    display: flex;
-  }
+.burger {
+  display: flex;
+}
 }
 
 /* Ajuste adicional para telas de laptops menores (como Asus ZenBook) */
 @media (max-width: 1280px) { /* Inclui alguns laptops e dispositivos dobráveis */
-  .sidebar {
-    translate: -100% 0;
-    width: 180px;
-    transition: 0.4s;
-    border-left: 1px solid rgba(255, 255, 255, 0.16);
-  }
+.sidebar {
+  translate: -100% 0;
+  width: 180px;
+  transition: 0.4s;
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+}
 
-  .burger {
-    display: flex;
-  }
+.burger {
+  display: flex;
+}
 }
 
 
 @media (width >= 350px) {
-  .sidebar-menu {
-    padding-left: 0;
-  }
+.sidebar-menu {
+  padding-left: 0;
+}
 }
 
 .sidebar-menu>a{
-  text-decoration: none;
+text-decoration: none;
 }
 
 .sidebar-menu > a > button {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  font-family: "Poppins";
-  font-size: 16px;
-  font-weight: 200;
-  letter-spacing: 2px;
-  line-height: 1;
-  padding: 10px 20px;
+display: flex;
+gap: 8px;
+align-items: center;
+font-family: "Poppins";
+font-size: 16px;
+font-weight: 200;
+letter-spacing: 2px;
+line-height: 1;
+padding: 10px 20px;
 }
 
 .sidebar-menu > a > button > img {
-  width: 17px;
-  height: 17px;
+width: 17px;
+height: 17px;
 }
 
 .sidebar-menu > a >  button > span {
-  color: #f9f9f9;
-  font-size: 11px;
-  translate: 0 1px;
+color: #f9f9f9;
+font-size: 11px;
+translate: 0 1px;
 }
-  
 
-  
+

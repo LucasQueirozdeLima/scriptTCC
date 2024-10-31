@@ -2,7 +2,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: url(../images/fundo_academia.jpg) no-repeat center center fixed;
+    background: url(../images/fundo_home.jpg) no-repeat center center fixed;
     background-size: cover;
     font-family: "Poppins", sans-serif;
     display: flex;
@@ -21,6 +21,14 @@ main {
     width: 100%;
 }
 
+.h2-person {
+    text-align: center; 
+    color: white ;
+    background-color: black;
+    box-shadow: 1px 1px 1px 1px;
+    font-family: "Euclid Circular A";
+}
+
 .info-presenca {
     display: flex;
     justify-content: center;
@@ -34,12 +42,14 @@ main {
     font-size: 1.2em;
     background-color: black;
     padding: 10px;
+    box-shadow: 1px 1px 1px 1px;
+    
 }
 
 .info-presenca p {
     font-size: 1.2em;
     margin: 0;
-    font-family: "Poppins", sans-serif;
+    font-family: "Euclid Circular A";
 }
 
 
@@ -148,6 +158,7 @@ main {
     width: 90%;
     max-width: 700px;
     margin: 2vw auto; 
+    background-color: rgba(66, 64, 64, 0.342);
 }
 
 canvas {
@@ -168,7 +179,8 @@ canvas {
 }
 
 .sobre_texto {
-    width: 50%; /
+    width: 50%; 
+    font-family: "Euclid Circular A";
 }
 
 .sobre_texto p {
@@ -179,6 +191,8 @@ canvas {
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     line-height: 1.6;
+    font-family: "Euclid Circular A";
+    font-size: larger;
 }
 
 .sobre_texto span {
@@ -475,6 +489,7 @@ main > form >  a{
     border-radius: 10px;
     width: 90%;
     max-width: 400px; /* Limita a largura em telas maiores */
+    
 }
 
 .btn_main:hover {
@@ -548,10 +563,11 @@ main > form >  a{
 .cadastrar {
     z-index: 2;
     margin: 10px;
-    font-size: 18px;
+    font-size: 24px;
     padding: 10px 20px;
     border-radius: 8px;
     transition: background-color 0.3s ease;
+    font-family: "Euclid Circular A";
 }
 
 .cadastrar:hover {
@@ -794,6 +810,7 @@ footer {
     font-size: 24px; 
     margin: 0 10px; 
     transition: color 0.3s; 
+    
 }
 
 .footer-social a:hover {
@@ -862,6 +879,4 @@ article > button {
     font-size: 16px;
     margin-left: auto;
 }
-
-
 

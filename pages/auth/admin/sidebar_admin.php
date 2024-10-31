@@ -1,9 +1,10 @@
 <div class="background-blur"></div>
-
+<div class="btn">
 <button type="button" class="burger" onclick="toggleSidebar()">
     <img class="burger-avatar" src="../../../estilizacao/images/logo_nav.png"/>
     <span class="burger-icon"></span>
 </button>
+</div>
 <div class="overlay"></div>
 
 <script type="text/javascript">

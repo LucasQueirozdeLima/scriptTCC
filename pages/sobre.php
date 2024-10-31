@@ -6,6 +6,11 @@
     <title>Sobre Nós</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
+
+
+
+
+    <link rel="stylesheet" href="../estilizacao/css/styles.css">
     <style>
         body {
             font-family: 'Open Sans', sans-serif;
@@ -25,22 +30,7 @@
             margin: 100px auto;
             height: 200px;
         }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #B0C4DE;
-            padding: 10px 0;
-            border-bottom: 1px solid #ddd;
-        }
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-        }
-        nav a:hover {
-            color: #007bff;
-        }
+        
         .content {
             text-align: center;
             padding: 50px 20px;
@@ -112,8 +102,9 @@
     </style>
 </head>
 <body>
+<?php include "../includes/navbar.php"; ?>
     <header>
-       <a href="./index.php"> <img class="img_logo" alt="Logo da Empresa" height="50" src="../estilizacao/images/logo_nav.png" width="200"/> </a> 
+
     </header>
 
     <div class="content">

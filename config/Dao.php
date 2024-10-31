@@ -1,4 +1,4 @@
-<?php
+<?php 
 class Dao {
     private $dsn = "mysql:host=localhost;dbname=fitrealtime";
     private $username = "root";
@@ -66,6 +66,16 @@ class Dao {
             header("Location: ../pages/auth/admin/cadastro_academia.php?error=1");
         }
     }
+
+
+ 
+    
+    public function obterFrequenciaAtual($academia_id) {
+        $resultado = $this->pdo->query("SELECT num_atual FROM frequencia WHERE academia_id = $academia_id ORDER BY data DESC LIMIT 1");
+        return $resultado->fetch(PDO::FETCH_ASSOC);
+    }
+    
+
 
     //Buscar dados para exibição
 
