@@ -14,7 +14,7 @@ class Dao {
 
     //Verificar se o login é possivel
 
-   public function verificarLogin($verificador, $senha) //
+   public function verificarLogin($verificador, $senha) 
     {
         $usuario = $this->pdo->query("SELECT * FROM usuario WHERE nome_usuario='$verificador' OR email='$verificador' AND senha='$senha'");
 
@@ -29,6 +29,17 @@ class Dao {
             }
         }
     }
+
+    public function atualizarSenha($email, $novaSenha) {
+        $hashedSenha = password_hash($novaSenha, PASSWORD_DEFAULT);
+        $query = "UPDATE usuario SET senha='$hashedSenha' WHERE email='$email'";
+        
+        $stmt = $this->pdo->query($query);
+        
+        // Verifica se a senha foi alterada com sucesso
+        return $stmt->rowCount() > 0;
+    }
+    
 
     //inserção de dados
 
@@ -65,6 +76,16 @@ class Dao {
         } catch (PDOException $erroCadastro) {
             header("Location: ../pages/auth/admin/cadastro_academia.php?error=1");
         }
+    }
+
+
+    
+
+    public function logout() {
+        session_unset();  
+        session_destroy(); 
+        header("Location: ../../index.php"); 
+        exit();
     }
 
 

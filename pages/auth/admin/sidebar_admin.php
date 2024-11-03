@@ -45,22 +45,14 @@
             <a href="listar_academias.php">Listar Academias</a>
         </div>
 
-        <a href="perfil.php">
+        <a href="perfil_admin.php">
             <button type="button">
                 <img src="../../../estilizacao/images/svg/icon-perfil.svg" />
                 <span>Perfil</span>
             </button>
         </a>
 
-        <a href="notifications.php">
-            <button type="button">
-                <img src="../../../estilizacao/images/svg/icon-bell.svg" />
-                <span>Notificações</span>
-            </button>
-        </a>
-    </nav>
 
-    <!-- Logout -->
     <nav class="sidebar-menu bottom">
         <a href="logout.php">
             <button type="button">

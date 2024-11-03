@@ -1,6 +1,8 @@
 <?php include "../includes/cabecalho.php";   
       include "../includes/navbar.php"; 
     require_once "../config/Dao.php"    
+
+    
       ?>
 
  
