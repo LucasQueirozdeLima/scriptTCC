@@ -216,6 +216,7 @@ body.open .sidebar {
   margin-left: 250px;
   box-sizing: border-box;
   z-index: 1;
+  overflow-y: auto; 
 }
 
 

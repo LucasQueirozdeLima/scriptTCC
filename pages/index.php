@@ -1,5 +1,9 @@
-<?php include "../includes/cabecalho.php"; ?>
-<?php include "../includes/navbar.php"; ?>
+<?php include "../includes/cabecalho.php";   
+      include "../includes/navbar.php"; 
+    require_once "../config/Dao.php"    
+      ?>
+
+ 
 
 <main>
     <section class="busca-academias">
@@ -71,6 +75,17 @@
                 }
             }
         });
+   
+        setInterval(() => {
+    fetch('teste_frequencia.php')
+        .then(response => response.json())
+        .then(data => {
+            presencaChart.data.datasets[0].data[0] = data.num_atual; // Atualiza a quantidade de pessoas presentes
+            presencaChart.update();
+        })
+        .catch(error => console.error("Erro ao atualizar o gráfico:", error));
+}, 5000); // Atualiza a cada 5 segundos
+
     </script>
 
 

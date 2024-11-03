@@ -73,7 +73,7 @@ font-weight: 400;
   grid-template-rows: repeat(2, 180px);
   gap: 24px;
   z-index: 2;
-  margin-top: -30%; /* Ajuste o valor conforme necessário */
+  margin-top: -30%; 
 }
 
 

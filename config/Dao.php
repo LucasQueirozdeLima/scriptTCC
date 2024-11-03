@@ -69,11 +69,37 @@ class Dao {
 
 
  
-    
-    public function obterFrequenciaAtual($academia_id) {
-        $resultado = $this->pdo->query("SELECT num_atual FROM frequencia WHERE academia_id = $academia_id ORDER BY data DESC LIMIT 1");
-        return $resultado->fetch(PDO::FETCH_ASSOC);
+    public function atualizarFrequencia($academia_id, $valor) {
+        $this->pdo->query("UPDATE frequencia SET num_atual = num_atual + $valor WHERE academia_id = $academia_id");
     }
+    
+
+ public function obterFrequenciaAtual($idAcademia) {
+    try {
+        $stmt = $this->pdo->prepare("SELECT num_atual, capacidade_max FROM frequencia WHERE id_academia = :id_academia");
+        $stmt->bindParam(':id_academia', $idAcademia, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Verifica se o resultado não é falso
+        if ($result) {
+            return $result;
+        } else {
+            return ["num_atual" => 0, "capacidade_max" => 0];
+        }
+    } catch (PDOException $e) {
+        // Log ou tratamento de erro
+        return ["num_atual" => 0, "capacidade_max" => 0];
+    }
+}
+
+public function inserirFrequencia($academiaId, $numAtual) {
+    $stmt = $this->pdo->prepare("INSERT INTO frequencia (num_atual, data, academia_id) VALUES (:numAtual, NOW(), :academiaId)");
+    $stmt->bindParam(':numAtual', $numAtual);
+    $stmt->bindParam(':academiaId', $academiaId);
+    return $stmt->execute();
+}
+
     
 
 
