@@ -30,17 +30,6 @@ class Dao {
         }
     }
 
-    public function atualizarSenha($email, $novaSenha) {
-        $hashedSenha = password_hash($novaSenha, PASSWORD_DEFAULT);
-        $query = "UPDATE usuario SET senha='$hashedSenha' WHERE email='$email'";
-        
-        $stmt = $this->pdo->query($query);
-        
-        // Verifica se a senha foi alterada com sucesso
-        return $stmt->rowCount() > 0;
-    }
-    
-
     //inserção de dados
 
     public function inserirUsuario($nome, $nome_usuario, $email, $senha) 
@@ -78,8 +67,36 @@ class Dao {
         }
     }
 
+    //RECUPERAR DADOS
 
+    public function recuperarDadosUsuario ($verificador) 
+    {
+        $usuario = $this->pdo->query("SELECT * FROM usuario WHERE nome_usuario='$verificador' OR email='$verificador'");
+        return $usuario;
+    }
+
+    public function recuperarDadosAdmin ($verificador) 
+    {
+            $admin = $this->pdo->query("SELECT * FROM usuario_admin WHERE nome_usuario='$verificador' OR email='$verificador'");
+            return $admin;   
+    }
+
+    //UPDATES
+
+    public function atualizarSenha($email, $novaSenha) {
+        $hashedSenha = password_hash($novaSenha, PASSWORD_DEFAULT);
+        $query = "UPDATE usuario SET senha='$hashedSenha' WHERE email='$email'";
+        
+        $stmt = $this->pdo->query($query);
+        
+        // Verifica se a senha foi alterada com sucesso
+        return $stmt->rowCount() > 0;
+    }
     
+
+
+
+    //LOGOUT
 
     public function logout() {
         session_unset();  
@@ -87,6 +104,8 @@ class Dao {
         header("Location: ../../index.php"); 
         exit();
     }
+
+    
 
 
  

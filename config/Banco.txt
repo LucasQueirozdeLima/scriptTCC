@@ -82,6 +82,19 @@ CREATE TABLE favoritos (
 
 ---------------------------------------------------------------------
 
+    Necessario para apresentação:
+
+-- Inserir um usuário na tabela `usuario`
+INSERT INTO usuario (nome, nome_usuario, email, senha) 
+VALUES ('user', 'user', 'user@example.com', '123');
+
+-- Inserir um administrador na tabela `usuario_admin`
+INSERT INTO usuario_admin (nome, nome_usuario, documento, email, cargo, senha) 
+VALUES ('Admin', 'admin', '12345678901', 'admin@example.com', 'Gerente', '123');
+
+
+---------------------------------------------------------------------
+
     Exemplo para inserir dados na tabela 'Academia':
     
 INSERT INTO endereco (rua, numero, bairro, cidade, cep)
