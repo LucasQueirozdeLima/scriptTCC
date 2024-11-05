@@ -400,11 +400,14 @@ main > form >  a{
 }
 
 .md-textbox > label {
-    left: 24%;
+    left: 20%;
     background: transparent;
     padding: 4px;
     font-size: 20px;
 }
+
+
+
 
 .md-textbox > span {
     right: 31%;
