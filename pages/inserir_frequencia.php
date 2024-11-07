@@ -1,5 +1,5 @@
 
-<?php
+<?php /*
 require_once '../config/Dao.php';
 
 $dao = new Dao();
@@ -26,3 +26,4 @@ echo json_encode(["status" => "Frequência inserida com sucesso", "num_atual" =>
     // Chama a função a cada 30 segundos
     setInterval(inserirFrequenciaPeriodicamente, 30000); // 30 segundos = 30000 ms
 </script>
+*/?>

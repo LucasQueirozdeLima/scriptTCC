@@ -1,4 +1,5 @@
 <?php
+/*
 require_once '../config/Dao.php';
 $dao = new Dao();
 
@@ -19,4 +20,4 @@ echo json_encode([
     "capacidade_max" => $result['capacidade_max'] ?? 0
 ]);
 
-
+*/?>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atualizar Pessoas Presentes</title>
+  
+  <!-- Incluir Firebase via CDN -->
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+  <h1>Atualizando Pessoas Presentes na Academia</h1>
+
+  <script>
+    // Configuração do Firebase
+    const firebaseConfig = {
+    apiKey: "AIzaSyDBdSRyaboQFVLZslagd8IeD197Ce05ZoM",
+    authDomain: "grafico-93b0a.firebaseapp.com",
+    projectId: "grafico-93b0a",
+    storageBucket: "grafico-93b0a.firebasestorage.app",
+    messagingSenderId: "546497332413",
+    appId: "1:546497332413:web:9192f88305926aa4b1a3d4"
+  };
+
+    // Inicializando o Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+   // Referência para o documento específico dentro da coleção ACADEMIAS
+   const academiaRef = db.collection("ACADEMIAS").doc("academiaVinicius");
+
+// Função para gerar um número aleatório de pessoas presentes entre 0 e maxPessoas
+function atualizarPessoasPresentes() {
+  // A cada 1 segundo, vamos atualizar o número de pessoas presentes
+  setInterval(() => {
+    // Buscar o valor de 'maxPessoas' e 'pessoaPresente' antes de gerar o número aleatório
+    academiaRef.get()
+      .then(doc => {
+        if (doc.exists) {
+          const data = doc.data();
+          const maxPessoas = data.maxPessoas;  // Quantidade máxima de pessoas permitidas
+          
+          // Gerar um número aleatório entre 0 e maxPessoas
+          const pessoasPresentes = Math.floor(Math.random() * (maxPessoas + 1));
+
+          // Atualizar o campo 'pessoaPresente' com o número aleatório
+          academiaRef.update({
+            pessoaPresente: pessoasPresentes
+          });
+
+          console.log(`Pessoas presentes atualizadas para: ${pessoasPresentes}`);
+        } else {
+          console.log("Documento não encontrado!");
+        }
+      })
+      .catch(error => {
+        console.error("Erro ao acessar o Firestore:", error);
+      });
+  }, 10000); // Atualiza a cada 1 segundo
+}
+
+    // Iniciar o processo de atualização
+    atualizarPessoasPresentes();
+  </script>
+
+</body>
+</html>
