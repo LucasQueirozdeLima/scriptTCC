@@ -8,6 +8,7 @@ require_once "../config/Dao.php"
 
 
 <main>
+    
 <section class="busca-academias">
     <div class="form_academias">
         <h2>Localizar Academias</h2>
@@ -34,7 +35,8 @@ require_once "../config/Dao.php"
     <section class="presenca-academia">
         <h2 class="h2-person">Pessoas Presentes na Unidade em Tempo Real</h2>
         <div class="chart-container">
-            <canvas id="presencaChart"></canvas>
+        <canvas id="presencaChart"></canvas>
+
         </div>
 
         <!-- Informações abaixo do gráfico -->

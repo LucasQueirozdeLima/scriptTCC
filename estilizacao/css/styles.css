@@ -2,13 +2,14 @@
 body {
     margin: 0;
     padding: 0;
-    background: url(../images/fundo_home.jpg) no-repeat center center fixed;
+    background: url(../images/fundo_home2.jpg) no-repeat center center fixed;
     background-size: cover;
     font-family: "Poppins", sans-serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     height: 100%;
+    
 }
 
 main {
@@ -280,19 +281,40 @@ main {
         font-size: 14px;
     }
 }
-/* Gráfico de Pessoas Presentes */
+/* Estilos gerais para o gráfico */
 .chart-container {
     width: 90%;
     max-width: 700px;
     margin: 2vw auto; 
-    background-color: rgba(66, 64, 64, 0.342);
+    background-color: rgba(58, 55, 55, 0.473);
 }
+
+
+
+/* Tamanho específico para telas maiores */
+@media (min-width: 1024px) {
+    #presencaChart {
+        width: 1000px;
+        height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .chart-container {
+        width: 90%;
+        max-width: 700px;
+    }
+    
+}
+
 
 canvas {
     background-color: rgba(255, 255, 255, 0.1);
     padding: 10px;
     border-radius: 10px;
 }
+
+
 
 /* Texto e Vídeo */
 .sobre-index {
