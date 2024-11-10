@@ -8,31 +8,27 @@ require_once "../config/Dao.php"
 
 
 <main>
-    <section class="busca-academias">
+<section class="busca-academias">
+    <div class="form_academias">
         <h2>Localizar Academias</h2>
         <div class="input-group w-90">
-            <span class="input-group-text" id="search-icon">
-                <i class="bi bi-search"></i>
-            </span>
             <div class="form-group">
-                <label for="searchInput">Digite o nome da Academia:</label>
-                <input type="text" id="searchInput" class="form-control" placeholder="Ex.: São Paulo ou Academia XYZ" aria-label="Search" aria-describedby="search-icon">
+                <label for="searchInput" >Digite ou selecione a Academia:</label>
+             
+                <div class="input-wrapper">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Ex.:    Academia XYZ " aria-label="Search" aria-describedby="search-icon">
+                    <i class="bi bi-search fs-3"></i>
+                </div>
+                <!-- Lista de sugestões -->
+                <div id="suggestions" class="suggestions-box"></div>
             </div>
-
-            <!-- Select para as academias (preenchido dinamicamente) -->
-            <div class="form-group">
-                <label for="academySelect">Selecione uma Academia:</label>
-                <select class="form-control" name="academy" id="academySelect" required>
-                    <option value="" disabled selected>Selecione uma academia...</option>
-                    <!-- As opções serão preenchidas dinamicamente via JavaScript -->
-                </select>
-            </div>
-
-
         </div>
         <!-- Botão de busca -->
         <button id="searchButton" class="btn btn-primary">Buscar</button>
-    </section>
+    </div>
+</section>
+
+
 
     <!-- Gráfico -->
     <section class="presenca-academia">
@@ -153,78 +149,120 @@ require_once "../config/Dao.php"
             });
         }
 
-        function preencherSelect() {
-            // Limpar o select antes de adicionar as opções
-            const selectElement = document.getElementById('academySelect');
-            selectElement.innerHTML = '<option value="" disabled selected>Selecione uma academia...</option>'; // Reseta as opções
+     // Função para exibir sugestões enquanto o usuário digita
+function searchAcademy(query) {
+    // Se a pesquisa for vazia, não fazer nada
+    if (!query.trim()) {
+        document.getElementById('suggestions').style.display = 'none';
+        return;
+    }
 
-            // Buscar as academias no Firestore
-            academiasRef.get()
-                .then(snapshot => {
-                    snapshot.forEach(doc => {
-                        // Pega o nome da academia e o ID do documento
-                        const nomeAcademia = doc.data().nome; // Nome da academia
-                        const academiaId = doc.id; // ID do documento
-
-                        // Criar uma nova opção no select para cada academia
-                        const option = document.createElement('option');
-                        option.value = academiaId; // O valor será o ID da academia
-                        option.textContent = nomeAcademia; // O texto visível será o nome da academia
-                        selectElement.appendChild(option);
-                    });
-                })
-                .catch(error => {
-                    console.error("Erro ao carregar as academias: ", error);
-                });
-        }
-
-        // Função para filtrar academias com base no texto digitado
-        function searchAcademy(query) {
-            // Se a pesquisa for vazia, não fazer nada
-            if (!query.trim()) return;
-
-            // Filtrar academias no Firestore que contenham o nome correspondente à pesquisa
-            academiasRef.where("nome", ">=", query)
-                .where("nome", "<=", query + '\uf8ff') // Isso faz a busca por prefixo
-                .get()
-                .then(snapshot => {
-                    const academias = snapshot.docs.map(doc => ({
-                        id: doc.id,
-                        nome: doc.data().nome,
-                    }));
-                    populateAcademySelect(academias); // Popular o select com as academias filtradas
-                })
-                .catch(error => {
-                    console.error("Erro ao buscar academias: ", error);
-                });
-        }
-
-        // Evento para capturar a digitação no input de pesquisa
-        document.getElementById('searchInput').addEventListener('input', (event) => {
-            const query = event.target.value;
-            searchAcademy(query); // Filtra as academias conforme o texto digitado
+    // Filtrar academias no Firestore que contenham o nome correspondente à pesquisa
+    academiasRef.where("nome", ">=", query)
+        .where("nome", "<=", query + '\uf8ff') // Isso faz a busca por prefixo
+        .get()
+        .then(snapshot => {
+            const academias = snapshot.docs.map(doc => ({
+                id: doc.id,
+                nome: doc.data().nome,
+            }));
+            showSuggestions(academias); // Exibir as sugestões
+        })
+        .catch(error => {
+            console.error("Erro ao buscar academias: ", error);
         });
+}
 
-        // Função para buscar e renderizar o gráfico (quando uma academia for selecionada)
-        function buscarAcademia() {
-            const selectedAcademyId = document.getElementById('academySelect').value;
+// Função para exibir sugestões na interface
+function showSuggestions(academias) {
+    const suggestionsBox = document.getElementById('suggestions');
+    suggestionsBox.innerHTML = ''; // Limpa as sugestões anteriores
 
-            if (selectedAcademyId) {
-                console.log('Buscando gráfico para a academia com ID:', selectedAcademyId);
-                updateGrafico(selectedAcademyId);
-            } else {
-                alert('Por favor, selecione uma academia.');
-            }
-        }
-
-        // Evento para capturar a digitação no input de pesquisa
-        document.getElementById('searchInput').addEventListener('input', (event) => {
-            const query = event.target.value;
-            searchAcademy(query); // Filtra as academias conforme o texto digitado
+    // Adiciona cada academia como uma opção na lista de sugestões
+    academias.forEach(academia => {
+        const suggestionItem = document.createElement('div');
+        suggestionItem.textContent = academia.nome;
+        suggestionItem.dataset.id = academia.id; // Armazena o ID da academia para futura referência
+        suggestionItem.addEventListener('click', () => {
+            document.getElementById('searchInput').value = academia.nome;
+            suggestionsBox.style.display = 'none';
+            updateGrafico(academia.id); // Atualiza o gráfico com a academia selecionada
         });
-        // Evento do botão de busca
-        document.getElementById('searchButton').addEventListener('click', buscarAcademia);
-        window.onload = preencherSelect;
+        suggestionsBox.appendChild(suggestionItem);
+    });
+
+    // Exibe o box de sugestões
+    suggestionsBox.style.display = academias.length ? 'block' : 'none';
+}
+
+// Evento para capturar a digitação no input de pesquisa
+document.getElementById('searchInput').addEventListener('input', (event) => {
+    const query = event.target.value;
+    searchAcademy(query); // Filtra as academias conforme o texto digitado
+});
+
+// Fecha a lista de sugestões se o usuário clicar fora dela
+document.addEventListener('click', (event) => {
+    const suggestionsBox = document.getElementById('suggestions');
+    if (!event.target.closest('.form_academias')) {
+        suggestionsBox.style.display = 'none';
+    }
+});
+
+// Evento do botão de busca
+document.getElementById('searchButton').addEventListener('click', () => {
+    const selectedAcademy = document.getElementById('searchInput').value.trim().toLowerCase(); // Converte o input para minúsculas
+
+    if (selectedAcademy) {
+        // Busca a academia no Firestore pelo nome em minúsculas
+        academiasRef.where("nomeLowercase", "==", selectedAcademy).get()
+            .then(snapshot => {
+                if (!snapshot.empty) {
+                    const academia = snapshot.docs[0]; // Obtém o primeiro documento encontrado
+                    updateGrafico(academia.id); // Atualiza o gráfico com o ID da academia
+                } else {
+                    alert('Academia não encontrada. Verifique o nome e tente novamente.');
+                }
+            })
+            .catch(error => {
+                console.error("Erro ao buscar academia:", error);
+                alert('Erro ao buscar a academia. Tente novamente mais tarde.');
+            });
+    } else {
+        alert('Por favor, digite ou selecione uma academia.');
+    }
+});
+
+
+// Exemplo de atualização para cada academia
+academiasRef.doc(academia).update({
+    nomeLowercase: nome.toLowerCase()
+});
+
+
+function searchAcademy(query) {
+    if (!query.trim()) {
+        document.getElementById('suggestions').style.display = 'none';
+        return;
+    }
+
+    academiasRef.where("nomeLowercase", ">=", query.toLowerCase())
+        .where("nomeLowercase", "<=", query.toLowerCase() + '\uf8ff')
+        .get()
+        .then(snapshot => {
+            const academias = snapshot.docs.map(doc => ({
+                id: doc.id,
+                nome: doc.data().nome, // Exibe o nome normal para o usuário
+            }));
+            showSuggestions(academias);
+        })
+        .catch(error => {
+            console.error("Erro ao buscar academias: ", error);
+        });
+}
+
+
+
     </script>
 
 

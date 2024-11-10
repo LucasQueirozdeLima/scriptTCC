@@ -64,9 +64,7 @@ main {
     }
 }
 
-/* Para dispositivos grandes (desktop) */
-@media (max-width: 1200px) {
-}
+
 
 
 @media (max-width: 992px) {
@@ -77,7 +75,14 @@ main {
     }
 }
 
-/* Formulário de Busca */
+/* Estilo para o contêiner principal */
+.busca-academias {
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+/* Formulário de busca */
 .form_academias {
     background-color: rgba(0, 0, 0, 0.75);
     padding: 2em;
@@ -89,29 +94,65 @@ main {
     text-align: center;
 }
 
+/* Título */
 .form_academias h2 {
-    color: #fff;
-    margin-bottom: 1em;
-    text-align: center;
-     
+    margin-bottom: 20px;
 }
 
+/* Formulário de busca */
 .input-group {
-    margin-bottom: 1em;
     display: flex;
-    justify-content: space-between; 
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
 }
+
+/* Ícone de busca */
+
+
+/* Estilo do botão de busca */
+#searchButton {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+/* Estilo do input */
+.form-control {
+    width: 100%;
+    padding: 10px 35px 10px 10px; 
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.bi.bi-search {
+   padding-left: 2px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px; 
+    font-size: 1.2rem; 
+    color: #333; 
+    cursor: pointer; 
+}
+
+
 
 .input-group .form-control {
     flex: 1;
-    margin-right: 10px;
+    padding: 10px;
+    font-size: 1em;
 }
 
 .btn-primary {
     background-color: #0855E4;
     border-color: #0855E4;
-    width: 50%;
-    
+    width: 100%;
+    max-width: 300px;
+    margin: 1em auto;
 }
 
 .btn-primary:hover {
@@ -124,13 +165,99 @@ main {
         flex-direction: column;
         padding: 2em;
     }
-
-    .form_academias, .chart-container {
-        width: 90%;
-    }
-
     .mainLogin {
         background-position: center;
+    }
+}
+
+/* Estilo das sugestões */
+.suggestions-box {
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    max-height: 150px;
+    overflow-y: auto;
+    display: none;
+}
+
+.suggestions-box div {
+    padding: 10px;
+    cursor: pointer;
+    color: #333;
+    background-color: rgb(161, 178, 216);
+}
+
+.suggestions-box div:hover {
+    background-color: #f0f0f0;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .input-wrapper {
+        width: 100%;
+    }
+    
+    .form-control {
+        font-size: 0.9rem;
+        padding-left: 30px;
+    }
+
+    #searchButton {
+        width: 100%; 
+    }
+}
+
+
+/* Para telas menores, como celulares */
+@media (max-width: 768px) {
+   
+
+    .input-group .form-control {
+        font-size: 0.9em;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+    .form-group {
+        display: flex;
+        flex-direction: column; 
+        align-items: flex-start; 
+    }
+
+    .form-group label {
+        margin-bottom: 8px; 
+    }
+
+    .input-wrapper {
+        width: 100%; 
+    }
+}
+
+
+
+
+@media (max-width: 480px) {
+    .form_academias h2 {
+        font-size: 1.2em;
+    }
+
+    .input-group .form-control {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+
+    .btn-primary {
+        font-size: 0.9em;
+        padding: 10px;
     }
 }
 
@@ -262,7 +389,7 @@ nav {
 .navbar-burguer {
     width: 30px; 
     height: 30px; 
-    background-image: url("../images/svg/menu.svg"); /* Ícone de hamburguer */
+    background-image: url("../images/svg/menu.svg"); 
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain; 
@@ -418,8 +545,8 @@ main > form >  a{
 .md-textbox > :is(input:focus, .has-value) ~ label {
     background: #151515;
     color: rgba(255, 255, 255, 0.75);
-    translate: 0 -120%;  /* Mover para cima */
-    font-size: 12px;     /* Reduzir o tamanho do texto */
+    translate: 0 -120%;  
+    font-size: 12px;   
 }
 
 /* Responsividade para telas menores */
@@ -491,7 +618,7 @@ main > form >  a{
     padding: 40px;
     border-radius: 10px;
     width: 90%;
-    max-width: 400px; /* Limita a largura em telas maiores */
+    max-width: 400px; 
     
 }
 
@@ -508,8 +635,8 @@ main > form >  a{
     .container-cd {
       width: 500px;
       height: 300px;
-      transform: none; /* Define sem rotação inicial */
-      transition: transform 0.2s ease; /* Suaviza a animação */
+      transform: none; 
+      transition: transform 0.2s ease; 
     }
   }
   
@@ -648,7 +775,7 @@ main > form >  a{
     width: 100%;
     height: 50px;
     padding: 0 20px;
-    padding-right: 40px; /* Adiciona espaço para o ícone à direita */
+    padding-right: 40px; 
     background: transparent;
     border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
@@ -660,9 +787,9 @@ main > form >  a{
 /* Ícones dentro dos campos de texto */
 .textbox i {
     position: absolute;
-    right: 15px; /* Posiciona o ícone à direita dentro do campo de entrada */
+    right: 15px;
     bottom: 5px;
-    transform: translateY(-50%); /* Centraliza o ícone verticalmente */
+    transform: translateY(-50%); 
     color: rgba(255, 255, 255, 0.5);
     font-size: 20px;
     transition: color 0.3s ease;
@@ -670,13 +797,13 @@ main > form >  a{
 
 /* Alteração de cor do ícone ao focar no campo */
 .textbox input:focus + i {
-    color: #157ae1; /* Altera a cor do ícone ao focar no input */
+    color: #157ae1; 
 }
 
 /* Foco no campo de texto */
 .textbox input:focus {
     border-color: #157ae1;
-    background-color: rgba(21, 122, 225, 0.1); /* Efeito de fundo leve ao focar */
+    background-color: rgba(21, 122, 225, 0.1); 
 }
 
 /* Botão de login */
@@ -695,7 +822,7 @@ main > form >  a{
 
 .login-form button:hover {
     background-color: #0f63ba;
-    transform: scale(1.05); /* Efeito de zoom leve no hover */
+    transform: scale(1.05); 
 }
 
 /* Link "Esqueceu a senha?" */
@@ -849,7 +976,7 @@ article {
     left: 48%;
     width: 93%;
     transform: translateX(-50%);
-    z-index: 2; /* Garanta que o artigo fique sobre o rodapé */
+    z-index: 2; 
     display: flex;
     flex-direction: column;
     align-items: center;
