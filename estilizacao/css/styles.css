@@ -44,8 +44,17 @@ main {
     background-color: black;
     padding: 10px;
     box-shadow: 1px 1px 1px 1px;
-    
+    width: auto;
+    text-align: center;
 }
+@media (min-width: 1200px) {
+    .info-item {
+        width: 500px; 
+    }
+}
+
+
+
 
 .info-presenca p {
     font-size: 1.2em;
@@ -90,11 +99,17 @@ main {
     border-radius: 10px;
     width: 100%;
     max-width: 800px;
-    margin-bottom: 3vw;
+    margin: 0 auto;
     color: #fff;
     text-align: center;
 }
 
+.form_academias .form-control {
+    font-size: 1rem;
+    padding: 10px 12px;
+    width: 100%; /* Responsivo */
+    box-sizing: border-box;
+}
 /* Título */
 .form_academias h2 {
     margin-bottom: 20px;
@@ -120,12 +135,25 @@ main {
     font-size: 1rem;
 }
 /* Estilo do input */
-.form-control {
-    width: 100%;
-    padding: 10px 35px 10px 10px; 
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+
+
+@media (min-width: 1200px) {
+    .form_academias {
+        max-width: 800px;
+        width: 700px;
+    }
+
+    .form_academias .form-control {
+        font-size: 1.1rem;
+        padding: 12px 15px;
+        width: 600px;
+    }
+}
+
+.form_academias label {
+    font-size: 1.2rem; /* Aumente o tamanho da fonte da label */
+    margin-bottom: 8px; /* Adicione espaçamento abaixo da label */
+    display: inline-block;
 }
 
 .bi.bi-search {
@@ -214,6 +242,18 @@ main {
     #searchButton {
         width: 100%; 
     }
+
+    .form_academias {
+        max-width: 90%;
+        padding: 15px;
+    }
+    .form_academias .form-control {
+        font-size: 1rem;
+        padding: 10px 12px;
+    }
+    .form_academias label {
+        font-size: 1rem;
+    }
 }
 
 
@@ -283,19 +323,28 @@ main {
 }
 /* Estilos gerais para o gráfico */
 .chart-container {
-    width: 90%;
-    max-width: 700px;
+    width: 100%;
+    max-width: 1200px;
     margin: 2vw auto; 
-    background-color: rgba(58, 55, 55, 0.473);
+    background-color: rgba(58, 55, 55, 0.61);
 }
 
+#favoriteButton i {
+    color: red; 
+  }
 
+  #favoriteButton:hover {
+    border-color: rgb(255, 255, 255); 
+    color: darkred; 
+    background-color: white;
+  }
+  
 
 /* Tamanho específico para telas maiores */
 @media (min-width: 1024px) {
     #presencaChart {
         width: 1000px;
-        height: 500px;
+        height: 600px;
     }
 }
 
