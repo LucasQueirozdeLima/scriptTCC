@@ -9,9 +9,6 @@ if (isset($_SESSION["verificador"])) {
     <div class="boxbox">
         <div class="box">
 
-
-
-
             <div class="form-container">
                 <h2>Alterar Dados</h2>
                 <form action="processar_cadastro_usuario.php" method="POST">

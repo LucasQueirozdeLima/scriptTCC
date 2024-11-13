@@ -50,4 +50,4 @@
 
 </main>
 
-<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="../estilizacao/js/main.js"></script>

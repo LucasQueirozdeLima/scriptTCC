@@ -93,9 +93,6 @@ class Dao {
         return $stmt->rowCount() > 0;
     }
     
-
-
-
     //LOGOUT
 
     public function logout() {
@@ -106,9 +103,33 @@ class Dao {
     }
 
     
+    public function recuperarDicas($objetivo)
+    {
+        // Prevenção de SQL Injection usando prepared statements
+        $query = "SELECT dica FROM DicasAlimentacao WHERE objetivo = :objetivo";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindParam(':objetivo', $objetivo, PDO::PARAM_STR);
+        $stmt->execute();
+    
+        // Recupera todas as dicas que correspondem ao objetivo
+        $dicas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        // Verifica se há dicas e retorna uma aleatória
+        if (count($dicas) > 0) {
+            // Escolhe uma dica aleatória
+            $index = array_rand($dicas);
+            return $dicas[$index]['dica'];
+        } else {
+            return null; // Retorna null caso não encontre dicas
+        }
+    }
+    
+    
+}
 
 
- 
+
+ /*
     public function atualizarFrequencia($academia_id, $valor) {
         $this->pdo->query("UPDATE frequencia SET num_atual = num_atual + $valor WHERE academia_id = $academia_id");
     }
@@ -167,5 +188,5 @@ public function inserirFrequencia($academiaId, $numAtual) {
     }
 
 */
-}  
+  
 ?>

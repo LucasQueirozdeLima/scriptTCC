@@ -12,6 +12,10 @@ body {
 }
 
 
+.content-home p {
+  color: black;
+}
+
 button {
   background: transparent;
   border: 0;
@@ -440,7 +444,13 @@ body.open .sidebar {
 }
 
 
-
+@media (max-width: 1200px) {
+  .form-container {
+      max-height: 90vh;
+      overflow-y: auto; 
+      
+  }
+}
 @media (min-width: 1200px) {
  form {
   max-width: 900px; 

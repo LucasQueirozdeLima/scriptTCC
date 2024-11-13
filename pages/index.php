@@ -1,11 +1,9 @@
-<?php include "../includes/cabecalho.php";
+<?php 
+include "../includes/cabecalho.php";
 include "../includes/navbar.php";
 require_once "../config/Dao.php"
 
-
 ?>
-
-
 
 <main>
 
@@ -20,11 +18,11 @@ require_once "../config/Dao.php"
                         <input type="text" id="searchInput" class="form-control" placeholder="Ex.:    Academia XYZ " aria-label="Search" aria-describedby="search-icon">
                         <i class="bi bi-search fs-3"></i>
                     </div>
-                    <!-- Lista de sugestões -->
+                    
                     <div id="suggestions" class="suggestions-box"></div>
                 </div>
             </div>
-            <!-- Botão de busca -->
+           
             <button id="searchButton" class="btn btn-primary">Buscar</button>
         </div>
     </section>
@@ -38,9 +36,10 @@ require_once "../config/Dao.php"
             <canvas id="presencaChart"></canvas>
         </div>
 
-        <button id="favoriteButton" class="btn btn-outline-danger">
-  <i class="fas fa-heart"> FAVORITAR</i> <!-- Ícone de coração -->
-</button>
+        <button id="favoriteButton" onclick="favoritarAcademia('ID_DA_ACADEMIA')">
+
+  <i class="fas fa-heart"> FAVORITAR</i> 
+  </button>
 
 
 
@@ -137,7 +136,7 @@ require_once "../config/Dao.php"
                         const maxPessoas = data.maxPessoas;
                         const ocupacaoPercentual = (pessoasPresentes / maxPessoas) * 100;
 
-                        // Define a cor com base na ocupação
+                      
                         let corGrafico;
                         if (ocupacaoPercentual < 50) {
                             corGrafico = 'rgba(0, 128, 0, 0.8)'; 
@@ -147,14 +146,14 @@ require_once "../config/Dao.php"
                             corGrafico = 'rgba(255, 0, 0, 0.8)';
                         }
 
-                        // Atualiza o gráfico com a nova cor e dados
+                      
                         presencaChart.data.labels[0] = data.nome;
                         presencaChart.data.datasets[0].data[0] = pessoasPresentes;
                         presencaChart.data.datasets[1].data[0] = maxPessoas;
                         presencaChart.data.datasets[0].backgroundColor = corGrafico;
                         presencaChart.update();
 
-                        // Atualiza os valores de texto
+                      
                         document.getElementById('pessoasPresentes').innerText = pessoasPresentes;
                         document.getElementById('maxPessoas').innerText = maxPessoas;
                     }
@@ -283,7 +282,7 @@ require_once "../config/Dao.php"
                 .then(snapshot => {
                     const academias = snapshot.docs.map(doc => ({
                         id: doc.id,
-                        nome: doc.data().nome, // Exibe o nome normal para o usuário
+                        nome: doc.data().nome, 
                     }));
                     showSuggestions(academias);
                 })
@@ -293,29 +292,68 @@ require_once "../config/Dao.php"
         }
 
     // Evento do botão de favoritar
-    document.getElementById('favoriteButton').addEventListener('click', function() {
-        const selectedAcademy = document.getElementById('searchInput').value.trim();
+    // Exemplo de função de favoritar
+function favoritarAcademia(idAcademia) {
+    // Verifica se o usuário está logado
+    if (!usuarioLogado()) {
+        // Redireciona para a página de login caso o usuário não esteja logado
+        window.location.href = "login.php";
+    } else {
+        // Envia o ID da academia para o backend
+        fetch('favoritar_academia.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ idAcademia: idAcademia })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Academia favoritada com sucesso!");
+            } else {
+                alert("Erro ao favoritar a academia.");
+            }
+        });
+    }
+}
 
-        if (selectedAcademy) {
-            // Envia o nome da academia para o PHP usando AJAX
-            fetch('favoritos.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: 'nomeAcademia=' + encodeURIComponent(selectedAcademy)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Academia favoritada com sucesso!');
-                } else {
-                    alert('Erro ao favoritar a academia.');
-                }
-            })
-            .catch(error => console.error('Erro:', error));
-        } else {
-            alert('Por favor, selecione uma academia primeiro.');
-        }
-    });
+// Exemplo de função para verificar se o usuário está logado
+function usuarioLogado() {
+    // Aqui você pode adicionar a lógica para verificar a sessão do usuário
+    return <?php echo isset($_SESSION['usuario_id']) ? 'true' : 'false'; ?>;
+}
+
+document.getElementById("favoriteButton").addEventListener("click", function() {
+    const idAcademia = "ID_DA_ACADEMIA"; // Substitua por como você está identificando a academia no seu código
+
+    // Verifica se o usuário está logado
+    if (!usuarioLogado()) {
+        // Redireciona para a página de login caso o usuário não esteja logado
+        window.location.href = "login.php";
+    } else {
+        // Envia o ID da academia para o backend para salvar nos favoritos
+        fetch('favoritar_academia.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ idAcademia: idAcademia })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Academia favoritada com sucesso!");
+            } else {
+                alert("Erro ao favoritar a academia: " + data.message);
+            }
+        });
+    }
+});
+
+// Função para verificar se o usuário está logado
+function usuarioLogado() {
+    // Verifica a sessão do usuário no PHP
+    return <?php echo isset($_SESSION['usuario_id']) ? 'true' : 'false'; ?>;
+}
+
+
 
 
 
