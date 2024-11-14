@@ -12,8 +12,8 @@
 
 <aside class="sidebar">
   <img class="sidebar-avatar" height="100" width="100" src="../../../estilizacao/images/svg/icon-user.svg" />
-  <div class="sidebar-username">Bem-Vindo</div>
-  <div class="sidebar-role">Usuário</div>
+  <div class="sidebar-username"><?php echo $_SESSION['verificador']; ?></div>
+  <div class="sidebar-role">BEM-VINDO </div>
 
   <!-- Menu da Sidebar -->
   <nav class="sidebar-menu">

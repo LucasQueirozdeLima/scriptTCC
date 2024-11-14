@@ -324,11 +324,41 @@ main {
 /* Estilos gerais para o gráfico */
 .chart-container {
     width: 100%;
-    max-width: 1200px;
-    margin: 2vw auto; 
+    max-width: 1200px; /* Limita o máximo tamanho */
+    margin: 2vw auto; /* Usa o viewport width para margem */
     background-color: rgba(58, 55, 55, 0.61);
 }
 
+/* Para telas grandes */
+@media (min-width: 1200px) {
+    .chart-container {
+        width: 100%;
+        max-width: 1200px; /* Tamanho máximo */
+    }
+}
+
+/* Para telas médias */
+@media (max-width: 992px) {
+    .chart-container {
+        width: 90%; /* O gráfico ocupa 90% da largura da tela */
+    }
+}
+
+/* Para telas pequenas */
+@media (max-width: 768px) {
+    .chart-container {
+        width: 100%;
+        max-width: 700px; /* Ajusta o tamanho máximo */
+    }
+}
+
+/* Para telas muito pequenas */
+@media (max-width: 480px) {
+    .chart-container {
+        width: 100%; /* O gráfico ocupa 100% da largura da tela */
+        max-width: 350px; /* Ajusta para telas menores */
+    }
+}
 #favoriteButton i {
     color: red; 
   }

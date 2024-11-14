@@ -32,18 +32,7 @@ require_once "../config/Dao.php"
     <!-- Gráfico -->
     <section class="presenca-academia">
         <h2 class="h2-person">Pessoas Presentes na Unidade em Tempo Real</h2>
-        <div class="chart-container">
-            <canvas id="presencaChart"></canvas>
-        </div>
 
-        <button id="favoriteButton" onclick="favoritarAcademia('ID_DA_ACADEMIA')">
-
-  <i class="fas fa-heart"> FAVORITAR</i> 
-  </button>
-
-
-
-        <!-- Informações abaixo do gráfico -->
         <div class="info-presenca">
             <div class="info-item">
                 <p><strong>Pessoas Presentes:</strong>
@@ -56,6 +45,20 @@ require_once "../config/Dao.php"
                 </p>
             </div>
         </div>
+
+        <div class="chart-container">
+            <canvas id="presencaChart"></canvas>
+        </div>
+
+        <button id="favoriteButton" onclick="favoritarAcademia('ID_DA_ACADEMIA')">
+
+  <i class="fas fa-heart"> FAVORITAR</i> 
+  </button>
+
+
+
+     
+       
     </section>
 
     <!-- Chart.js -->

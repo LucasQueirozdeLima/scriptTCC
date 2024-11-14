@@ -28,7 +28,8 @@
     <script src="../config/configFirebase.js"></script>
 
     <link rel="stylesheet" href="../estilizacao/css/styles.css">
-    
+    <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.6-beta.21/dist/inputmask.min.js"></script>
+
 
 </head>
 <body>

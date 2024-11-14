@@ -9,26 +9,26 @@
 
     <h2 style="text-align: center; color:white; margin-bottom : 20px; font-family: Euclid Circular A;">CRIAR CADASTRO</h2>
 
-      <div class="md-textbox">
-        <input oninput="handleChange(event)" id="input" type="text" name="nome" placeholder="Digite seu nome" required>
+    <div class="md-textbox">
+      <input oninput="handleChange(event)" id="input" type="text" name="nome" placeholder="Digite seu nome" required minlength="3" maxlength="15"/>
       <span class="material-symbols-outlined">account_circle</span>
       <label for="input">Nome</label>
     </div>
     
     <div class="md-textbox">
-      <input oninput="handleChange(event)" id="input" type="text" name="nome_usuario" placeholder="Digite seu nome de usuário" required>
+      <input oninput="handleChange(event)" id="input" type="text" name="nome_usuario" placeholder="Digite seu nome de usuário" required minlength="2" maxlength="15"/>
       <span class="material-symbols-outlined">account_circle</span>
       <label for="input">Apelido</label>
     </div>
 
     <div class="md-textbox">
-      <input oninput="handleChange(event)" id="input" type="text" name="email" placeholder="Digite seu e-mail" required>
+      <input oninput="handleChange(event)" id="input" type="email" name="email" placeholder="Digite seu e-mail" required  maxlength="80"/>
       <span class="material-symbols-outlined">account_circle</span>
       <label for="input">E-mail</label>
     </div>
 
     <div class="md-textbox">
-      <input oninput="handleChange(event)" id="input" type="password" name="senha" placeholder="Digite sua senha" required>
+      <input oninput="handleChange(event)" id="input" type="password" name="senha" placeholder="Digite sua senha" required minlength="3" maxlength="20"/>
       <span class="material-symbols-outlined">account_circle</span>
       <label for="input">Senha</label>
     </div>

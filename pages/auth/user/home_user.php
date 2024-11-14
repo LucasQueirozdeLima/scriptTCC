@@ -35,7 +35,7 @@ if (isset($_SESSION["verificador"])) {
                 </form>
 
                 <?php if ($dica && $objetivo): ?>
-                    <h3>Dica de Alimentação para o seu Objetivo: <?php echo $objetivo; ?></h3>
+                    <h3 style="color: black;">Dica de Alimentação para o seu Objetivo: <?php echo $objetivo; ?></h3>
                     <p><?php echo $dica; ?></p>
                 <?php elseif ($objetivo): ?>
                     <p>Desculpe, não temos dicas para o seu objetivo no momento.</p>
