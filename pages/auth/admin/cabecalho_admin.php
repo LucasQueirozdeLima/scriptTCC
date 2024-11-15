@@ -31,8 +31,8 @@
     href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
 
+    <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.6-beta.21/dist/inputmask.min.js"></script>
   <script src="https://unpkg.com/akar-icons-fonts"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/inputmask.min.js"></script>
+  
 </head>
-
 <body>

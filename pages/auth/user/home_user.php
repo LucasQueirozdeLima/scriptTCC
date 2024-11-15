@@ -1,46 +1,43 @@
 <?php
 session_start();
 
-// Verifica se o usuário está autenticado
+
 if (isset($_SESSION["verificador"])) {
     include "cabecalho_user.php";
     include "sidebar.php";
 
-    // Inclui o DAO para manipulação do banco de dados
     require_once "../../../config/Dao.php";
     $dao = new Dao();
-
-    // Verifica se o formulário foi enviado via POST
+   
     $dica = null;
     $objetivo = null;
 
     if (isset($_POST['objetivo'])) {
-        $objetivo = $_POST['objetivo']; // Obtém o objetivo escolhido
-        $dica = $dao->recuperarDicas($objetivo); // Recupera a dica com base no objetivo
+        $objetivo = $_POST['objetivo']; 
+        $dica = $dao->recuperarDicas($objetivo);
     }
 
     ?>
 
     <div class="boxbox">
         <div class="box">
-            <h2 style="color: black;">Seja Bem-vindo, <?php echo $_SESSION['verificador']; ?>!</h2>
+            <h2 class="titulo-bem-vindo">Seja Bem-vindo, <?php echo $_SESSION['verificador']; ?>!</h2>
 
-            <div class="content-home">
-                <p>Escolha o seu objetivo para receber dicas de alimentação:</p>
+            <p class="texto-instrucoes">Escolha o seu objetivo para receber dicas de alimentação:</p>
 
-                <!-- Formulário com os botões de escolha, agora usando POST -->
-                <form method="POST" action="home_user.php">
-                    <button type="submit" name="objetivo" value="Emagrecer" class="btn emagrecer-btn">Emagrecer</button>
-                    <button type="submit" name="objetivo" value="Engordar" class="btn engordar-btn">Engordar</button>
-                </form>
+            <form method="POST" action="home_user.php">
+                <button type="submit" name="objetivo" value="Emagrecer" class="btn objetivo-btn emagrecer-btn">Emagrecer</button>
+                <br><br>
+                <button type="submit" name="objetivo" value="Engordar" class="btn objetivo-btn engordar-btn">Engordar</button>
+            </form>
 
-                <?php if ($dica && $objetivo): ?>
-                    <h3 style="color: black;">Dica de Alimentação para o seu Objetivo: <?php echo $objetivo; ?></h3>
-                    <p><?php echo $dica; ?></p>
-                <?php elseif ($objetivo): ?>
-                    <p>Desculpe, não temos dicas para o seu objetivo no momento.</p>
-                <?php endif; ?>
-            </div>
+            <?php if ($dica && $objetivo): ?>
+                <h3 class="titulo-dica">Dica de Alimentação para o seu Objetivo: <?php echo $objetivo; ?></h3>
+                <p class="dica"><?php echo $dica; ?></p>
+            <?php elseif ($objetivo): ?>
+                <p class="sem-dica">Desculpe, não temos dicas para o seu objetivo no momento.</p>
+            <?php endif; ?>
+        
         </div>
     </div>
 

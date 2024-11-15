@@ -53,13 +53,13 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Máscara de CPF
+       
         Inputmask("999.999.999-99").mask(document.getElementById("documento"));
 
-        // Caso queira adicionar máscara de RG, você pode usar algo assim:
+       
         // Inputmask("99.999.999-9").mask(document.getElementById("documento"));
 
-        // Exemplo de máscara para CEP
+   
         // Inputmask("99999-999").mask(document.querySelector("#cep"));
     });
 </script>

@@ -13,7 +13,7 @@
 
 <aside class="sidebar">
     <a href="../../index.php"><img class="sidebar-avatar" height="100" width="100" src="../../../estilizacao/images/logo_nav.png"/></a>
-    <div class="sidebar-username">FitRealTime</div>
+    <div class="sidebar-username"><?php echo $_SESSION['verificador']; ?></div>
     <div class="sidebar-role">ADMIN</div>
 
     <!-- Menu da Sidebar -->
