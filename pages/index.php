@@ -1,8 +1,7 @@
-<?php 
+<?php
 include "../includes/cabecalho.php";
 include "../includes/navbar.php";
-require_once "../config/Dao.php"
-
+require_once "../config/Dao.php";
 ?>
 
 <main>
@@ -18,11 +17,11 @@ require_once "../config/Dao.php"
                         <input type="text" id="searchInput" class="form-control" placeholder="Ex.:    Academia XYZ " aria-label="Search" aria-describedby="search-icon">
                         <i class="bi bi-search fs-3"></i>
                     </div>
-                    
+
                     <div id="suggestions" class="suggestions-box"></div>
                 </div>
             </div>
-           
+
             <button id="searchButton" class="btn btn-primary">Buscar</button>
         </div>
     </section>
@@ -50,15 +49,14 @@ require_once "../config/Dao.php"
             <canvas id="presencaChart"></canvas>
         </div>
 
-        <button id="favoriteButton" onclick="favoritarAcademia('ID_DA_ACADEMIA')">
+        <!-- Campo oculto para armazenar o UID da academia selecionada -->
+        <form action="./auth/user/favoritar_academia.php" method="POST">
+            <input type="hidden" id="selectedAcademyUid" name="selectedAcademyUid" value="">
 
-  <i class="fas fa-heart"> FAVORITAR</i> 
-  </button>
-
-
-
-     
-       
+            <button id="favoriteButton" type="submit">
+                <i class="fas fa-heart"> FAVORITAR</i>
+            </button>
+        </form>
     </section>
 
     <!-- Chart.js -->
@@ -130,36 +128,38 @@ require_once "../config/Dao.php"
         });
 
         function updateGrafico(academiaId) {
+            academiaSelecionadaId = academiaId;
             db.collection('ACADEMIAS').doc(academiaId)
                 .onSnapshot(doc => {
                     if (doc.exists) {
                         const data = doc.data();
-                        
+
                         const pessoasPresentes = data.pessoaPresente;
                         const maxPessoas = data.maxPessoas;
                         const ocupacaoPercentual = (pessoasPresentes / maxPessoas) * 100;
 
-                      
+
                         let corGrafico;
                         if (ocupacaoPercentual < 50) {
-                            corGrafico = 'rgba(0, 128, 0, 0.8)'; 
+                            corGrafico = 'rgba(0, 128, 0, 0.8)';
                         } else if (ocupacaoPercentual < 80) {
-                            corGrafico = 'rgba(255, 255, 0, 0.8)'; 
+                            corGrafico = 'rgba(255, 255, 0, 0.8)';
                         } else {
                             corGrafico = 'rgba(255, 0, 0, 0.8)';
                         }
 
-                      
+
                         presencaChart.data.labels[0] = data.nome;
                         presencaChart.data.datasets[0].data[0] = pessoasPresentes;
                         presencaChart.data.datasets[1].data[0] = maxPessoas;
                         presencaChart.data.datasets[0].backgroundColor = corGrafico;
                         presencaChart.update();
 
-                      
+
                         document.getElementById('pessoasPresentes').innerText = pessoasPresentes;
                         document.getElementById('maxPessoas').innerText = maxPessoas;
                     }
+
                 });
         }
 
@@ -176,7 +176,7 @@ require_once "../config/Dao.php"
             // Adicionar as opções ao select
             academias.forEach(academia => {
                 const option = document.createElement('option');
-                option.value = academia.id; 
+                option.value = academia.id;
                 option.textContent = academia.nome;
                 selectElement.appendChild(option);
             });
@@ -184,48 +184,45 @@ require_once "../config/Dao.php"
 
         // Função para exibir sugestões enquanto o usuário digita
         function searchAcademy(query) {
-            // Se a pesquisa for vazia, não fazer nada
             if (!query.trim()) {
                 document.getElementById('suggestions').style.display = 'none';
                 return;
             }
 
-            // Filtrar academias no Firestore que contenham o nome correspondente à pesquisa
-            academiasRef.where("nome", ">=", query)
-                .where("nome", "<=", query + '\uf8ff') 
-                .get()
-                .then(snapshot => {
-                    const academias = snapshot.docs.map(doc => ({
-                        id: doc.id,
-                        nome: doc.data().nome,
-                    }));
-                    showSuggestions(academias); 
-                })
-                .catch(error => {
-                    console.error("Erro ao buscar academias: ", error);
+            academiasRef.get().then(snapshot => {
+                snapshot.forEach(doc => {
+                    const nomeLowercase = doc.data().nome.toLowerCase();
+                    doc.ref.update({
+                        nomeLowercase
+                    });
                 });
+            });
+
         }
 
         // Função para exibir sugestões na interface
         function showSuggestions(academias) {
             const suggestionsBox = document.getElementById('suggestions');
-            suggestionsBox.innerHTML = ''; 
+            suggestionsBox.innerHTML = '';
 
-            // Adiciona cada academia como uma opção na lista de sugestões
             academias.forEach(academia => {
                 const suggestionItem = document.createElement('div');
                 suggestionItem.textContent = academia.nome;
-                suggestionItem.dataset.id = academia.id; 
+                suggestionItem.dataset.id = academia.id;
                 suggestionItem.addEventListener('click', () => {
                     document.getElementById('searchInput').value = academia.nome;
                     suggestionsBox.style.display = 'none';
-                    updateGrafico(academia.id); 
+                    updateHiddenInput(academia.id); // Atualiza o input hidden com o UID
+                    updateGrafico(academia.id); // Atualiza o gráfico
                 });
                 suggestionsBox.appendChild(suggestionItem);
             });
 
-            // Exibe o box de sugestões
             suggestionsBox.style.display = academias.length ? 'block' : 'none';
+        }
+
+        function updateHiddenInput(uid) {
+            document.getElementById('selectedAcademyUid').value = uid;
         }
 
         // Evento para capturar a digitação no input de pesquisa
@@ -244,15 +241,15 @@ require_once "../config/Dao.php"
 
         // Evento do botão de busca
         document.getElementById('searchButton').addEventListener('click', () => {
-            const selectedAcademy = document.getElementById('searchInput').value.trim().toLowerCase(); 
+            const selectedAcademy = document.getElementById('searchInput').value.trim().toLowerCase();
 
             if (selectedAcademy) {
                 // Busca a academia no Firestore pelo nome em minúsculas
                 academiasRef.where("nomeLowercase", "==", selectedAcademy).get()
                     .then(snapshot => {
                         if (!snapshot.empty) {
-                            const academia = snapshot.docs[0]; 
-                            updateGrafico(academia.id); 
+                            const academia = snapshot.docs[0];
+                            updateGrafico(academia.id);
                         } else {
                             alert('Academia não encontrada. Verifique o nome e tente novamente.');
                         }
@@ -266,13 +263,6 @@ require_once "../config/Dao.php"
             }
         });
 
-
-        // Exemplo de atualização para cada academia
-        academiasRef.doc(academia).update({
-            nomeLowercase: nome.toLowerCase()
-        });
-
-
         function searchAcademy(query) {
             if (!query.trim()) {
                 document.getElementById('suggestions').style.display = 'none';
@@ -285,7 +275,7 @@ require_once "../config/Dao.php"
                 .then(snapshot => {
                     const academias = snapshot.docs.map(doc => ({
                         id: doc.id,
-                        nome: doc.data().nome, 
+                        nome: doc.data().nome,
                     }));
                     showSuggestions(academias);
                 })
@@ -294,72 +284,17 @@ require_once "../config/Dao.php"
                 });
         }
 
-    // Evento do botão de favoritar
-    // Exemplo de função de favoritar
-function favoritarAcademia(idAcademia) {
-    // Verifica se o usuário está logado
-    if (!usuarioLogado()) {
-        // Redireciona para a página de login caso o usuário não esteja logado
-        window.location.href = "login.php";
-    } else {
-        // Envia o ID da academia para o backend
-        fetch('favoritar_academia.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ idAcademia: idAcademia })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert("Academia favoritada com sucesso!");
-            } else {
-                alert("Erro ao favoritar a academia.");
-            }
-        });
-    }
-}
+        // Exemplo de função para verificar se o usuário está logado
+        function usuarioLogado() {
+            // Aqui você pode adicionar a lógica para verificar a sessão do usuário
+            return <?php echo isset($_SESSION['usuario_id']) ? 'true' : 'false'; ?>;
+        }
 
-// Exemplo de função para verificar se o usuário está logado
-function usuarioLogado() {
-    // Aqui você pode adicionar a lógica para verificar a sessão do usuário
-    return <?php echo isset($_SESSION['usuario_id']) ? 'true' : 'false'; ?>;
-}
-
-document.getElementById("favoriteButton").addEventListener("click", function() {
-    const idAcademia = "ID_DA_ACADEMIA"; // Substitua por como você está identificando a academia no seu código
-
-    // Verifica se o usuário está logado
-    if (!usuarioLogado()) {
-        // Redireciona para a página de login caso o usuário não esteja logado
-        window.location.href = "login.php";
-    } else {
-        // Envia o ID da academia para o backend para salvar nos favoritos
-        fetch('favoritar_academia.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ idAcademia: idAcademia })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert("Academia favoritada com sucesso!");
-            } else {
-                alert("Erro ao favoritar a academia: " + data.message);
-            }
-        });
-    }
-});
-
-// Função para verificar se o usuário está logado
-function usuarioLogado() {
-    // Verifica a sessão do usuário no PHP
-    return <?php echo isset($_SESSION['usuario_id']) ? 'true' : 'false'; ?>;
-}
-
-
-
-
-
+        // Função para verificar se o usuário está logado
+        function usuarioLogado() {
+            // Verifica a sessão do usuário no PHP
+            return <?php echo isset($_SESSION['usuario_id']) ? 'true' : 'false'; ?>;
+        }
     </script>
 
 

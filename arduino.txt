@@ -1,0 +1,111 @@
+// Include required libraries
+#if defined(ESP32)
+#include <WiFi.h>
+#elif defined(ESP8266)
+#include <ESP8266WiFi.h>
+#endif
+#include <Firebase_ESP_Client.h>
+#include <addons/TokenHelper.h>
+#include <time.h>
+
+// Define WiFi credentials
+#define WIFI_SSID "SaiTruta"
+#define WIFI_PASSWORD "40672519"
+
+// Define Firebase API Key, Project ID, and user credentials
+#define API_KEY "AIzaSyDBdSRyaboQFVLZslagd8IeD197Ce05ZoM"
+#define FIREBASE_PROJECT_ID "grafico-93b0a"
+#define USER_EMAIL "vini@etec.com"
+#define USER_PASSWORD "vini123"
+
+// Define Firebase Data object, Firebase authentication, and configuration
+FirebaseData fbdo;
+FirebaseAuth auth;
+FirebaseConfig config;
+
+// Define sensor document ID
+const String documentPath = "/ACADEMIAS/2";  // Path to the document for Academy 2
+
+void setup() {
+  // Initialize serial communication for debugging
+  Serial.begin(115200);
+
+  // Connect to Wi-Fi
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  Serial.print("Connecting to Wi-Fi");
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    delay(300);
+  }
+  Serial.println();
+  Serial.print("Connected with IP: ");
+  Serial.println(WiFi.localIP());
+  Serial.println();
+
+  // Print Firebase client version
+  Serial.printf("Firebase Client v%s\n\n", FIREBASE_CLIENT_VERSION);
+
+  // Assign the API key
+  config.api_key = API_KEY;
+
+  // Assign the user sign-in credentials
+  auth.user.email = USER_EMAIL;
+  auth.user.password = USER_PASSWORD;
+
+  // Assign the callback function for the long-running token generation task
+  config.token_status_callback = tokenStatusCallback;  // see addons/TokenHelper.h
+
+  // Begin Firebase with configuration and authentication
+  Firebase.begin(&config, &auth);
+
+  // Reconnect to Wi-Fi if necessary
+  Firebase.reconnectWiFi(true);
+
+  // Initialize random number generator
+  randomSeed(analogRead(0));
+}
+
+void updatePessoaPresente() {
+  // Get the current value of pessoaPresente
+  if (Firebase.Firestore.getDocument(&fbdo, FIREBASE_PROJECT_ID, "", documentPath.c_str(), "")) {
+    // Parse the current pessoaPresente value from the document
+    String payload = fbdo.payload().c_str();
+    Serial.println("Document data: " + payload);
+
+    // Extract the current pessoaPresente value from the payload (assuming it is an integer)
+    int pessoaPresente = 0;  // Default value
+    FirebaseJson json;
+    json.setJsonData(payload);
+
+    FirebaseJsonData data;
+    if (json.get(data, "fields/pessoaPresente/integerValue")) {
+      pessoaPresente = data.intValue;
+      Serial.print("Current pessoaPresente: ");
+      Serial.println(pessoaPresente);
+      
+      // Increment the pessoaPresente value
+      pessoaPresente++;
+
+      // Create the new update payload with the incremented value
+      FirebaseJson updateJson;
+      updateJson.set("fields/pessoaPresente/integerValue", pessoaPresente);
+
+      // Update the document with the new pessoaPresente value
+      if (Firebase.Firestore.patchDocument(&fbdo, FIREBASE_PROJECT_ID, "", documentPath.c_str(), updateJson.raw(), "", "", "", "")) {
+        Serial.printf("Updated pessoaPresente to %d\n", pessoaPresente);
+      } else {
+        Serial.println("Failed to update pessoaPresente: " + fbdo.errorReason());
+      }
+    } else {
+      Serial.println("Failed to extract pessoaPresente value from the document");
+    }
+  } else {
+    Serial.println("Failed to get document: " + fbdo.errorReason());
+  }
+}
+
+void loop() {
+  // Call the update function every 2 seconds
+  updatePessoaPresente();
+  delay(2000);  // Wait for 2 seconds before updating again
+}

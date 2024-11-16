@@ -2,6 +2,11 @@
 create database fitrealtime;
 use fitrealtime;
 
+select * from usuario;
+select * from favoritos;
+select * from academia;
+
+
 create table endereco (
 
     id_endereco int auto_increment primary key not null,
@@ -13,6 +18,8 @@ create table endereco (
     cep int(9) not null
 
 );
+
+delete from academia where id_academia = 5;
 
 create table usuario(
 
@@ -35,6 +42,8 @@ create table usuario_admin(
     senha varchar(30) not null
 
 );
+
+select * from academia;
  
 create table academia (
 
@@ -48,6 +57,8 @@ create table academia (
     FOREIGN KEY (endereco_id) REFERENCES endereco(id_endereco)
 
 );
+
+insert into academia (razao_social, cnpj, endereco_id, status_academia, descricao, capacidade_max) values ('Academia vinicius', '2139801901283', 1, 'Ativa', 'Academia chave', 500);
  
 create table frequencia (
 
@@ -73,14 +84,37 @@ CREATE TABLE admin_academia (
 
 );
  
-CREATE TABLE favoritos (
-
-    usuario_id INT,
-    academia_id INT,
-    FOREIGN KEY (usuario_id) REFERENCES usuario(id_usuario),
-    FOREIGN KEY (academia_id) REFERENCES academia(id_academia)
-
+ 
+ CREATE TABLE favoritos (
+    id_favorito INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    id_academia INT NOT NULL,
+    data_adicionado TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_usuario_favorito FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE,
+    CONSTRAINT fk_academia_favorito FOREIGN KEY (id_academia) REFERENCES academia(id_academia) ON DELETE CASCADE
 );
+ 
+select * from favoritos;
+
+CREATE TABLE DicasAlimentacao (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    objetivo VARCHAR(50),
+    dica TEXT
+);
+ALTER TABLE usuario ADD objetivo VARCHAR(50);
+
+INSERT INTO DicasAlimentacao (objetivo, dica) VALUES
+('Emagrecer', 'Evite alimentos industrializados'),
+('Emagrecer', 'Corte refrigerantes'),
+('Emagrecer', 'Faça apenas uma ou duas refeições livres'),
+('Emagrecer', 'Alimentos ricos em carboidratos podem ajudar a acumular massa gorda, como Melancia, Banana, Beterraba, etc.'),
+('Engordar', 'A execução correta de exercícios fará você ganhar peso de massa magra, que é mais densa que a gordura.'),
+('Engordar', 'Alimentos ricos em proteína e carboidratos são importantes para engordar de forma saudável.'),
+('Engordar', 'Coma alimentos como: Abacate, Nozes, Peixes, Azeite de oliva, Peito de frango, Queijos.');
+
+
+
+
 
 INSERT INTO endereco (rua, numero, bairro, cidade, complemento, cep)
 VALUES ('Rua Exemplo', 123, 'Centro', 'São Paulo', 'Próximo ao metrô', 12345678);
@@ -108,38 +142,7 @@ ALTER TABLE frequencia MODIFY COLUMN data TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 select *from frequencia;
 select *from academia;
 select *from usuario;
+select *from usuario_admin;
 
 drop database fitrealtime
-
-
-
-CREATE TABLE DicasAlimentacao (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    objetivo VARCHAR(50),
-    dica TEXT
-);
-ALTER TABLE usuario ADD objetivo VARCHAR(50);
-
-INSERT INTO DicasAlimentacao (objetivo, dica) VALUES
-('Emagrecer', 'Evite alimentos industrializados'),
-('Emagrecer', 'Corte refrigerantes'),
-('Emagrecer', 'Faça apenas uma ou duas refeições livres'),
-('Emagrecer', 'Alimentos ricos em carboidratos podem ajudar a acumular massa gorda, como Melancia, Banana, Beterraba, etc.'),
-('Engordar', 'A execução correta de exercícios fará você ganhar peso de massa magra, que é mais densa que a gordura.'),
-('Engordar', 'Alimentos ricos em proteína e carboidratos são importantes para engordar de forma saudável.'),
-('Engordar', 'Coma alimentos como: Abacate, Nozes, Peixes, Azeite de oliva, Peito de frango, Queijos.');CREATE TABLE DicasAlimentacao (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    objetivo VARCHAR(50),
-    dica TEXT
-);
-ALTER TABLE usuario ADD objetivo VARCHAR(50);
-
-INSERT INTO DicasAlimentacao (objetivo, dica) VALUES
-('Emagrecer', 'Evite alimentos industrializados'),
-('Emagrecer', 'Corte refrigerantes'),
-('Emagrecer', 'Faça apenas uma ou duas refeições livres'),
-('Emagrecer', 'Alimentos ricos em carboidratos podem ajudar a acumular massa gorda, como Melancia, Banana, Beterraba, etc.'),
-('Engordar', 'A execução correta de exercícios fará você ganhar peso de massa magra, que é mais densa que a gordura.'),
-('Engordar', 'Alimentos ricos em proteína e carboidratos são importantes para engordar de forma saudável.'),
-('Engordar', 'Coma alimentos como: Abacate, Nozes, Peixes, Azeite de oliva, Peito de frango, Queijos.');
   

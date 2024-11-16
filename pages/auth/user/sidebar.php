@@ -30,6 +30,13 @@
         <span>Configurações</span>
       </button>
     </a>
+
+    <a href="buscar_academias.php">
+      <button type="button">
+        <img src="../../../estilizacao/images/svg/icon-fav.svg" />
+        <span>Buscar Academias</span>
+      </button>
+    </a>
     
     <a href="favoritos.php">
       <button type="button">

@@ -33,6 +33,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.6-beta.21/dist/inputmask.min.js"></script>
   <script src="https://unpkg.com/akar-icons-fonts"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+    <script src="../../../config/configFirebase.js"></script>
   
 </head>
 <body>
