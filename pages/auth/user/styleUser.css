@@ -8,7 +8,7 @@ body {
   font-family: "Poppins";
   color: #f9f9f9;
   display: flex;
-  overflow: hidden;  /* Evita scroll */
+
 }
 
 
@@ -293,16 +293,15 @@ body.open .sidebar {
   margin-left: 250px;
   box-sizing: border-box;
   z-index: 1;
-  overflow-y: auto; 
 }
 
 
 /* Centralização e estilo da box */
 .box {
   background-color: rgba(155, 192, 230, 0.753);
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
-  height: 700px;
+  height: 800px;
   margin-top: 5%;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -312,6 +311,7 @@ body.open .sidebar {
   flex-direction: column;
   align-items: center; /* Centraliza o conteúdo dentro da box */
   justify-content: center;
+  overflow-y: auto; 
 }
 
 /* Responsividade para telas menores */
@@ -340,6 +340,12 @@ body.open .sidebar {
   }
 }
 
+@media (max-width: 1200px) {
+  .boxbox{
+    overflow-y: auto; 
+  }
+}
+
 
 
 
@@ -365,10 +371,6 @@ body.open .sidebar {
     font-size: 22px;
   }
 }
-
-
-
-/* boxboxs */
 
 
 /* Estilo para o container de listagem */
@@ -585,10 +587,6 @@ form {
   color: #ffffff;
 }
 
-.form-group {
-  margin-bottom: 15px;
-  width: 100%;
-}
 
 label {
   display: block;
@@ -619,20 +617,28 @@ button[type="submit"] {
 }
 
 /* Estilo geral para a seção de favoritos */
+
+
+
 .favoritosGeral {
-  flex-grow: 1;
+  flex: 1;
+  padding: 2vw;
   display: flex;
-  flex-direction: column; /* Garantir alinhamento interno */
-  justify-content: flex-start; /* Começar do topo */
+  flex-direction: column;
   align-items: center;
-  padding: 20px;
-  margin-left: 250px;
-  box-sizing: border-box;
-  height: calc(100vh - 20px); /* Limita a altura para caber na tela */
-  overflow-y: auto; /* Habilita o scroll vertical */
-  z-index: 1;
+  justify-content: flex-start;
+  width: 100%;
+  overflow-y: auto;
 }
 
+
+.h2-person {
+  text-align: center; 
+  color: white ;
+  background-color: black;
+  box-shadow: 1px 1px 1px 1px;
+  font-family: "Euclid Circular A";
+}
 
 /* Estilo para informações de presença */
 .info-presenca {
@@ -641,7 +647,6 @@ button[type="submit"] {
   gap: 20px;
   color: white;
   margin-top: 15px;
-  margin-bottom: 20px;
 }
 
 .info-item {
@@ -666,30 +671,50 @@ button[type="submit"] {
 
 /* Estilo para contêiner do gráfico */
 .chart-container {
-  width: 100%;
-  max-width: 1200px;
+  width: 70%;
+  max-width: 700px;
   margin: 2vw auto;
   background-color: rgba(58, 55, 55, 0.61);
+}
+
+/* Para telas grandes */
+@media (min-width: 1200px) {
+  .chart-container {
+      width: 100%;
+      max-width: 700px; /* Tamanho máximo */
+  }
+ 
+}
+@media (max-width: 1200px) {
+  .box {
+    overflow-y: auto; 
+  }
 }
 
 /* Responsividade para o contêiner do gráfico */
 @media (max-width: 992px) {
   .chart-container {
-    width: 90%;
-    padding: 1em;
+      width: 90%; 
   }
+  .form_academias, .chart-container {
+    width: 100%;
+    padding: 1em;
 }
-
+}
 @media (max-width: 768px) {
   .chart-container {
-    max-width: 700px;
+      width: 100%;
+      max-width: 700px; /* Ajusta o tamanho máximo */
+      
   }
 }
 
 @media (max-width: 480px) {
   .chart-container {
-    max-width: 350px;
+      width: 100%; /* O gráfico ocupa 100% da largura da tela */
+      max-width: 350px; /* Ajusta para telas menores */
   }
+  
 }
 
 /* Estilo do botão de favoritar */
@@ -723,10 +748,23 @@ button[type="submit"] {
   padding: 2em;
   border-radius: 10px;
   width: 100%;
-  max-width: 800px;
+  max-width: 500px;
   margin: 0 auto;
   color: #fff;
   text-align: center;
+  height: 200px;
+}
+
+.form_academias h2{
+  font-size: 20px;
+}
+
+@media (max-width: 992px) {
+  /*  tablets */
+  .form_academias, .chart-container {
+      width: 100%;
+      padding: 1em;
+  }
 }
 
 .form_academias h2 {
@@ -738,18 +776,98 @@ button[type="submit"] {
   padding: 10px 12px;
   width: 100%;
   box-sizing: border-box;
+
 }
 
 @media (min-width: 1200px) {
   .form_academias {
-    max-width: 800px;
-    width: 700px;
+    max-width: 500px;
+    width: 500px;
   }
 
   .form_academias .form-control {
     font-size: 1.1rem;
     padding: 12px 15px;
     width: 600px;
+  }
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+
+
+@media (max-width: 600px) {
+  .input-wrapper {
+      width: 100%;
+  }
+  
+  .form-control {
+      font-size: 0.9rem;
+      padding-left: 30px;
+  }
+
+  #searchButton {
+      width: 100%; 
+  }
+
+  .form_academias {
+      max-width: 90%;
+      padding: 15px;
+  }
+  .form_academias .form-control {
+      font-size: 1rem;
+      padding: 10px 12px;
+  }
+  .form_academias label {
+      font-size: 1rem;
+  }
+}
+
+
+
+@media (max-width: 480px) {
+  .form_academias h2 {
+      font-size: 1.2em;
+  }
+
+  .input-group .form-control {
+      padding: 8px;
+      font-size: 0.9em;
+  }
+
+  .btn-primary {
+      font-size: 0.9em;
+      padding: 10px;
+  }
+}
+
+
+
+@media (max-width: 768px) {
+   
+  .input-group .form-control {
+      font-size: 0.9em;
+  }
+
+  .btn-primary {
+      width: 100%;
+  }
+  .form-group {
+      display: flex;
+      flex-direction: column; 
+      align-items: flex-start; 
+  }
+
+  .form-group label {
+      margin-bottom: 8px; 
+  }
+
+  .input-wrapper {
+      width: 100%; 
   }
 }
 
@@ -808,3 +926,24 @@ button[type="submit"] {
   background-color: #063aa7;
   border-color: #063aa7;
 }
+
+.suggestions-box {
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  max-height: 150px;
+  overflow-y: auto;
+  display: none;
+}
+
+.suggestions-box div {
+  padding: 10px;
+  cursor: pointer;
+  color: #333;
+  background-color: rgb(161, 178, 216);
+}
+
+.suggestions-box div:hover {
+  background-color: #f0f0f0;
+}
+
+

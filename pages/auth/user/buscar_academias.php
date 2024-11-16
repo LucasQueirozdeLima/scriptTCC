@@ -5,23 +5,27 @@ if (isset($_SESSION["verificador"])) {
   include "cabecalho_user.php";
   include "sidebar.php";
 ?>
-  <div class="favoritosGeral">
-    <!-- Localizar Academias -->
-    <section class="busca-academias">
-      <div class="form_academias">
-        <h2>Localizar Academias</h2>
-        <div class="input-group">
-          <div class="form-group">
-            <label for="searchInput">Digite ou selecione a Academia:</label>
-            <div class="input-wrapper">
-              <input type="text" id="searchInput" class="form-control" placeholder="Ex.: Academia XYZ" aria-label="Search" aria-describedby="search-icon">
-              <i class="bi bi-search fs-3"></i>
+  <div class="boxbox">
+    <div class="box">
+ <!-- Localizar Academias -->
+ <section class="busca-academias">
+        <div class="form_academias">
+            <h2>Localizar Academias</h2>
+            <div class="input-group w-90">
+                <div class="form-group">
+                    <label for="searchInput" style="color: white;">Digite ou selecione a Academia:</label>
+
+                    <div class="input-wrapper">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Ex.:    Academia XYZ " aria-label="Search" aria-describedby="search-icon">
+                        <i class="bi bi-search fs-3"></i>
+                    </div>
+
+                    <div id="suggestions" class="suggestions-box"></div>
+                </div>
             </div>
-          </div>
-          <button id="searchButton" class="btn btn-primary">Buscar</button>
+
+            <button id="searchButton" class="btn btn-primary">Buscar</button>
         </div>
-        <div id="suggestions" class="suggestions-box"></div>
-      </div>
     </section>
 
     <!-- Gráfico e Favoritar -->
@@ -53,7 +57,7 @@ if (isset($_SESSION["verificador"])) {
       </div>
 
     </section>
-  </div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
@@ -278,8 +282,14 @@ if (isset($_SESSION["verificador"])) {
           console.error("Erro ao buscar academias: ", error);
         });
     }
+
+    
   </script>
-  </script>
+    </div>
+  </div>
+   
+
+
 
 <?php
   include "rodapeUser.php";
