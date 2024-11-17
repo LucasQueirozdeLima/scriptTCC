@@ -18,39 +18,46 @@ class Dao
     public function verificarLogin($verificador, $senha)
     {
         session_start();
-        // Consulta para o usuário normal
-        $usuario = $this->pdo->query("SELECT * FROM usuario WHERE (nome_usuario='$verificador' OR email='$verificador') AND senha='$senha'");
-    
-        if ($usuario->fetch()) {
-            $dadosUsuario = $usuario->fetch(PDO::FETCH_ASSOC);
-            // Salvar dados na sessão
+
+        // Consulta para usuários comuns
+        $usuario = $this->pdo->prepare("SELECT * FROM usuario WHERE (nome_usuario=:verificador OR email=:verificador) AND senha=:senha");
+        $usuario->execute([
+            ':verificador' => $verificador,
+            ':senha' => $senha
+        ]);
+
+        if ($dadosUsuario = $usuario->fetch(PDO::FETCH_ASSOC)) {
+            // Salva os dados corretos na sessão
             $_SESSION['verificador'] = $verificador;
-            $_SESSION['id_usuario'] = $dadosUsuario['id_usuario'];
+            $_SESSION['id_usuario'] = $dadosUsuario['id_usuario']; // Certifique-se de que o campo 'id_usuario' existe no banco
             $_SESSION['nome_usuario'] = $dadosUsuario['nome_usuario'];
-    
-            // Redirecionar para a página do usuário
+
             header("Location: ../pages/auth/user/home_user.php");
-        } else {
-            // Consulta para administrador
-            $admin = $this->pdo->query("SELECT * FROM usuario_admin WHERE (nome_usuario='$verificador' OR email='$verificador') AND senha='$senha'");
-    
-            if ($dadosAdmin = $admin->fetch(PDO::FETCH_ASSOC)) {
-                // Salvar dados na sessão
-                $_SESSION['verificador'] = $verificador;
-                $_SESSION['id_admin'] = $dadosAdmin['id_admin'];
-                $_SESSION['nome_usuario'] = $dadosAdmin['nome'];
-    
-                // Redirecionar para a página do administrador
-                header("Location: ../pages/auth/admin/home_admin.php");
-                exit;
-            } else {
-                // Redirecionar para a página de login com erro
-                header("Location: ../pages/login.php?erro=1");
-                exit;
-            }
+            exit;
         }
+
+        // Consulta para administradores
+        $admin = $this->pdo->prepare("SELECT * FROM usuario_admin WHERE (nome_usuario=:verificador OR email=:verificador) AND senha=:senha");
+        $admin->execute([
+            ':verificador' => $verificador,
+            ':senha' => $senha
+        ]);
+
+        if ($dadosAdmin = $admin->fetch(PDO::FETCH_ASSOC)) {
+            $_SESSION['verificador'] = $verificador;
+            $_SESSION['id_admin'] = $dadosAdmin['id_admin'];
+            $_SESSION['nome_usuario'] = $dadosAdmin['nome'];
+
+            header("Location: ../pages/auth/admin/home_admin.php");
+            exit;
+        }
+
+        // Se nenhum usuário foi encontrado
+        header("Location: ../pages/login.php?erro=1");
+        exit;
     }
-    
+
+
 
 
     //inserção de dados
@@ -115,21 +122,21 @@ class Dao
     }
 
 
-    
-    // Inserir favorito academia
+
+
     public function favoritarAcademia($idAcademia)
     {
-        session_start(); // Inicia a sessão ou retoma uma existente
+        session_start();
 
-        // Verifica se o usuário está logado
         if (!isset($_SESSION['id_usuario'])) {
-            // Redireciona para a página de login se não estiver logado
-            header("Location: ../../login.php?erro=login_required");
+            echo "Erro: ID do usuário não está definido na sessão.";
+            print_r($_SESSION); // Debug para verificar o conteúdo da sessão.
             exit;
         }
 
+
         try {
-            // Prepara e executa o comando para inserir nos favoritos
+
             $favoritar = $this->pdo->prepare("INSERT INTO favoritos (id_usuario, id_academia) VALUES (:idUsuario, :idAcademia)");
             $favoritar->execute([
                 ':idUsuario' => $_SESSION['id_usuario'],
@@ -137,90 +144,92 @@ class Dao
             ]);
             echo "<script>console.log('Academia favoritada com sucesso!');</script>";
         } catch (PDOException $erroFavoritos) {
-            // Log do erro no console
+
             echo "<script>console.log('" . $erroFavoritos->getMessage() . "');</script>";
         }
     }
-    
-    public function desfavoritarAcademia($idUsuario, $idAcademia) {
+
+    public function desfavoritarAcademia($idUsuario, $idAcademia)
+    {
         try {
-            // Prepara a consulta para remover a academia dos favoritos
+
             $sql = "DELETE FROM favoritos WHERE id_usuario = :id_usuario AND id_academia = :id_academia";
             $stmt = $this->pdo->prepare($sql);
-    
-            // Vincula os parâmetros
+
+
             $stmt->bindParam(':id_usuario', $idUsuario, PDO::PARAM_INT);
             $stmt->bindParam(':id_academia', $idAcademia, PDO::PARAM_INT);
-    
-            // Executa a consulta
+
+
             $stmt->execute();
-    
+
             echo "<script>console.log('Academia removida dos favoritos com sucesso.');</script>";
-    
         } catch (PDOException $e) {
             echo "<script>console.log('Erro: " . $e->getMessage() . "');</script>";
         }
     }
-    
-    public function inserirAcademia($razao_social, $cnpj, $status_academia, $descricao, $capacidade) {
+
+    public function inserirAcademia($razao_social, $cnpj, $status_academia, $descricao, $capacidade)
+    {
         try {
-            // Preparando a consulta SQL de inserção
+
             $sql = "INSERT INTO academia (razao_social, cnpj, status_academia, descricao,endereco_id, capacidade_max)
                     VALUES (:razao_social, :cnpj, :status_academia, :descricao, 1, :capacidade)";
             $stmt = $this->pdo->prepare($sql);
 
-            // Bind dos parâmetros para evitar SQL Injection
+
             $stmt->bindParam(':razao_social', $razao_social);
             $stmt->bindParam(':cnpj', $cnpj);
             $stmt->bindParam(':status_academia', $status_academia);
             $stmt->bindParam(':descricao', $descricao);
             $stmt->bindParam(':capacidade', $capacidade, PDO::PARAM_INT);
 
-            // Executando a consulta
+
             $stmt->execute();
 
-            // Retorna o ID da academia inserida
+
             return $this->pdo->lastInsertId();
         } catch (PDOException $e) {
-            // Em caso de erro, lança uma exceção
+
             throw new Exception("Erro ao inserir academia: " . $e->getMessage());
         }
     }
 
-public function getFavoritos($idUsuario) {
-    try {
-        // Preparar a consulta SQL com parâmetro
-        $sql = "SELECT f.id_academia, a.razao_social, a.capacidade_max, a.endereco_id 
+    public function getFavoritos($idUsuario)
+    {
+        try {
+
+            $sql = "SELECT f.id_academia, a.razao_social, a.capacidade_max, a.endereco_id 
                 FROM favoritos f
                 INNER JOIN academia a ON f.id_academia = a.id_academia
-                WHERE f.id_usuario = :id_usuario"; // Usando parâmetro para evitar SQL Injection
+                WHERE f.id_usuario = :id_usuario";
 
-        // Preparar a consulta
-        $favoritos = $this->pdo->prepare($sql);
 
-        // Bind de parâmetro para o ID do usuário
-        $favoritos->bindParam(':id_usuario', $idUsuario, PDO::PARAM_INT);
+            $favoritos = $this->pdo->prepare($sql);
 
-        // Executar a consulta
-        $favoritos->execute();
 
-        // Verificar se a consulta retornou algum resultado
-        $resultados = $favoritos->fetchAll(PDO::FETCH_ASSOC);
+            $favoritos->bindParam(':id_usuario', $idUsuario, PDO::PARAM_INT);
 
-        // Log da consulta SQL (para verificar a consulta executada)
-        echo "<script>console.log('Consulta SQL executada: " . addslashes($sql) . "');</script>";
 
-        // Log dos resultados obtidos
-        echo "<script>console.log('Favoritos encontrados: " . addslashes(json_encode($resultados)) . "');</script>";
+            $favoritos->execute();
 
-        // Retornar os resultados ou um array vazio se nenhum favorito foi encontrado
-        return $resultados ?: [];
-    } catch (PDOException $error) {
-        // Registra o erro
-        echo "<script>console.log('Erro na consulta: " . addslashes($error->getMessage()) . "');</script>";
-        return []; // Retorna um array vazio em caso de erro
+
+            $resultados = $favoritos->fetchAll(PDO::FETCH_ASSOC);
+
+
+            echo "<script>console.log('Consulta SQL executada: " . addslashes($sql) . "');</script>";
+
+
+            echo "<script>console.log('Favoritos encontrados: " . addslashes(json_encode($resultados)) . "');</script>";
+
+
+            return $resultados ?: [];
+        } catch (PDOException $error) {
+
+            echo "<script>console.log('Erro na consulta: " . addslashes($error->getMessage()) . "');</script>";
+            return [];
+        }
     }
-}
 
 
     public function recuperarDicas($objetivo)

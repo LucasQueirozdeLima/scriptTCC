@@ -68,6 +68,8 @@ if (isset($_SESSION["verificador"])) {
 
 
     <script>
+
+
         document.addEventListener("DOMContentLoaded", function() {
             if (typeof Inputmask !== "undefined") {
 
@@ -82,52 +84,76 @@ if (isset($_SESSION["verificador"])) {
         document.getElementById('formCadastroAcademia').addEventListener('submit', function(event) {
     event.preventDefault(); // Evita o envio normal do formulário
 
-    var formData = new FormData(this); // Pega todos os dados do formulário
+    var formData = new FormData(this); 
+    var btnCadastrar = document.getElementById('btnCadastrar'); 
 
     // Fazendo a requisição AJAX
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "processar_cadastro.php", true); // O arquivo PHP que processa o cadastro no MySQL
+    xhr.open("POST", "processar_cadastro.php", true); 
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            var response = JSON.parse(xhr.responseText); // Supondo que o PHP retorne um JSON
+            var response = JSON.parse(xhr.responseText); 
             if (response.success) {
-                var idAcademia = response.id; // Pega o ID gerado no MySQL
+                var idAcademia = response.id; 
 
                 // Envia para o Firebase
-                cadastrarNoFirebase(idAcademia);
+                cadastrarNoFirebase(idAcademia).then(() => {
+                    alterarTextoBotao(btnCadastrar, 'Academia cadastrada com sucesso!', true);
+                }).catch((error) => {
+                    alterarTextoBotao(btnCadastrar, 'Erro ao cadastrar no Firebase', false);
+                });
             } else {
-                alert("Erro ao cadastrar a academia: " + response.message);
+                alterarTextoBotao(btnCadastrar, 'Erro ao cadastrar academia', false);
             }
         }
     };
-    xhr.send(formData); // Envia os dados do formulário
+    xhr.send(formData); 
 });
 
 // Função para cadastrar no Firebase
 async function cadastrarNoFirebase(idAcademia) {
+    const razao_social = document.getElementById('razao_social').value;
+    const razao_socialLower = razao_social.toLowerCase();
+    const capacidade = document.getElementById('capacidade').value;
 
-// Coleta os dados do formulário
-const razao_social = document.getElementById('razao_social').value;
-const razao_socialLower = razao_social.toLowerCase();
-const capacidade = document.getElementById('capacidade').value;
+    // Obtenha o adminId da sessão PHP
+    const id_admin = "<?php echo $_SESSION['id_admin']; ?>";
 
-// Dados a serem enviados para o Firebase
-const academiaData = {
-    nome: razao_social,             // Nome da academia
-    nomeLowercase: razao_socialLower, // Nome em minúsculas
-    maxPessoas: capacidade,         // Definido como a capacidade máxima
-    pessoaPresente: 0               // Inicializa com 0
-};
+    const academiaData = {
+        nome: razao_social,
+        nomeLowercase: razao_socialLower,
+        maxPessoas: capacidade,
+        pessoaPresente: 0,
+        id_admin: id_admin, 
+        rua: document.getElementById('rua').value,
+        numero: document.getElementById('numero').value,
+        bairro: document.getElementById('bairro').value,
+        cidade: document.getElementById('cidade').value,
+        status: document.getElementById('status_academia').value,
+        descricao: document.getElementById('descricao').value
+    };
 
-// Referência ao local do Firebase onde você deseja armazenar os dados
-await db.collection('ACADEMIAS').doc(idAcademia).set(academiaData)
-    .then(() => {
-        console.log("Academia cadastrada com sucesso no Firebase!");
-    })
-    .catch((error) => {
-        console.error("Erro ao cadastrar academia no Firebase: ", error);
-    });
+    // Salvar no Firebase
+    await db.collection('ACADEMIAS').doc(idAcademia).set(academiaData);
 }
+
+// Função para alterar o texto do botão
+function alterarTextoBotao(botao, mensagem, sucesso) {
+    const textoOriginal = botao.textContent; 
+    botao.textContent = mensagem; 
+
+    // Altera a cor do botão (opcional)
+    botao.style.backgroundColor = sucesso ? '#28a745' : '#dc3545'; 
+    botao.style.color = '#fff';
+
+
+    setTimeout(() => {
+        botao.textContent = textoOriginal;
+        botao.style.backgroundColor = ''; 
+        botao.style.color = '';
+    }, 2000);
+}
+
     </script>
 
 <?php

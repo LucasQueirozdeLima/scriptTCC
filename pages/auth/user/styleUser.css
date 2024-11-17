@@ -8,7 +8,8 @@ body {
   font-family: "Poppins";
   color: #f9f9f9;
   display: flex;
-
+  height: 100vh;
+  overflow: hidden;
 }
 
 
@@ -109,7 +110,23 @@ a {
   height: 80px;
 }
 
+@media (max-width: 768px) {
+  .user-logo {
+    width: 60px; /* Reduz o tamanho em telas menores */
+    height: 60px;
+    top: 10px; /* Ajusta o posicionamento */
+    right: 10px;
+  }
+}
 
+@media (max-width: 480px) {
+  .user-logo {
+    width: 40px; /* Reduz ainda mais para telas muito pequenas */
+    height: 40px;
+    top: 5px; /* Ajusta ainda mais o posicionamento */
+    right: 5px;
+  }
+}
 
 .overlay {
   position: fixed;
@@ -295,13 +312,11 @@ body.open .sidebar {
   z-index: 1;
 }
 
-
-/* Centralização e estilo da box */
-.box {
-  background-color: rgba(155, 192, 230, 0.753);
-  width: 100%;
+.box_academias {
+  background-color: rgba(177, 240, 231, 0.753);
+  width: 90%; /* Reduz a largura para caber melhor */
   max-width: 1200px;
-  height: 800px;
+  height: 90%; /* Deixe a altura adaptar-se ao conteúdo */
   margin-top: 5%;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -309,9 +324,27 @@ body.open .sidebar {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centraliza o conteúdo dentro da box */
-  justify-content: center;
-  overflow-y: auto; 
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: auto;
+}
+
+/* Centralização e estilo da box */
+.box {
+  background-color: rgba(155, 192, 230, 0.753);
+  width: 90%;
+  max-width: 1200px;
+  height: 90%;
+  margin-top: 5%;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Garantir que o conteúdo da .box seja centralizado */
+  overflow-y: auto;
 }
 
 /* Responsividade para telas menores */
@@ -327,6 +360,8 @@ body.open .sidebar {
     padding: 15px;
     max-width: 700px;
   }
+
+  
 }
 
 @media (max-width: 480px) {
@@ -619,47 +654,94 @@ button[type="submit"] {
 /* Estilo geral para a seção de favoritos */
 
 
-
-.favoritosGeral {
-  flex: 1;
-  padding: 2vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  overflow-y: auto;
+.h2-person {
+  text-align: center;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.85);
+  width: 65%;
+  padding: 5px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  font-size: 1.5em;
+  font-family: "Euclid Circular A", sans-serif;
 }
 
+@media (min-width: 1024px) {
+  .h2-person {
+    margin-left: 110px; /* Margem aplicada apenas em telas grandes */
+  }
+}
 
-.h2-person {
-  text-align: center; 
-  color: white ;
-  background-color: black;
-  box-shadow: 1px 1px 1px 1px;
-  font-family: "Euclid Circular A";
+.title_fav{
+  color: black;
+  text-align: center;
+}
+.favoritos-lista h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #FFF; /* Cor do título para garantir visibilidade */
+}
+
+.favoritos-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.favorito-item {
+  background-color: #f4f4f4; /* Cor de fundo suave */
+  padding: 15px;
+  border: 1px solid #ddd; /* Cor de borda mais suave */
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adicionando sombra para destacar o card */
+}
+
+.favorito-item h3 {
+  margin-bottom: 10px;
+  color: #333; /* Cor do título para garantir boa visibilidade */
+}
+
+.favorito-item p {
+  color: #555; /* Cor do texto para melhor legibilidade */
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-danger:hover {
+  background-color: #c9302c;
 }
 
 /* Estilo para informações de presença */
 .info-presenca {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  color: white;
-  margin-top: 15px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 15px;
+  color: #fff;
+  margin-top: 1.5rem;
 }
 
 .info-item {
-  font-size: 1.2em;
-  background-color: black;
-  padding: 10px;
-  box-shadow: 1px 1px 1px 1px;
+  flex: 1;
   text-align: center;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.85);
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 @media (min-width: 1200px) {
   .info-item {
-    width: 500px;
+    width: 300px;
   }
 }
 
@@ -671,11 +753,22 @@ button[type="submit"] {
 
 /* Estilo para contêiner do gráfico */
 .chart-container {
-  width: 70%;
+  width: 80%;
   max-width: 700px;
-  margin: 2vw auto;
-  background-color: rgba(58, 55, 55, 0.61);
+  margin: 2rem auto;
+  background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro para destacar */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+.chart-container canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
 
 /* Para telas grandes */
 @media (min-width: 1200px) {
@@ -717,16 +810,69 @@ button[type="submit"] {
   
 }
 
+@media (max-width: 768px) {
+  .chart-container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .info-item {
+    font-size: 1rem;
+  }
+
+  .h2-person {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-container {
+    padding: 10px;
+  }
+
+  .info-item {
+    font-size: 0.9rem;
+  }
+
+  .h2-person {
+    font-size: 1em;
+  }
+}
+
+#favoriteButton {
+  margin-top: 20px;
+  background-color: transparent;
+  border: 2px solid red;
+  color: red;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
 /* Estilo do botão de favoritar */
 #favoriteButton i {
   color: red; 
 }
 
 #favoriteButton:hover {
-  border-color: rgb(255, 255, 255); 
-  color: darkred; 
-  background-color: white;
+  background-color: red;
+  color: white;
 }
+
+.favorite_form {
+  background-color: transparent;
+  box-shadow: none;
+}
+@media (min-width: 1024px) {
+  .favorite_form {
+    margin-left: 160px; /* Margem aplicada apenas em telas grandes */
+    width: 300px;
+  }
+}
+
+
 
 /* Ajustes para o gráfico em telas maiores */
 @media (min-width: 1024px) {
@@ -745,18 +891,31 @@ button[type="submit"] {
 
 .form_academias {
   background-color: rgba(0, 0, 0, 0.75);
-  padding: 2em;
+  padding: 1.5em; /* Reduz o padding */
   border-radius: 10px;
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
+  width: 90%; /* Ajuste da largura relativa */
+  max-width: 400px; /* Dimensão máxima */
+  margin: 10px auto; /* Reduz a margem */
   color: #fff;
   text-align: center;
-  height: 200px;
+  height: auto; /* Ajuste automático da altura */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .form_academias h2{
   font-size: 20px;
+}
+
+@media (max-width: 768px) {
+  .form_academias {
+    width: 100%; /* Preencher a largura disponível */
+    max-width: 90%; /* Ajustar melhor em dispositivos pequenos */
+    padding: 1em; /* Reduzir o padding */
+  }
 }
 
 @media (max-width: 992px) {
@@ -776,7 +935,6 @@ button[type="submit"] {
   padding: 10px 12px;
   width: 100%;
   box-sizing: border-box;
-
 }
 
 @media (min-width: 1200px) {
@@ -793,10 +951,17 @@ button[type="submit"] {
 }
 
 .input-wrapper {
-  position: relative;
   display: flex;
   align-items: center;
-  width: 50%;
+  justify-content: center;
+  width: 55%; /* Pode ajustar para 50%, se necessário */
+  margin-top: 1em; /* Espaçamento opcional */
+}
+
+@media (min-width: 1024px) {
+  .input-wrapper {
+    margin-left: 185px; /* Margem aplicada apenas em telas grandes */
+  }
 }
 
 
@@ -830,8 +995,9 @@ button[type="submit"] {
 
 
 @media (max-width: 480px) {
-  .form_academias h2 {
-      font-size: 1.2em;
+  .form_academias {
+    width: 100%; /* O formulário ocupa toda a largura da box */
+    padding: 0.8em; /* Menor espaço interno */
   }
 
   .input-group .form-control {
@@ -846,11 +1012,20 @@ button[type="submit"] {
 }
 
 
-
 @media (max-width: 768px) {
    
   .input-group .form-control {
       font-size: 0.9em;
+  }
+
+  .input-group {
+    flex-direction: column; /* Empilha input e botão em telas menores */
+  }
+  .input-group .form-control,
+  #searchButton {
+    border-radius: 5px; /* Remove as bordas arredondadas laterais */
+    width: 100%; /* Ocupa toda a largura */
+    margin: 5px 0; /* Espaço entre input e botão */
   }
 
   .btn-primary {
@@ -880,24 +1055,37 @@ button[type="submit"] {
 /* Estilo do input de busca */
 .input-group {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 100%;
-  max-width: 600px;
-  margin: auto;
+  max-width: 400px; /* Ajusta a largura máxima */
+  margin: 20px auto; /* Centraliza na página */
+  position: relative; /* Para ícones ou elementos relativos */
 }
 
 .input-group .form-control {
-  flex: 1;
+  flex: 1; /* Ocupa o espaço restante */
   padding: 10px;
-  font-size: 1em;
+  font-size: 1rem;
+  border-radius: 5px 0 0 5px; /* Bordas arredondadas no lado esquerdo */
+  border: 1px solid #ddd;
+  box-sizing: border-box;
 }
 
 /* Estilo do botão de busca */
 #searchButton {
-  margin-top: 15px;
   padding: 10px 20px;
   font-size: 1rem;
+  border-radius: 0 5px 5px 0; /* Bordas arredondadas no lado direito */
+  border: none;
+  background-color: #0855E4;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#searchButton:hover {
+  background-color: #063aa7;
 }
 
 /* Ícone de busca */
@@ -907,12 +1095,11 @@ button[type="submit"] {
 
 .search-icon {
   position: absolute;
-  right: 10px; 
-  font-size: 1.2rem; 
-  color: #333; 
-  cursor: pointer; 
+  right: 10px;
+  font-size: 1.2rem;
+  color: #333;
+  cursor: pointer;
 }
-
 /* Estilo do botão primário */
 .btn-primary {
   background-color: #0855E4;
@@ -925,6 +1112,15 @@ button[type="submit"] {
 .btn-primary:hover {
   background-color: #063aa7;
   border-color: #063aa7;
+}
+
+
+
+@media (min-width: 1024px) {
+  .form-group .suggestions-box{
+    width: 60%;
+    margin-left: 160px;
+  }
 }
 
 .suggestions-box {

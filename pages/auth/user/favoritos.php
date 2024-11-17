@@ -12,9 +12,10 @@ if (isset($_SESSION["verificador"])) {
   $usuarioId = $_SESSION['id_usuario']; // Ajuste de acordo com a sua sessão
   $favoritos = $dao->getFavoritos($usuarioId); // Chama o método do DAO para buscar os favoritos
 ?>
-  <div class="favoritosGeral">
-    <section class="favoritos-lista">
-      <h2 class="h2-person">Academias Favoritadas</h2>
+  <div class="boxbox">
+    <div class="box">
+    <section >
+      <h2 class="title_fav">Academias Favoritadas</h2>
       <?php if (count($favoritos) > 0): ?>
         <div class="favoritos-container">
           <?php foreach ($favoritos as $row): ?>
@@ -30,67 +31,12 @@ if (isset($_SESSION["verificador"])) {
           <?php endforeach; ?>
         </div>
       <?php else: ?>
-        <p>Você ainda não favoritou nenhuma academia.</p>
+        <p style="color: black;">Você ainda não favoritou nenhuma academia.</p>
       <?php endif; ?>
     </section>
+    </div>
   </div>
 
-  <style>
-  .favoritosGeral {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    margin-left: 250px;
-    box-sizing: border-box;
-    overflow-y: auto;
-  }
-
-  .favoritos-lista h2 {
-    margin-bottom: 20px;
-    text-align: center;
-    color: #FFF; /* Cor do título para garantir visibilidade */
-  }
-
-  .favoritos-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    width: 100%;
-  }
-
-  .favorito-item {
-    background-color: #f4f4f4; /* Cor de fundo suave */
-    padding: 15px;
-    border: 1px solid #ddd; /* Cor de borda mais suave */
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adicionando sombra para destacar o card */
-  }
-
-  .favorito-item h3 {
-    margin-bottom: 10px;
-    color: #333; /* Cor do título para garantir boa visibilidade */
-  }
-
-  .favorito-item p {
-    color: #555; /* Cor do texto para melhor legibilidade */
-  }
-
-  .btn-danger {
-    background-color: #d9534f;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .btn-danger:hover {
-    background-color: #c9302c;
-  }
-</style>
 
 
 <?php

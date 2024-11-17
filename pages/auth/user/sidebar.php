@@ -19,28 +19,28 @@
   <nav class="sidebar-menu">
     <a href="home_user.php">
       <button type="button">
-        <img src="../../../estilizacao/images/svg/icon-home.svg" />
+        <img src="../../../estilizacao/images/svg/home.svg" />
         <span>Home</span>
       </button>
     </a>
     
     <a href="config_user.php">
       <button type="button">
-        <img src="../../../estilizacao/images/svg/icon-settings.svg" />
+        <img src="../../../estilizacao/images/svg/engrenagem.svg" />
         <span>Configurações</span>
       </button>
     </a>
 
     <a href="buscar_academias.php">
       <button type="button">
-        <img src="../../../estilizacao/images/svg/icon-fav.svg" />
-        <span>Buscar Academias</span>
+        <img src="../../../estilizacao/images/svg/lupa.svg" />
+        <span>Academias</span>
       </button>
     </a>
     
     <a href="favoritos.php">
       <button type="button">
-        <img src="../../../estilizacao/images/svg/icon-fav.svg" />
+        <img src="../../../estilizacao/images/svg/favoritos.svg" />
         <span>Favoritos</span>
       </button>
     </a>
@@ -50,7 +50,7 @@
   <nav class="sidebar-menu bottom">
     <a href="logout.php">
       <button type="button">
-        <img src="../../../estilizacao/images/svg/icon-lock.svg" />
+        <img src="../../../estilizacao/images/svg/icon-sair.svg" />
         <span>Sair</span>
       </button>
     </a>

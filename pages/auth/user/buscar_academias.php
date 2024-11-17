@@ -6,7 +6,7 @@ if (isset($_SESSION["verificador"])) {
   include "sidebar.php";
 ?>
   <div class="boxbox">
-    <div class="box">
+    <div class="box_academias">
  <!-- Localizar Academias -->
  <section class="busca-academias">
         <div class="form_academias">
@@ -19,8 +19,8 @@ if (isset($_SESSION["verificador"])) {
                         <input type="text" id="searchInput" class="form-control" placeholder="Ex.:    Academia XYZ " aria-label="Search" aria-describedby="search-icon">
                         <i class="bi bi-search fs-3"></i>
                     </div>
-
                     <div id="suggestions" class="suggestions-box"></div>
+                    
                 </div>
             </div>
 
@@ -30,14 +30,7 @@ if (isset($_SESSION["verificador"])) {
 
     <!-- Gráfico e Favoritar -->
     <section class="presenca-academia">
-      <h2 class="h2-person">Pessoas Presentes na Unidade em Tempo Real</h2>
-
-      <div class="grafico-favoritar-container">
-        <!-- Gráfico -->
-        <div class="chart-container">
-          <canvas id="presencaChart"></canvas>
-        </div>
-
+      <h2 class="h2-person">Pessoas Presentes na Unidade</h2>
       <div class="info-presenca">
         <div class="info-item">
           <p><strong>Pessoas Presentes:</strong> <span id="pessoasPresentes">0</span></p>
@@ -47,8 +40,15 @@ if (isset($_SESSION["verificador"])) {
         </div>
       </div>
 
+      <div class="grafico-favoritar-container">
+        <!-- Gráfico -->
+        <div class="chart-container">
+          <canvas id="presencaChart"></canvas>
+        </div>
+
+     
         <!-- Botão Favoritar -->
-        <form action="./favoritar_academia.php" method="POST">
+        <form action="./favoritar_academia.php" method="POST" class="favorite_form">
           <input type="hidden" id="selectedAcademyUid" name="selectedAcademyUid" value="">
           <button id="favoriteButton" type="submit">
             <i class="fas fa-heart"></i> FAVORITAR

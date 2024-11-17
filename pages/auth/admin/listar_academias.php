@@ -2,71 +2,122 @@
 session_start();
 
 if (isset($_SESSION["verificador"])) {
-  include "cabecalho_admin.php";
-  include "sidebar_admin.php";
+    include "cabecalho_admin.php";
+    include "sidebar_admin.php";
 ?>
+<style>
+    .academias-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
 
+.academia-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-  <div class="main-content-lista">
-    <div class="list-container">
-      <h2>Lista de Academias Cadastradas</h2>
-      <table class="academia-table">
-        <thead>
-          <tr>
-            <th>Nome da Academia</th>
-            <th>Endereço</th>
-            <th>Capacidade Máxima</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td data-label="Nome da Academia">Academia X</td>
-            <td data-label="Endereço">Rua A, 123</td>
-            <td data-label="Capacidade Máxima">50</td>
-            <td data-label="Status">Ativa</td>
-          </tr>
-          <tr>
-            <td data-label="Nome da Academia">Academia Y</td>
-            <td data-label="Endereço">Rua B, 456</td>
-            <td data-label="Capacidade Máxima">100</td>
-            <td data-label="Status">Inativa</td>
-          </tr>
+.academia-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
 
+.academia-card h3 {
+  font-size: 20px;
+  color: #555;
+  margin-bottom: 10px;
+}
 
-          <?php
-          /*
-                require_once "../../../config/Dao.php";
+.academia-card p {
+  font-size: 16px;
+  margin: 5px 0;
+  color: #666;
+}
 
-                $query = "SELECT razao_social, endereco_id, capacidade_max, status_academia, descricao FROM academia";
-                $result = $conn->query($query);
+.academia-card button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
 
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . ($row['razao_social']) . "</td>";
-                        echo "<td>" . ($row['endereco_id']) . "</td>";
-                        echo "<td>" . ($row['capacidade_max']) . "</td>";
-                        echo "<td>" . ($row['status_academia']) . "</td>";
-                        echo "<td>" . ($row['descricao']) . "</td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='5'>Nenhuma academia cadastrada.</td></tr>";
-                }
-                $conn->close(); 
-                */
-          ?>
+.academia-card button:hover {
+  background-color: #0056b3;
+}
 
-        </tbody>
-      </table>
+.main-content form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 600px;
+  z-index: 1;
+}
+
+</style>
+<div class="main-content">
+    <h2>Minhas Academias</h2>
+    <div class="academias-container" id="lista-academias">
+        <!-- Os dados serão preenchidos via JavaScript -->
     </div>
-  </div>
+</div>
+
+<script>
+   
+    const id_admin = "<?php echo $_SESSION['id_admin']; ?>";
+
+   
+    async function listarAcademias() {
+        const container = document.getElementById("lista-academias");
+        container.innerHTML = ""; // Limpar lista anterior
+
+        const querySnapshot = await db.collection("ACADEMIAS").where("id_admin", "==", id_admin).get();
+
+        if (querySnapshot.empty) {
+            container.innerHTML = `<p>Nenhuma academia cadastrada.</p>`;
+            return;
+        }
+
+        querySnapshot.forEach((doc) => {
+            const academia = doc.data();
+            const card = `
+                <div class="academia-card">
+                    <h3>${academia.nome}</h3>
+                    <p><strong>Capacidade Máxima:</strong> ${academia.maxPessoas}</p>
+                    <p><strong>Pessoas Presentes:</strong> ${academia.pessoaPresente}</p>
+                    <button onclick="selecionarAcademia('${doc.id}')">Selecionar</button>
+                </div>
+            `;
+            container.innerHTML += card;
+        });
+    }
+
+    // Função ao selecionar uma academia
+    function selecionarAcademia(academiaId) {
+        alert(`Academia selecionada com ID: ${academiaId}`);
+       
+    }
+
+   
+    listarAcademias();
+</script>
 
 <?php
 } else {
-  header("Location: ../../index.php?error=auth");
+    header("Location: ../../index.php?error=auth");
 }
-
 include "rodape.php";
 ?>

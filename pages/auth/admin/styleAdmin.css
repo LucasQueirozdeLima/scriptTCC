@@ -57,7 +57,7 @@ body {
   overflow: hidden; /* Evita scroll */
   font-family: "Euclid Circular A", "Poppins";
   height: 100vh;
-  z-index: 2;
+  z-index: 1;
 }
 
 h2,
@@ -72,7 +72,7 @@ font-weight: 400;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 180px);
   gap: 24px;
-  z-index: 2;
+  z-index: 1;
   margin-top: -30%; 
 }
 
@@ -181,15 +181,6 @@ border-radius: 10px;
 /* FORMULÁRIOS DE LISTAR, CADASTRAR E ATUALIZAR */
 
 
-.main-content form {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 600px;
-  z-index: 1;
-}
 
 /* Estilo para telas maiores */
 .main-content {
@@ -202,6 +193,23 @@ min-height: 100vh;
 margin-left: 250px; 
 box-sizing: border-box;
 z-index: 1;
+}
+
+.main-content form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 600px;
+  z-index: 1;
+}
+
+
+.main-content h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #f8f0f0;
 }
 
 .form-row {
@@ -666,9 +674,6 @@ label {
     max-width: 600px;
   }
 }
-
-
-
 
 
 

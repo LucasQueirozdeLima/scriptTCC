@@ -20,7 +20,7 @@
     <nav class="sidebar-menu">
         <a href="dashboard.php">
             <button type="button">
-                <img src="../../../estilizacao/images/svg/icon-dashboard.svg" />
+                <img src="../../../estilizacao/images/svg/dashboard-icon.svg" />
                 <span>Dashboard</span>
             </button>
         </a>
