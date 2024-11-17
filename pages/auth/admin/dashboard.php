@@ -13,29 +13,29 @@ include "sidebar_admin.php";
   <div class="dashboard">
       <div class="card">
          <!-- <img src="../../../estilizacao/images/svg/more.svg" class="more" /> -->  
-        <h2>Refunds</h2>
-        <h3>This month</h3>
+        <h2>Pessoas Presentes</h2>
+        <h3>Dia</h3>
         <var>
-          6k
-          <abbr>USD</abbr>
+          0
+          <abbr>pessoas</abbr>
         </var>
       </div>
       <div class="card ">
          <!--<img src="../../../estilizacao/images/svg/more.svg" class="more" /> -->   
-        <h2>Sales</h2>
-        <h3>This month</h3>
+        <h2>Máximo de Pessoas</h2>
+        <h3>Dia</h3>
         <var>
-          50k
-          <abbr>USD</abbr>
+          100 
+          <abbr>pessoas</abbr>
         </var>
       </div>
       <div class="card">
         <!--<img src="../../../estilizacao/images/svg/more.svg" class="more" /> -->      
-        <h2>Profit</h2>
-        <h3>This month</h3>
+        <h2>Maximo Alcançado</h2>
+        <h3>Dia</h3>
         <var>
-          11k
-          <abbr>USD</abbr>
+          80
+          <abbr>pessoas</abbr>
         </var>
       </div>
       <div class="card">

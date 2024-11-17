@@ -57,22 +57,17 @@ if (isset($_SESSION["verificador"])) {
   background-color: #0056b3;
 }
 
-.main-content form {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 600px;
-  z-index: 1;
-}
 
 </style>
-<div class="main-content">
-    <h2>Minhas Academias</h2>
+<div class="boxbox">
+  <div class="box">
+
+    <h2 style="color: black;">Minhas Academias</h2>
     <div class="academias-container" id="lista-academias">
-        <!-- Os dados serão preenchidos via JavaScript -->
+        
     </div>
+
+</div>
 </div>
 
 <script>

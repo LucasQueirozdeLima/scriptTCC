@@ -181,6 +181,70 @@ border-radius: 10px;
 /* FORMULÁRIOS DE LISTAR, CADASTRAR E ATUALIZAR */
 
 
+.boxbox {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+  margin-left: 250px;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.box {
+  background-color: rgba(155, 193, 230, 0.877);
+  width: 90%;
+  max-width: 1200px;
+  height: 90%;
+  margin-top: 5%;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Garantir que o conteúdo da .box seja centralizado */
+  overflow-y: auto;
+}
+
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .boxbox {
+    justify-content: center;
+    margin-left: 0;
+    padding: 10px;
+  }
+  .box {
+    width: 85%;
+    height: auto;
+    padding: 15px;
+    max-width: 700px;
+  }
+
+  
+}
+
+@media (max-width: 480px) {
+  .boxbox {
+    margin-left: 0;
+  }
+  .box {
+    width: 95%;
+    padding: 10px;
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .boxbox{
+    overflow-y: auto; 
+  }
+}
+
 
 /* Estilo para telas maiores */
 .main-content {
@@ -618,36 +682,6 @@ label {
 
 /* PERFIL PAGE */
 
-.boxbox {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  min-height: 100vh;
-  margin-left: 250px;
-  box-sizing: border-box;
-  z-index: 1;
-  overflow-y: auto; 
-}
-
-
-/* Centralização e estilo da box */
-.box {
-  background-color: rgba(255, 255, 255, 0.753);
-  width: 90%;
-  max-width: 1200px;
-  height: 700px;
-  margin-top: 5%;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  padding: 20px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centraliza o conteúdo dentro da box */
-  justify-content: center;
-}
 
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
