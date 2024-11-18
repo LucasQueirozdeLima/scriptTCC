@@ -9,81 +9,34 @@ include "sidebar_admin.php";
 
 
   <body class="b_dashboard">
-  <style>
-    .academias-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.academia-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  padding: 15px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.academia-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-.academia-card h3 {
-  font-size: 20px;
-  color: #555;
-  margin-bottom: 10px;
-}
-
-.academia-card p {
-  font-size: 16px;
-  margin: 5px 0;
-  color: #666;
-}
-
-.academia-card button {
-  margin-top: 10px;
-  padding: 10px 15px;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
-}
-
-.academia-card button:hover {
-  background-color: #0056b3;
-}
-</style>
+    
   <div class="dashboard">
       <div class="card">
          <!-- <img src="../../../estilizacao/images/svg/more.svg" class="more" /> -->  
         <h2>Pessoas Presentes</h2>
         <h3>Dia</h3>
-        <var id="pessoas-presentes">0</var>
+        <var>
+          0
           <abbr>pessoas</abbr>
+        </var>
       </div>
       <div class="card ">
          <!--<img src="../../../estilizacao/images/svg/more.svg" class="more" /> -->   
         <h2>Máximo de Pessoas</h2>
         <h3>Dia</h3>
-        <var id="max-pessoas-dia">0</var>
+        <var>
+          100 
           <abbr>pessoas</abbr>
-        
+        </var>
       </div>
       <div class="card">
         <!--<img src="../../../estilizacao/images/svg/more.svg" class="more" /> -->      
         <h2>Maximo Alcançado</h2>
         <h3>Dia</h3>
-        <var id="max-pessoas-alcancadas">0</var>
+        <var>
+          80
           <abbr>pessoas</abbr>
-        
+        </var>
       </div>
       <div class="card">
         <h2>Progress</h2>
@@ -122,45 +75,51 @@ include "sidebar_admin.php";
 
     <script>
 
+const id_admin = "<?php echo $_SESSION['id_admin']; ?>";
 
+      async function listarAcademias() {
+    const container = document.getElementById("lista-academias");
+    container.innerHTML = ""; // Limpar lista anterior
 
-  const id_admin = "<?php echo $_SESSION['id_admin']; ?>";
+    const querySnapshot = await db.collection("ACADEMIAS").where("id_admin", "==", id_admin).get();
 
-    window.onload = function() {
-        listarAcademias();
-    };
-
-    async function listarAcademias() {
-        const querySnapshot = await db.collection("ACADEMIAS").where("id_admin", "==", id_admin).get();
-        let totalPessoasPresentes = 0;
-        let maxPessoasDia = 0;
-        let maxPessoasAlcancadas = 0;
-
-        if (querySnapshot.empty) {
-            alert("Nenhuma academia encontrada.");
-            return;
-        }
-
-        querySnapshot.forEach((doc) => {
-            const academia = doc.data();
-            const pessoasPresentes = academia.pessoaPresente || 0;
-            const capacidadeMax = academia.maxPessoas || 0;
-
-            totalPessoasPresentes += pessoasPresentes;
-            maxPessoasDia = Math.max(maxPessoasDia, pessoasPresentes);
-            maxPessoasAlcancadas = Math.max(maxPessoasAlcancadas, capacidadeMax);
-        });
-
-        // Atualizando o dashboard com os valores calculados
-        document.getElementById("pessoas-presentes").innerText = totalPessoasPresentes;
-        document.getElementById("max-pessoas-dia").innerText = maxPessoasDia;
-        document.getElementById("max-pessoas-alcancadas").innerText = maxPessoasAlcancadas;
+    if (querySnapshot.empty) {
+        container.innerHTML = `<p>Nenhuma academia cadastrada.</p>`;
+        return;
     }
 
-  function selecionarAcademia(academiaId) {
-        alert(`Academia selecionada com ID: ${academiaId}`);
-       
-    }
+    let totalPessoasPresentes = 0;
+    let maxPessoasDia = 0;
+    let maxPessoasAlcancadas = 0;
+
+    querySnapshot.forEach((doc) => {
+        const academia = doc.data();
+        const pessoasPresentes = academia.pessoaPresente || 0;
+        const capacidadeMax = academia.maxPessoas || 0;
+
+        // Atualizando as estatísticas
+        totalPessoasPresentes += pessoasPresentes;
+        maxPessoasDia = Math.max(maxPessoasDia, pessoasPresentes);
+        maxPessoasAlcancadas = Math.max(maxPessoasAlcancadas, capacidadeMax);
+
+        // Exibindo as academias no frontend
+        const card = `
+            <div class="academia-card">
+                <h3>${academia.nome}</h3>
+                <p><strong>Capacidade Máxima:</strong> ${academia.maxPessoas}</p>
+                <p><strong>Pessoas Presentes:</strong> ${academia.pessoaPresente}</p>
+                <button onclick="selecionarAcademia('${doc.id}')">Selecionar</button>
+            </div>
+        `;
+        container.innerHTML += card;
+    });
+
+    // Atualizando os valores no painel do dashboard
+    document.getElementById("pessoas-presentes").innerText = totalPessoasPresentes;
+    document.getElementById("max-pessoas-dia").innerText = maxPessoasDia;
+    document.getElementById("max-pessoas-alcancadas").innerText = maxPessoasAlcancadas;
+}
+
     </script>
 
     </body>
