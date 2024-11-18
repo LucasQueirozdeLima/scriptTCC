@@ -29,7 +29,7 @@
     const db = firebase.firestore();
 
    // Referência para o documento específico dentro da coleção ACADEMIAS
-   const academiaRef = db.collection("ACADEMIAS").doc("2");
+   const academiaRef = db.collection("ACADEMIAS").doc("19");
 
 // Função para gerar um número aleatório de pessoas presentes entre 0 e maxPessoas
 function atualizarPessoasPresentes() {
@@ -58,7 +58,7 @@ function atualizarPessoasPresentes() {
       .catch(error => {
         console.error("Erro ao acessar o Firestore:", error);
       });
-  }, 5000); // Atualiza a cada 1 segundo
+  }, 3000); // Atualiza a cada 1 segundo
 }
 
     // Iniciar o processo de atualização

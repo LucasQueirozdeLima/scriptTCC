@@ -114,28 +114,6 @@ INSERT INTO DicasAlimentacao (objetivo, dica) VALUES
 
 
 
-
-
-INSERT INTO endereco (rua, numero, bairro, cidade, complemento, cep)
-VALUES ('Rua Exemplo', 123, 'Centro', 'São Paulo', 'Próximo ao metrô', 12345678);
-
-
-INSERT INTO academia (razao_social, cnpj, endereco_id, status_academia, descricao, capacidade_max)
-VALUES ('Academia XYZ', '12345678000100', 1, 'Ativa', 'Academia no centro', 50);
-
-
-INSERT INTO frequencia (num_atual, data, academia_id)
-VALUES (15, NOW(), 1);
-
-INSERT INTO frequencia (num_atual, data, academia_id)
-VALUES (20, NOW(), 1);  
-
-ALTER TABLE frequencia ADD COLUMN id_academia INT NOT NULL;
-
-SELECT num_atual, capacidade_max FROM frequencia WHERE id_academia = 1;
-INSERT INTO frequencia (id_academia, num_atual, capacidade_max) VALUES (1, 16, 50);
-INSERT INTO frequencia (id_academia, num_atual, capacidade_max, data) VALUES (2, 16, 50, NOW());
-
 ALTER TABLE frequencia MODIFY COLUMN data TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 
 

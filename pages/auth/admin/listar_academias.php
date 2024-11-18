@@ -57,8 +57,23 @@ if (isset($_SESSION["verificador"])) {
   background-color: #0056b3;
 }
 
+.academia-card .btn-remover {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #dc3545; /* Vermelho */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
 
+.academia-card .btn-remover:hover {
+  background-color: #a71d2a; /* Vermelho mais escuro */
+}
 </style>
+
 <div class="boxbox">
   <div class="box">
 
@@ -82,7 +97,7 @@ if (isset($_SESSION["verificador"])) {
         const querySnapshot = await db.collection("ACADEMIAS").where("id_admin", "==", id_admin).get();
 
         if (querySnapshot.empty) {
-            container.innerHTML = `<p>Nenhuma academia cadastrada.</p>`;
+            container.innerHTML = `<p style="color: black;">Nenhuma academia cadastrada.</p>`;
             return;
         }
 
@@ -94,11 +109,27 @@ if (isset($_SESSION["verificador"])) {
                     <p><strong>Capacidade Máxima:</strong> ${academia.maxPessoas}</p>
                     <p><strong>Pessoas Presentes:</strong> ${academia.pessoaPresente}</p>
                     <button onclick="selecionarAcademia('${doc.id}')">Selecionar</button>
+                    <button onclick="removerAcademia('${doc.id}')">Remover</button>
                 </div>
             `;
             container.innerHTML += card;
         });
     }
+
+    async function removerAcademia(academiaId) {
+        if (confirm("Tem certeza de que deseja remover esta academia?")) {
+            try {
+                await db.collection("ACADEMIAS").doc(academiaId).delete();
+                alert("Academia removida com sucesso!");
+                listarAcademias(); // Atualiza a lista após a remoção
+            } catch (error) {
+                console.error("Erro ao remover academia:", error);
+                alert("Ocorreu um erro ao tentar remover a academia.");
+            }
+        }
+    }
+
+
 
     // Função ao selecionar uma academia
     function selecionarAcademia(academiaId) {

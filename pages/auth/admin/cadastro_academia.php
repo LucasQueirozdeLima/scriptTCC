@@ -25,7 +25,7 @@ if (isset($_SESSION["verificador"])) {
                     </div>
                     <div class="form-group half-width">
                         <label for="numero">Número:</label>
-                        <input type="text" id="numero" name="numero" required minlength="1" maxlength="4" />
+                        <input type="number" id="numero" name="numero" required minlength="1" maxlength="4" />
                     </div>
                 </div>
                 <div class="form-row">
@@ -81,40 +81,15 @@ if (isset($_SESSION["verificador"])) {
             }
         });
 
-        document.getElementById('formCadastroAcademia').addEventListener('submit', function(event) {
-    event.preventDefault(); // Evita o envio normal do formulário
-
-    var formData = new FormData(this); 
-    var btnCadastrar = document.getElementById('btnCadastrar'); 
-
-    // Fazendo a requisição AJAX
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "processar_cadastro.php", true); 
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var response = JSON.parse(xhr.responseText); 
-            if (response.success) {
-                var idAcademia = response.id; 
-
-                // Envia para o Firebase
-                cadastrarNoFirebase(idAcademia).then(() => {
-                    alterarTextoBotao(btnCadastrar, 'Academia cadastrada com sucesso!', true);
-                }).catch((error) => {
-                    alterarTextoBotao(btnCadastrar, 'Erro ao cadastrar no Firebase', false);
-                });
-            } else {
-                alterarTextoBotao(btnCadastrar, 'Erro ao cadastrar academia', false);
-            }
-        }
-    };
-    xhr.send(formData); 
-});
+    
 
 // Função para cadastrar no Firebase
 async function cadastrarNoFirebase(idAcademia) {
+
+    idAcademia = idAcademia.toString();
     const razao_social = document.getElementById('razao_social').value;
     const razao_socialLower = razao_social.toLowerCase();
-    const capacidade = document.getElementById('capacidade').value;
+    const capacidade = parseInt(document.getElementById('capacidade').value, 10);
 
     // Obtenha o adminId da sessão PHP
     const id_admin = "<?php echo $_SESSION['id_admin']; ?>";
@@ -136,6 +111,42 @@ async function cadastrarNoFirebase(idAcademia) {
     // Salvar no Firebase
     await db.collection('ACADEMIAS').doc(idAcademia).set(academiaData);
 }
+
+
+async function getNextAvailableId() {
+    const academiasRef = db.collection("ACADEMIAS");
+    const snapshot = await academiasRef.get();
+    
+    const ids = [];
+    snapshot.forEach((doc) => {
+        ids.push(parseInt(doc.id, 10));
+    });
+
+    ids.sort((a, b) => a - b); // Ordena os IDs em ordem crescente
+
+    let nextId = 1; // Começa do 1
+    for (let i = 0; i < ids.length; i++) {
+        if (ids[i] !== nextId) {
+            break; // Encontrou a lacuna
+        }
+        nextId++;
+    }
+    return nextId;
+}
+
+document.getElementById('formCadastroAcademia').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+
+    try {
+        const nextId = await getNextAvailableId(); // Busca o próximo ID disponível
+        await cadastrarNoFirebase(nextId);
+        alterarTextoBotao(btnCadastrar, 'Academia cadastrada com sucesso!', true);
+    } catch (error) {
+        console.error(error);
+        alterarTextoBotao(btnCadastrar, 'Erro ao cadastrar', false);
+    }
+});
 
 // Função para alterar o texto do botão
 function alterarTextoBotao(botao, mensagem, sucesso) {

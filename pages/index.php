@@ -290,11 +290,6 @@ require_once "../config/Dao.php";
             return <?php echo isset($_SESSION['usuario_id']) ? 'true' : 'false'; ?>;
         }
 
-        // Função para verificar se o usuário está logado
-        function usuarioLogado() {
-            // Verifica a sessão do usuário no PHP
-            return <?php echo isset($_SESSION['usuario_id']) ? 'true' : 'false'; ?>;
-        }
     </script>
 
 
