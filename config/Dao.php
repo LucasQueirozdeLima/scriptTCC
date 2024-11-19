@@ -115,12 +115,28 @@ class Dao
 
     public function logout()
     {
-        session_unset();
+        session_start();
         session_destroy();
         header("Location: ../../index.php");
         exit();
     }
 
+
+    public function removerAcademia($idAcademia)
+{
+    try {
+        $query = $this->pdo->prepare("DELETE FROM academia WHERE id_academia = :idAcademia");
+        $query->bindParam(':idAcademia', $idAcademia, PDO::PARAM_INT);
+
+        if ($query->execute()) {
+            return ['success' => true, 'message' => 'Academia removida com sucesso'];
+        } else {
+            return ['success' => false, 'message' => 'Falha ao remover a academia'];
+        }
+    } catch (PDOException $e) {
+        return ['success' => false, 'message' => 'Erro ao remover a academia: ' . $e->getMessage()];
+    }
+}
 
 
 

@@ -293,18 +293,35 @@ if (isset($_SESSION["verificador"])) {
 
     }
 
-    async function removerAcademia(academiaId) {
-      if (confirm("Tem certeza de que deseja remover esta academia?")) {
+   async function removerAcademia(academiaId) {
+    if (confirm("Tem certeza de que deseja remover esta academia?")) {
         try {
-          await db.collection("ACADEMIAS").doc(academiaId).delete();
-          alert("Academia removida com sucesso!");
-          listarAcademias(); // Atualiza a lista após a remoção
+            // Remover do Firebase
+            await db.collection("ACADEMIAS").doc(academiaId).delete();
+
+            // Fazer requisição ao servidor para remover do MySQL
+            const response = await fetch('remover_academia.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: academiaId })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                alert("Academia removida com sucesso!");
+            } else {
+                alert("Erro ao remover do banco de dados: " + result.message);
+            }
+
+            listarAcademias(); // Atualiza a lista após a remoção
         } catch (error) {
-          console.error("Erro ao remover academia:", error);
-          alert("Ocorreu um erro ao tentar remover a academia.");
+            console.error("Erro ao remover academia:", error);
+            alert("Ocorreu um erro ao tentar remover a academia.");
         }
-      }
     }
+}
+
 
     function abrirModalEditar(idAcademia, dados) {
       
