@@ -635,8 +635,6 @@ main > form >  a{
 }
 
 
-
-
 .md-textbox > span {
     right: 31%;
     font-size: 28px;
@@ -708,6 +706,22 @@ main > form >  a{
 }
 
 
+.btn-disabled {
+    opacity: 0.5; 
+    cursor: not-allowed; 
+    background-color: #ccc; 
+    color: #666; 
+    transition: all 0.3s ease; 
+  }
+  
+ 
+  button:not(.btn-disabled) {
+    opacity: 1; 
+    cursor: pointer;
+    background-color: #010911; 
+    color: white; 
+  }
+  
 
 .btn_main {
     display: flex;
