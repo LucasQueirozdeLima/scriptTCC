@@ -18,7 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         $dao = new Dao();
-        $response = $dao->removerAcademia($idAcademia);
+        $idAdmin = $_SESSION['id_admin'];
+        $response = $dao->removerAcademia($idAcademia, $idAdmin);
         echo json_encode($response);
     } catch (Exception $e) {
         echo json_encode(['success' => false, 'message' => 'Erro: ' . $e->getMessage()]);

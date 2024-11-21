@@ -122,7 +122,7 @@ class Dao
     }
 
 
-    public function removerAcademia($idAcademia)
+   public function removerAcademia($idAcademia)
 {
     try {
         $query = $this->pdo->prepare("DELETE FROM academia WHERE id_academia = :idAcademia");
@@ -134,9 +134,12 @@ class Dao
             return ['success' => false, 'message' => 'Falha ao remover a academia'];
         }
     } catch (PDOException $e) {
-        return ['success' => false, 'message' => 'Erro ao remover a academia: ' . $e->getMessage()];
+        error_log("Erro ao remover academia: " . $e->getMessage());
+        return ['success' => false, 'message' => 'Erro ao remover a academia'];
     }
 }
+
+    
 
 
 
