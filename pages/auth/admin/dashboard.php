@@ -1,18 +1,15 @@
-
-<?php 
+<?php
 session_start();
 
 if (isset($_SESSION["verificador"])) {
-include "cabecalho_admin.php";
-include "sidebar_admin.php"; 
+  include "cabecalho_admin.php";
+  include "sidebar_admin.php";
 ?>
 
-
   <body class="b_dashboard">
-    
-  <div class="dashboard">
-      <div class="card">
-         <!-- <img src="../../../estilizacao/images/svg/more.svg" class="more" /> -->  
+
+    <div class="dashboard">
+      <div class="card" id="cardPessoasPresentes">
         <h2>Pessoas Presentes</h2>
         <h3>Dia</h3>
         <var>
@@ -20,114 +17,148 @@ include "sidebar_admin.php";
           <abbr>pessoas</abbr>
         </var>
       </div>
-      <div class="card ">
-         <!--<img src="../../../estilizacao/images/svg/more.svg" class="more" /> -->   
+      <div class="card" id="cardMaxPessoas">
         <h2>Máximo de Pessoas</h2>
         <h3>Dia</h3>
         <var>
-          100 
+          100
           <abbr>pessoas</abbr>
         </var>
       </div>
       <div class="card">
-        <!--<img src="../../../estilizacao/images/svg/more.svg" class="more" /> -->      
-        <h2>Maximo Alcançado</h2>
+        <h2>Máximo Alcançado</h2>
         <h3>Dia</h3>
         <var>
           80
           <abbr>pessoas</abbr>
         </var>
       </div>
-      <div class="card">
-        <h2>Progress</h2>
-        <div class="card-progress">
-          <progress value="50" max="100"></progress>
-          <var>
-            16k
-            <abbr>TASKS</abbr>
-          </var>
-        </div>
+      <div id="containerAcademias" class="container-academias">
+        <!-- Os cards serão gerados aqui pelo JavaScript -->
       </div>
-      <div class="card">
-        <h2>Products</h2>
-        <div class="card-icon">
-          <img src="../../../estilizacao/images/svg/cog.svg" />
-          <div>
-            <h3>Total</h3>
-            <var> 41k </var>
-          </div>
-        <!--<img src="../../../estilizacao/images/svg/chevron.svg" /> -->      
-        </div>
-      </div>
-      <div class="card">
-        <h2>Reviews</h2>
-        <div class="card-icon">
-          <img src="../../../estilizacao/images/svg/heart.svg" />
-          <div>
-            <h3>Rating</h3>
-            <var> 71% </var>
-          </div>
-        <!--<img src="../../../estilizacao/images/svg/chevron.svg" />  -->  
-        </div>
-      </div>
+
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
 
     <script>
+      // Passando o id_admin do PHP para o JavaScript
+      const id_admin = <?php echo json_encode($_SESSION['id_admin']); ?>;
 
-const id_admin = "<?php echo $_SESSION['id_admin']; ?>";
+      document.addEventListener("DOMContentLoaded", () => {
+        getTotalPessoasPresentes();
+        getTotalPessoas();
+        gerarCardsAcademias();
+      });
 
-      async function listarAcademias() {
-    const container = document.getElementById("lista-academias");
-    container.innerHTML = ""; // Limpar lista anterior
+      function getTotalPessoasPresentes() {
+        var userId = id_admin; // ID do usuário logado
 
-    const querySnapshot = await db.collection("ACADEMIAS").where("id_admin", "==", id_admin).get();
+        // Refere-se à coleção 'ACADEMIAS' no Firestore
+        var academiasRef = db.collection("ACADEMIAS");
 
-    if (querySnapshot.empty) {
-        container.innerHTML = `<p>Nenhuma academia cadastrada.</p>`;
-        return;
-    }
+        // Escuta as mudanças na coleção onde id_admin é igual ao usuário logado
+        academiasRef.where("id_admin", "==", userId).onSnapshot((querySnapshot) => {
+          var totalPessoasPresentes = 0;
 
-    let totalPessoasPresentes = 0;
-    let maxPessoasDia = 0;
-    let maxPessoasAlcancadas = 0;
+          // Itera sobre cada documento retornado na consulta
+          querySnapshot.forEach((doc) => {
+            var data = doc.data();
+            var pessoasPresentes = data.pessoaPresente || 0; // Caso o campo pessoaPresente não exista, trata como 0
+            totalPessoasPresentes += pessoasPresentes; // Soma o valor de pessoasPresentes
+          });
 
-    querySnapshot.forEach((doc) => {
-        const academia = doc.data();
-        const pessoasPresentes = academia.pessoaPresente || 0;
-        const capacidadeMax = academia.maxPessoas || 0;
+          // Atualiza o conteúdo do card de "Pessoas Presentes" com o valor atualizado
+          document.querySelector('#cardPessoasPresentes var').innerText = totalPessoasPresentes + " pessoas";
+        }, (error) => {
+          console.error("Erro ao ouvir mudanças nas academias: ", error);
+        });
+      }
 
-        // Atualizando as estatísticas
-        totalPessoasPresentes += pessoasPresentes;
-        maxPessoasDia = Math.max(maxPessoasDia, pessoasPresentes);
-        maxPessoasAlcancadas = Math.max(maxPessoasAlcancadas, capacidadeMax);
 
-        // Exibindo as academias no frontend
-        const card = `
-            <div class="academia-card">
-                <h3>${academia.nome}</h3>
-                <p><strong>Capacidade Máxima:</strong> ${academia.maxPessoas}</p>
-                <p><strong>Pessoas Presentes:</strong> ${academia.pessoaPresente}</p>
-                <button onclick="selecionarAcademia('${doc.id}')">Selecionar</button>
-            </div>
-        `;
-        container.innerHTML += card;
-    });
+      function gerarCardsAcademias() {
+        var userId = id_admin; // ID do usuário logado
 
-    // Atualizando os valores no painel do dashboard
-    document.getElementById("pessoas-presentes").innerText = totalPessoasPresentes;
-    document.getElementById("max-pessoas-dia").innerText = maxPessoasDia;
-    document.getElementById("max-pessoas-alcancadas").innerText = maxPessoasAlcancadas;
-}
+        // Refere-se à coleção 'ACADEMIAS' no Firestore
+        var academiasRef = db.collection("ACADEMIAS");
 
+        // Escuta as mudanças na coleção onde id_admin é igual ao usuário logado
+        academiasRef.where("id_admin", "==", userId).onSnapshot((querySnapshot) => {
+          // Limpa a área onde os cards serão inseridos (para não duplicar)
+          var container = document.getElementById('containerAcademias');
+          container.innerHTML = '';
+
+          // Itera sobre cada documento retornado na consulta e cria o card
+          querySnapshot.forEach((doc) => {
+            var data = doc.data();
+            var nomeAcademia = data.nome || "Academia sem nome"; // Caso o nome não exista, coloca um valor padrão
+            var pessoasPresentes = data.pessoaPresente || 0; // Pega o valor de pessoas presentes ou 0 se não existir
+
+            // Criação do card de cada academia
+            var card = document.createElement('div');
+            card.classList.add('card');
+
+            // Conteúdo do card
+            card.innerHTML = `
+                <h2>${nomeAcademia}</h2>
+                <div class="card-icon">
+                    <img src="../../../estilizacao/images/svg/heart.svg" alt="Icone de coração" />
+                    <div>
+                        <h3>Pessoas Presentes</h3>
+                        <var>${pessoasPresentes}</var>
+                    </div>
+                </div>
+                <button class="btn-detalhes" onclick="verDetalhes('${doc.id}')">Ver Detalhes</button>
+            `;
+
+            // Adiciona o card ao container
+            container.appendChild(card);
+          });
+        }, (error) => {
+          console.error("Erro ao ouvir mudanças nas academias: ", error);
+        });
+      }
+
+
+      // Função para redirecionar para a página de detalhes da academia
+      function verDetalhes(academiaId) {
+        // Você pode redirecionar para uma página de detalhes ou mostrar um modal
+        window.location.href = `detalhes_academia.php?id=${academiaId}`;
+      }
+
+      function getTotalPessoas() {
+        var userId = id_admin; // ID do usuário logado
+
+        // Refere-se à coleção 'ACADEMIAS' no Firestore
+        var academiasRef = db.collection("ACADEMIAS");
+
+        // Escuta as mudanças na coleção onde id_admin é igual ao usuário logado
+        academiasRef.where("id_admin", "==", userId).onSnapshot((querySnapshot) => {
+          var totalMaxPessoas = 0;
+
+          // Itera sobre cada documento retornado na consulta
+          querySnapshot.forEach((doc) => {
+            var data = doc.data();
+            var maxPessoas = data.maxPessoas || 0; // Caso o campo maxPessoas não exista, trata como 0
+            totalMaxPessoas += maxPessoas; // Soma o valor de maxPessoas
+          });
+
+          // Atualiza o conteúdo do card de "Máximo de Pessoas" com o valor atualizado
+          document.querySelector('#cardMaxPessoas var').innerText = totalMaxPessoas + " pessoas";
+        }, (error) => {
+          console.error("Erro ao ouvir mudanças nas academias: ", error);
+        });
+      }
     </script>
 
-    </body>
+  </body>
 
-<?php 
+<?php
 } else {
   header("Location: ../../index.php?error=auth");
 }
 
-include "rodape.php"; 
+include "rodape.php";
 ?>
