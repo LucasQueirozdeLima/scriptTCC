@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Chama o método inserirAcademia da classe Dao
-        $idAcademia = $dao->inserirAcademia($razao_social, $cnpj, $status_academia, $descricao, $capacidade);
+        $idAcademia = $dao->inserirAcademia($razao_social, $cnpj, $status_academia, $descricao, $capacidade, $rua, $numero, $bairro, $cidade, $cep);
 
         // Resposta de sucesso com o ID gerado
         echo json_encode(['success' => true, 'id' => $idAcademia]);

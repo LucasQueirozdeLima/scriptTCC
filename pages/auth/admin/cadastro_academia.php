@@ -4,6 +4,7 @@ session_start();
 if (isset($_SESSION["verificador"])) {
     include "cabecalho_admin.php";
     include "sidebar_admin.php";
+  
 ?>
 
     <div class="main-content">

@@ -149,7 +149,7 @@ class Dao
 
         if (!isset($_SESSION['id_usuario'])) {
             echo "Erro: ID do usuário não está definido na sessão.";
-            print_r($_SESSION); // Debug para verificar o conteúdo da sessão.
+            print_r($_SESSION); 
             exit;
         }
 
@@ -188,12 +188,25 @@ class Dao
         }
     }
 
-    public function inserirAcademia($razao_social, $cnpj, $status_academia, $descricao, $capacidade)
+    public function inserirAcademia($razao_social, $cnpj, $status_academia, $descricao, $capacidade, $rua, $numero, $bairro, $cidade, $cep)
     {
         try {
 
+            $sqlEndereco = "INSERT INTO endereco (rua, numero, bairro, cidade, cep) VALUES (:rua, :numero, :bairro, :cidade, :cep)";
+            $stmtEndereco = $this->pdo->prepare($sqlEndereco);
+
+            $stmtEndereco->bindParam(':rua', $rua);
+            $stmtEndereco->bindParam(':numero', $numero);
+            $stmtEndereco->bindParam(':bairro', $bairro);
+            $stmtEndereco->bindParam(':cidade', $cidade);
+            $stmtEndereco->bindParam(':cep', $cep);
+
+            $stmtEndereco->execute();
+
+            $idEndereco = $this->pdo->lastInsertId();
+
             $sql = "INSERT INTO academia (razao_social, cnpj, status_academia, descricao,endereco_id, capacidade_max)
-                    VALUES (:razao_social, :cnpj, :status_academia, :descricao, 1, :capacidade)";
+                    VALUES (:razao_social, :cnpj, :status_academia, :descricao, :endereco, :capacidade)";
             $stmt = $this->pdo->prepare($sql);
 
 
@@ -202,6 +215,7 @@ class Dao
             $stmt->bindParam(':status_academia', $status_academia);
             $stmt->bindParam(':descricao', $descricao);
             $stmt->bindParam(':capacidade', $capacidade, PDO::PARAM_INT);
+            $stmt->bindParam(':endereco', $idEndereco);
 
 
             $stmt->execute();
@@ -217,38 +231,34 @@ class Dao
     public function getFavoritos($idUsuario)
     {
         try {
-
-            $sql = "SELECT f.id_academia, a.razao_social, a.capacidade_max, a.endereco_id 
+            $sql = "
+                SELECT 
+                    f.id_academia, 
+                    a.razao_social, 
+                    a.capacidade_max, 
+                    e.rua, 
+                    e.numero, 
+                    e.bairro, 
+                    e.cidade, 
+                    e.complemento, 
+                    e.cep
                 FROM favoritos f
                 INNER JOIN academia a ON f.id_academia = a.id_academia
-                WHERE f.id_usuario = :id_usuario";
-
-
+                INNER JOIN endereco e ON a.endereco_id = e.id_endereco
+                WHERE f.id_usuario = :id_usuario
+            ";
+    
             $favoritos = $this->pdo->prepare($sql);
-
-
             $favoritos->bindParam(':id_usuario', $idUsuario, PDO::PARAM_INT);
-
-
             $favoritos->execute();
-
-
-            $resultados = $favoritos->fetchAll(PDO::FETCH_ASSOC);
-
-
-            echo "<script>console.log('Consulta SQL executada: " . addslashes($sql) . "');</script>";
-
-
-            echo "<script>console.log('Favoritos encontrados: " . addslashes(json_encode($resultados)) . "');</script>";
-
-
-            return $resultados ?: [];
+    
+            return $favoritos->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $error) {
-
-            echo "<script>console.log('Erro na consulta: " . addslashes($error->getMessage()) . "');</script>";
+            error_log($error->getMessage(), 3, 'errors.log');
             return [];
         }
     }
+    
 
 
     public function recuperarDicas($objetivo)
