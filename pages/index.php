@@ -77,7 +77,7 @@ require_once "../config/Dao.php";
                     {
                         label: 'Capacidade Max',
                         data: [0],
-                        backgroundColor: 'rgba(51, 122, 105, 0.8)',
+                        backgroundColor: 'rgba(0,191,255, 0.8)',
                         borderColor: 'rgba(24, 62, 235, 1)',
                         borderWidth: 2
                     }

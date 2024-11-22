@@ -31,6 +31,8 @@ if (isset($_SESSION["verificador"])) {
       <p><strong>Capacidade Máxima:</strong> <?php echo htmlspecialchars($row['capacidade_max']); ?> pessoas</p>
       <form action="desfavoritar_academia.php" method="POST">
         <input type="hidden" name="academia_id" value="<?php echo htmlspecialchars($row['id_academia']); ?>">
+        <button type="submit" class="btn btn-danger">Selecionar</button>
+        <br><br>
         <button type="submit" class="btn btn-danger">Remover dos Favoritos</button>
       </form>
     </div>

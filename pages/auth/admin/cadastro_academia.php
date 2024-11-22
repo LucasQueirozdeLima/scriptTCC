@@ -83,10 +83,10 @@ if (isset($_SESSION["verificador"])) {
         });
 
         document.getElementById('formCadastroAcademia').addEventListener('submit', function(event) {
-    event.preventDefault(); // Evita o envio normal do formulário
+    event.preventDefault(); 
 
     var formData = new FormData(this); 
-    var btnCadastrar = document.getElementById('btnCadastrar'); 
+
 
     // Fazendo a requisição AJAX
     var xhr = new XMLHttpRequest();
