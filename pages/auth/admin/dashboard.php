@@ -39,10 +39,6 @@ if (isset($_SESSION["verificador"])) {
 
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
-
     <script>
       // Passando o id_admin do PHP para o JavaScript
       const id_admin = <?php echo json_encode($_SESSION['id_admin']); ?>;
@@ -77,6 +73,32 @@ if (isset($_SESSION["verificador"])) {
         });
       }
 
+      querySnapshot.forEach((doc) => {
+  const progresso = (data.pessoaPresente / data.maxPessoas) * 100;
+
+  var card = document.createElement('div');
+  card.classList.add('card');
+
+  card.innerHTML = `
+      <h2>${data.nome}</h2>
+      <div class="card-progress">
+          <progress value="${progresso}" max="100"></progress>
+          <span>${Math.round(progresso)}% de ocupação</span>
+      </div>
+  `;
+  container.appendChild(card);
+});
+
+
+      function atualizarDados() {
+        getTotalPessoasPresentes();
+        getTotalPessoas();
+        gerarCardsAcademias();
+      }
+
+      // Atualiza os dados a cada 30 segundos
+      setInterval(atualizarDados, 30000);
+
 
       function gerarCardsAcademias() {
         var userId = id_admin; // ID do usuário logado
@@ -96,10 +118,11 @@ if (isset($_SESSION["verificador"])) {
             var nomeAcademia = data.nome || "Academia sem nome"; // Caso o nome não exista, coloca um valor padrão
             var pessoasPresentes = data.pessoaPresente || 0; // Pega o valor de pessoas presentes ou 0 se não existir
 
+
+            
             // Criação do card de cada academia
             var card = document.createElement('div');
-            card.classList.add('card');
-
+            card.classList.add('card-academia');
             // Conteúdo do card
             card.innerHTML = `
                 <h2>${nomeAcademia}</h2>
@@ -120,6 +143,19 @@ if (isset($_SESSION["verificador"])) {
           console.error("Erro ao ouvir mudanças nas academias: ", error);
         });
       }
+
+      document.querySelectorAll('.card h2').forEach((header) => {
+        header.addEventListener('click', () => {
+          const parentCard = header.parentElement;
+          parentCard.classList.toggle('collapsed');
+          const content = parentCard.querySelector('var, .card-icon');
+          if (parentCard.classList.contains('collapsed')) {
+            content.style.display = 'none';
+          } else {
+            content.style.display = 'block';
+          }
+        });
+      });
 
 
       // Função para redirecionar para a página de detalhes da academia

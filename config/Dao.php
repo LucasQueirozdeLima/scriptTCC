@@ -279,69 +279,9 @@ public function inserirAcademia($razao_social, $cnpj, $status_academia, $descric
             $index = array_rand($dicas);
             return $dicas[$index]['dica'];
         } else {
-            return null; // Retorna null caso não encontre dicas
+            return null; 
         }
     }
 }
 
 
-
-/*
-    public function atualizarFrequencia($academia_id, $valor) {
-        $this->pdo->query("UPDATE frequencia SET num_atual = num_atual + $valor WHERE academia_id = $academia_id");
-    }
-    
-
-    public function obterFrequenciaAtual($idAcademia) {
-        try {
-            $stmt = $this->pdo->prepare("SELECT num_atual, capacidade_max FROM frequencia WHERE id_academia = :id_academia");
-            $stmt->bindParam(':id_academia', $idAcademia, PDO::PARAM_INT);
-            $stmt->execute();
-            
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($result) {
-                return $result;
-            } else {
-                return ["num_atual" => 0, "capacidade_max" => 0];
-            }
-        } catch (PDOException $e) {
-            echo "Erro de consulta: " . $e->getMessage();
-            return ["num_atual" => 0, "capacidade_max" => 0];
-        }
-    }
-    
-
-public function inserirFrequencia($academiaId, $numAtual) {
-    $stmt = $this->pdo->prepare("INSERT INTO frequencia (num_atual, data, academia_id) VALUES (:numAtual, NOW(), :academiaId)");
-    $stmt->bindParam(':numAtual', $numAtual);
-    $stmt->bindParam(':academiaId', $academiaId);
-    return $stmt->execute();
-}
-
-    
-
-
-    //Buscar dados para exibição
-
-    /*rascunho
-
-
-    public function exibirAdmins($id) 
-    {
-        $stmt = $this->pdo->query("SELECT * FROM usuario_admin WHERE id = " . $id);
-        return $stmt;
-    }
-
-    public function exibirAcademias($id) 
-    {
-        $stmt = $this->pdo->query("SELECT * FROM academia WHERE id = " . $id);
-        return $stmt;
-    }
-
-    public function resetarEnumerador()
-    { 
-        $stmt = $this->pdo->query("update academia set num_pessoas = 0
-        where num_pessoas != 0 and horario = '24'");
-    }
-
-*/
