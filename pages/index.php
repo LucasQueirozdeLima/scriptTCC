@@ -22,7 +22,7 @@ require_once "../config/Dao.php";
                 </div>
             </div>
 
-            <button id="searchButton" class="btn btn-primary">Buscar</button>
+            <button id="searchButton"  class="btn btn-primary">Buscar</button>
         </div>
     </section>
 

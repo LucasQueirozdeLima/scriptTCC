@@ -683,29 +683,67 @@ button[type="submit"] {
 }
 
 .favoritos-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  width: 100%;
+  display: flex; 
+  flex-wrap: nowrap; 
+  overflow-x: auto; 
+  gap: 10px; 
+  padding: 10px; 
 }
 
 .favorito-item {
-  background-color: #f4f4f4; /* Cor de fundo suave */
-  padding: 15px;
-  border: 1px solid #ddd; /* Cor de borda mais suave */
-  border-radius: 8px;
+  background-color: #f4f4f4; 
+  padding: 8px; 
+  border: 1px solid #ddd; 
+  border-radius: 5px; 
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adicionando sombra para destacar o card */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  font-size: 12px;
+  min-width: 200px; 
+  max-width: 290px; 
+  flex-shrink: 0; 
 }
 
+
 .favorito-item h3 {
-  margin-bottom: 10px;
-  color: #333; /* Cor do título para garantir boa visibilidade */
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #333;
 }
 
 .favorito-item p {
-  color: #555; /* Cor do texto para melhor legibilidade */
+  color: #555;
+  font-size: 13px; 
 }
+
+.favorito-item form {
+  margin-bottom: 5px; 
+}
+
+.favorito-item button {
+  font-size: 12px; 
+  margin-top: 8px; 
+  padding: 5px 10px; 
+}
+
+
+@media (max-width: 480px) {
+  .favoritos-container {
+    display: block;
+    overflow-x: hidden; 
+  }
+
+  .favorito-item {
+    width: 100%; 
+    max-width: none;
+    margin-bottom: 15px; 
+  }
+
+  .favorito-item button {
+    width: 100%; 
+    padding: 6px 0; 
+  }
+}
+
 
 .btn-danger {
   background-color: #d9534f;

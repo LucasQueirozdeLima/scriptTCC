@@ -4,6 +4,9 @@ session_start();
 if (isset($_SESSION["verificador"])) {
   include "cabecalho_user.php";
   include "sidebar.php";
+
+
+  $idAcademia = isset($_GET['id_academia']) ? htmlspecialchars($_GET['id_academia']) : null;
 ?>
   <div class="boxbox">
     <div class="box_academias">
@@ -161,7 +164,14 @@ if (isset($_SESSION["verificador"])) {
 
         });
     }
-
+  
+  
+    const academiaId = "<?php echo $idAcademia ?? ''; ?>"; 
+      if (academiaId) {
+        updateGrafico(academiaId);
+      } else {
+        console.log("Nenhuma academia selecionada. Carregando estado padrão.");
+      }
 
     // Referência para a coleção 'ACADEMIAS' no Firestore
     const academiasRef = db.collection("ACADEMIAS");
@@ -199,6 +209,7 @@ if (isset($_SESSION["verificador"])) {
 
     }
 
+
     // Função para exibir sugestões na interface
     function showSuggestions(academias) {
       const suggestionsBox = document.getElementById('suggestions');
@@ -221,8 +232,9 @@ if (isset($_SESSION["verificador"])) {
     }
 
     function updateHiddenInput(uid) {
-      document.getElementById('selectedAcademyUid').value = uid;
-    }
+  document.getElementById('selectedAcademyUid').value = uid; // Atualiza o campo oculto com o ID da academia
+}
+
 
     // Evento para capturar a digitação no input de pesquisa
     document.getElementById('searchInput').addEventListener('input', (event) => {

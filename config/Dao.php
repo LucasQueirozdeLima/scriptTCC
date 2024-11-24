@@ -141,6 +141,45 @@ class Dao
 
     
 
+public function inserirAcademia($razao_social, $cnpj, $status_academia, $descricao, $capacidade, $rua, $numero, $bairro, $cidade, $cep)
+{
+    try {
+
+        $sqlEndereco = "INSERT INTO endereco (rua, numero, bairro, cidade, cep) VALUES (:rua, :numero, :bairro, :cidade, :cep)";
+        $stmtEndereco = $this->pdo->prepare($sqlEndereco);
+
+        $stmtEndereco->bindParam(':rua', $rua);
+        $stmtEndereco->bindParam(':numero', $numero);
+        $stmtEndereco->bindParam(':bairro', $bairro);
+        $stmtEndereco->bindParam(':cidade', $cidade);
+        $stmtEndereco->bindParam(':cep', $cep);
+
+        $stmtEndereco->execute();
+
+        $idEndereco = $this->pdo->lastInsertId();
+
+        $sql = "INSERT INTO academia (razao_social, cnpj, status_academia, descricao,endereco_id, capacidade_max)
+                VALUES (:razao_social, :cnpj, :status_academia, :descricao, :endereco, :capacidade)";
+        $stmt = $this->pdo->prepare($sql);
+
+
+        $stmt->bindParam(':razao_social', $razao_social);
+        $stmt->bindParam(':cnpj', $cnpj);
+        $stmt->bindParam(':status_academia', $status_academia);
+        $stmt->bindParam(':descricao', $descricao);
+        $stmt->bindParam(':capacidade', $capacidade, PDO::PARAM_INT);
+        $stmt->bindParam(':endereco', $idEndereco);
+
+
+        $stmt->execute();
+
+
+        return $this->pdo->lastInsertId();
+    } catch (PDOException $e) {
+
+        throw new Exception("Erro ao inserir academia: " . $e->getMessage());
+    }
+}
 
 
     public function favoritarAcademia($idAcademia)
@@ -188,45 +227,6 @@ class Dao
         }
     }
 
-    public function inserirAcademia($razao_social, $cnpj, $status_academia, $descricao, $capacidade, $rua, $numero, $bairro, $cidade, $cep)
-    {
-        try {
-
-            $sqlEndereco = "INSERT INTO endereco (rua, numero, bairro, cidade, cep) VALUES (:rua, :numero, :bairro, :cidade, :cep)";
-            $stmtEndereco = $this->pdo->prepare($sqlEndereco);
-
-            $stmtEndereco->bindParam(':rua', $rua);
-            $stmtEndereco->bindParam(':numero', $numero);
-            $stmtEndereco->bindParam(':bairro', $bairro);
-            $stmtEndereco->bindParam(':cidade', $cidade);
-            $stmtEndereco->bindParam(':cep', $cep);
-
-            $stmtEndereco->execute();
-
-            $idEndereco = $this->pdo->lastInsertId();
-
-            $sql = "INSERT INTO academia (razao_social, cnpj, status_academia, descricao,endereco_id, capacidade_max)
-                    VALUES (:razao_social, :cnpj, :status_academia, :descricao, :endereco, :capacidade)";
-            $stmt = $this->pdo->prepare($sql);
-
-
-            $stmt->bindParam(':razao_social', $razao_social);
-            $stmt->bindParam(':cnpj', $cnpj);
-            $stmt->bindParam(':status_academia', $status_academia);
-            $stmt->bindParam(':descricao', $descricao);
-            $stmt->bindParam(':capacidade', $capacidade, PDO::PARAM_INT);
-            $stmt->bindParam(':endereco', $idEndereco);
-
-
-            $stmt->execute();
-
-
-            return $this->pdo->lastInsertId();
-        } catch (PDOException $e) {
-
-            throw new Exception("Erro ao inserir academia: " . $e->getMessage());
-        }
-    }
 
     public function getFavoritos($idUsuario)
     {
@@ -260,6 +260,7 @@ class Dao
     }
     
 
+    
 
     public function recuperarDicas($objetivo)
     {
