@@ -2,10 +2,6 @@
 create database fitrealtime;
 use fitrealtime;
 
-select * from usuario;
-select * from favoritos;
-select * from academia;
-
 
 create table endereco (
 
@@ -19,7 +15,6 @@ create table endereco (
 
 );
 
-delete from academia where id_academia = 5;
 
 create table usuario(
 
@@ -43,7 +38,6 @@ create table usuario_admin(
 
 );
 
-select * from academia;
  
 create table academia (
 
@@ -58,7 +52,6 @@ create table academia (
 
 );
 
-insert into academia (razao_social, cnpj, endereco_id, status_academia, descricao, capacidade_max) values ('Academia vinicius', '2139801901283', 1, 'Ativa', 'Academia chave', 500);
  
 create table frequencia (
 
@@ -93,8 +86,7 @@ CREATE TABLE admin_academia (
     CONSTRAINT fk_usuario_favorito FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE,
     CONSTRAINT fk_academia_favorito FOREIGN KEY (id_academia) REFERENCES academia(id_academia) ON DELETE CASCADE
 );
- 
-select * from favoritos;
+
 
 CREATE TABLE DicasAlimentacao (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -111,10 +103,6 @@ INSERT INTO DicasAlimentacao (objetivo, dica) VALUES
 ('Engordar', 'A execução correta de exercícios fará você ganhar peso de massa magra, que é mais densa que a gordura.'),
 ('Engordar', 'Alimentos ricos em proteína e carboidratos são importantes para engordar de forma saudável.'),
 ('Engordar', 'Coma alimentos como: Abacate, Nozes, Peixes, Azeite de oliva, Peito de frango, Queijos.');
-
-
-
-ALTER TABLE frequencia MODIFY COLUMN data TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 
 
 select *from frequencia;
