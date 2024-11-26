@@ -9,11 +9,9 @@ include "sidebar_admin.php";
 
 
 
-
 <?php 
 } else {
   header("Location: ../../index.php?error=auth");
 }
-
 include "rodape.php"; 
 ?>

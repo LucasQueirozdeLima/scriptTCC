@@ -33,12 +33,12 @@ if (isset($_SESSION["verificador"])) {
           <abbr>pessoas</abbr>
         </var>
       </div>
-      <div id="containerAcademias" class="container-academias">
-        <!-- Os cards serão gerados aqui pelo JavaScript -->
-      </div>
-
+      
     </div>
-
+    <div id="containerAcademias" class="container-academias">
+      <!-- Os cards serão gerados aqui pelo JavaScript -->
+    </div>
+    
     <script>
       // Passando o id_admin do PHP para o JavaScript
       const id_admin = <?php echo json_encode($_SESSION['id_admin']); ?>;

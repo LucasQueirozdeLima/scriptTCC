@@ -26,9 +26,9 @@ if (isset($_SESSION["verificador"])) {
             <p class="texto-instrucoes">Escolha o seu objetivo para receber dicas de alimentação:</p>
 
             <form method="POST" action="home_user.php">
-                <button type="submit" name="objetivo" value="Emagrecer" class="btn objetivo-btn emagrecer-btn">Emagrecer</button>
+                <button type="submit" name="objetivo" value="Emagrecer" class="btn objetivo-btn emagrecer-btn">Massa Magra</button>
                 <br><br>
-                <button type="submit" name="objetivo" value="Engordar" class="btn objetivo-btn engordar-btn">Engordar</button>
+                <button type="submit" name="objetivo" value="Engordar" class="btn objetivo-btn engordar-btn">Massa Gorda</button>
             </form>
 
             <?php if ($dica && $objetivo): ?>
