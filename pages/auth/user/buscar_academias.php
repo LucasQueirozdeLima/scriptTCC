@@ -51,12 +51,13 @@ if (isset($_SESSION["verificador"])) {
 
      
         <!-- Botão Favoritar -->
-        <form action="./favoritar_academia.php" method="POST" class="favorite_form">
-          <input type="hidden" id="selectedAcademyUid" name="selectedAcademyUid" value="">
-          <button id="favoriteButton" type="submit">
-            <i class="fas fa-heart"></i> FAVORITAR
-          </button>
-        </form>
+        <form action="./favoritar_academia.php" method="POST" class="favorite_form" onsubmit="return validateForm()">
+    <input type="hidden" id="selectedAcademyUid" name="selectedAcademyUid" value="">
+    <button id="favoriteButton" type="submit">
+        <i class="fas fa-heart"></i> FAVORITAR
+    </button>
+</form>
+
       </div>
 
     </section>
@@ -193,21 +194,19 @@ if (isset($_SESSION["verificador"])) {
 
     // Função para exibir sugestões enquanto o usuário digita
     function searchAcademy(query) {
-      if (!query.trim()) {
-        document.getElementById('suggestions').style.display = 'none';
-        return;
-      }
+    const lowercaseQuery = query.toLowerCase();
+    academiasRef.get().then(snapshot => {
+        const academias = snapshot.docs
+            .map(doc => ({
+                id: doc.id,
+                nome: doc.data().nome
+            }))
+            .filter(academia => academia.nome.toLowerCase().includes(lowercaseQuery));
 
-      academiasRef.get().then(snapshot => {
-        snapshot.forEach(doc => {
-          const nomeLowercase = doc.data().nome.toLowerCase();
-          doc.ref.update({
-            nomeLowercase
-          });
-        });
-      });
+        showSuggestions(academias);
+    });
+}
 
-    }
 
 
     // Função para exibir sugestões na interface
@@ -294,6 +293,15 @@ if (isset($_SESSION["verificador"])) {
           console.error("Erro ao buscar academias: ", error);
         });
     }
+
+    function validateForm() {
+    const uid = document.getElementById('selectedAcademyUid').value;
+    if (!uid) {
+        alert("Selecione uma academia antes de favoritar!");
+        return false;
+    }
+    return true;
+}
 
     
   </script>

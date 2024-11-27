@@ -262,6 +262,174 @@ background-color: rgb(17, 94, 209);
 border-radius: 10px;
 }
 
+/* Dispositivos menores (celulares pequenos) */
+@media (max-width: 480px) {
+  .dashboard,
+  .container-academias {
+    grid-template-columns: 1fr; /* Um card por linha */
+    gap: 16px; /* Reduz o espaçamento */
+  }
+
+  .card,
+  .card-academia {
+    width: 100%; /* Largura total da tela */
+    height: auto; /* Ajusta altura automaticamente */
+    padding: 15px; /* Reduz o padding */
+  }
+
+  .card var {
+    font-size: 28px; /* Diminui o tamanho do texto */
+  }
+
+  .card-academia .btn-detalhes {
+    font-size: 12px; /* Ajusta o botão */
+    padding: 6px 8px;
+  }
+}
+
+/* Celulares médios e tablets menores */
+@media (min-width: 481px) and (max-width: 768px) {
+  .dashboard,
+  .container-academias {
+    grid-template-columns: repeat(2, 1fr); /* Duas colunas */
+    gap: 20px; /* Ajusta espaçamento */
+  }
+
+  .card,
+  .card-academia {
+    width: 100%; /* Ocupa 100% dentro do grid */
+    padding: 20px;
+  }
+
+  .card var {
+    font-size: 32px;
+  }
+}
+
+/* Tablets maiores (landscape) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .dashboard {
+    grid-template-columns: repeat(3, 1fr); /* Três colunas */
+  }
+
+  .card {
+    padding: 25px;
+  }
+}
+
+/* Monitores pequenos e laptops */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .dashboard {
+    width: 90%; /* Ajusta a largura */
+  }
+
+  .card {
+    padding: 30px;
+  }
+
+  .container-academias {
+    grid-template-columns: repeat(3, 1fr); /* Mantém três colunas */
+  }
+}
+
+/* Monitores maiores */
+@media (min-width: 1441px) {
+  .dashboard {
+    width: 70%;
+  }
+
+  .container-academias {
+    grid-template-columns: repeat(4, 1fr); /* Quatro colunas */
+  }
+
+  .card {
+    padding: 35px;
+  }
+}
+
+
+/* Dispositivos muito pequenos (iPhone SE, Galaxy S5) */
+@media (max-width: 375px) {
+  .dashboard,
+  .container-academias {
+    grid-template-columns: 1fr; /* Um card por linha */
+    gap: 12px; /* Reduz o espaçamento */
+  }
+
+  .card,
+  .card-academia {
+    width: 100%; /* Largura total da tela */
+    padding: 10px; /* Reduz o padding */
+    height: auto; /* Altura ajustável */
+    font-size: 14px; /* Ajusta o tamanho do texto */
+  }
+
+  .card h2, 
+  .card h3 {
+    font-size: 14px; /* Ajusta títulos */
+  }
+
+  .card var {
+    font-size: 24px; /* Texto menor */
+  }
+
+  .card-icon img:first-child {
+    width: 24px; /* Ícones menores */
+  }
+
+  .card-academia {
+    gap: 8px;
+  }
+
+  .card-academia h2 {
+    font-size: 16px; /* Ajusta título da academia */
+  }
+
+  .card-academia var {
+    font-size: 20px; /* Reduz variações */
+  }
+
+  .card-academia .btn-detalhes {
+    font-size: 12px; /* Botão menor */
+    padding: 6px 10px;
+  }
+
+  .card-progress progress {
+    height: 6px; /* Barra de progresso mais fina */
+  }
+}
+
+/* Dispositivos extremamente pequenos (iPhone SE, largura <= 320px) */
+@media (max-width: 320px) {
+  .dashboard,
+  .container-academias {
+    grid-template-columns: 1fr; /* Um card por linha */
+    gap: 8px; /* Reduz ainda mais o espaçamento */
+  }
+
+  .card,
+  .card-academia {
+    width: 100%; /* Ocupa toda a largura */
+    padding: 8px; /* Reduz o padding */
+    font-size: 12px; /* Texto menor */
+  }
+
+  .card var {
+    font-size: 20px; /* Texto ainda menor */
+  }
+
+  .card h2, 
+  .card h3 {
+    font-size: 12px;
+  }
+
+  .card-academia .btn-detalhes {
+    font-size: 10px; /* Botão menor */
+    padding: 4px 8px; /* Ajusta espaço do botão */
+  }
+}
+
+
 
 /* FORMULÁRIOS DE LISTAR, CADASTRAR E ATUALIZAR */
 
@@ -796,6 +964,218 @@ label {
 }
 
 
+/* DETALHES DA ACADEMIA (DASHBOARD) */
+
+.body_detalhes{
+  background: #202124;
+  font-family: "Poppins", sans-serif;
+  color: #f9f9f9;
+  display: flex;
+  flex-direction: column; 
+  overflow-x: hidden; 
+  height: 100vh;
+}
+
+.boxbox_detalhes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1; 
+  width: calc(100% - 250px); 
+  margin-left: 250px; 
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 1;
+  min-height: 100vh; 
+}
+
+
+
+.box_detalhes{
+  background-color: rgba(27, 30, 32, 0.877);
+  width: 90%; 
+  max-width: 1200px; 
+  height: 80vh; 
+  margin-top: 5%;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto; 
+  overflow-x: hidden;
+}
+
+#academia-details,
+#logs-entrada-saida {
+  width: 100%;
+  height: calc(50% - 20px); /* Dividir igualmente a altura entre detalhes e logs */
+  box-sizing: border-box; 
+  overflow-y: auto; 
+  margin: 10px 0; 
+  background-color: rgba(255, 255, 255, 0.2); 
+  border-radius: 5px; 
+  padding: 15px; 
+}
+
+#logs-entrada-saida ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none; 
+}
+
+#logs-entrada-saida li {
+  font-size: 14px; 
+  padding: 5px 0; 
+  border-bottom: 1px solid #ccc; 
+  margin-bottom: 8px; 
+  color: #e2e2e2;
+}
+
+#academia-details h3,
+#logs-entrada-saida h4 {
+  margin: 0 0 10px 0; 
+  font-size: 1.2rem; 
+  color: #f1f1f1; 
+}
+
+
+
+@media (max-width: 768px) {
+  #academia-details,
+  #logs-entrada-saida {
+    height: auto; 
+    margin: 5px 0;
+    padding: 10px;
+  }
+  .box_detalhes {
+    width: 100%; 
+    height: auto; 
+    margin-top: 10px; 
+    padding: 15px; 
+    font-size: 0.9rem; 
+  }
+  .boxbox_detalhes {
+    margin-left: 0; 
+    width: 100%; 
+  }
+
+   .sidebar {
+    display: none; 
+  }
+  #academia-details h3,
+  #logs-entrada-saida h4 {
+    font-size: 1rem; 
+  }
+}
+
+
+@media (max-width: 480px) {
+  .box_detalhes {
+    padding: 10px; 
+    margin-top: 5px;
+    font-size: 0.85rem;
+    overflow-y: auto; 
+  }
+  #academia-details,
+  #logs-entrada-saida {
+    padding: 8px;
+    margin: 5px 0;
+    overflow-y: auto; 
+  }
+  .boxbox_detalhes {
+    overflow-y: auto; 
+  }
+
+  #academia-details h3,
+  #logs-entrada-saida h4 {
+    font-size: 0.9rem; 
+  }
+
+  #logs-entrada-saida li {
+    font-size: 12px;
+}
+}
+
+@media (max-width: 414px) {
+  .box_detalhes {
+    width: 90%;
+    height: auto;
+    margin-top: 10px;
+    padding: 15px; /* Menos padding */
+    font-size: 0.9rem; /* Tamanho de fonte reduzido */
+  }
+
+  #academia-details,
+  #logs-entrada-saida {
+    height: auto;
+    margin: 5px 0;
+    padding: 12px; /* Menos padding */
+  }
+
+  #academia-details h3,
+  #logs-entrada-saida h4 {
+    font-size: 1rem; /* Reduzir tamanho de títulos */
+  }
+
+  #logs-entrada-saida li {
+    font-size: 13px; /* Reduzir o tamanho das fontes dos logs */
+  }
+}
+
+/* Ajuste para dispositivos como o iPhone 14 Pro Max (largura de 430px) */
+@media (max-width: 430px) {
+  .box_detalhes {
+    width: 85%; /* Ajuste de largura para dispositivos com maior resolução, como iPhone 14 Pro Max */
+    height: 70vh; /* Ajuste a altura da div para manter o conteúdo visível */
+    padding: 20px; /* Mantém o padding adequado */
+    font-size: 1rem; /* Tamanho de fonte confortável */
+  }
+
+  #academia-details,
+  #logs-entrada-saida {
+    height: auto; /* Deixa a altura adaptável */
+    margin: 5px 0;
+    padding: 15px; /* Mantém o padding proporcional */
+  }
+
+  #academia-details h3,
+  #logs-entrada-saida h4 {
+    font-size: 1.1rem; /* Ajusta o tamanho dos títulos */
+  }
+
+  #logs-entrada-saida li {
+    font-size: 14px; /* Ajuste para manter os logs legíveis */
+  }
+}
+
+/* iPhone SE - Dispositivos com largura de 320px */
+@media (max-width: 320px) {
+  .box_detalhes {
+    width: 100%;
+    padding: 10px; /* Menos padding */
+    font-size: 0.85rem; /* Fonte menor */
+    margin-top: 5px;
+  }
+
+  #academia-details,
+  #logs-entrada-saida {
+    padding: 8px; /* Menos padding */
+    height: auto;
+  }
+
+  #academia-details h3,
+  #logs-entrada-saida h4 {
+    font-size: 0.9rem; /* Reduzir mais os títulos */
+  }
+
+  #logs-entrada-saida li {
+    font-size: 12px; /* Fontes menores para logs */
+  }
+}
 
 /* SIDEBAR */
 

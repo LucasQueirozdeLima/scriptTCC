@@ -33,12 +33,12 @@ if (isset($_SESSION["verificador"])) {
           <abbr>pessoas</abbr>
         </var>
       </div>
-      
+
     </div>
     <div id="containerAcademias" class="container-academias">
       <!-- Os cards serão gerados aqui pelo JavaScript -->
     </div>
-    
+
     <script>
       // Passando o id_admin do PHP para o JavaScript
       const id_admin = <?php echo json_encode($_SESSION['id_admin']); ?>;
@@ -74,20 +74,20 @@ if (isset($_SESSION["verificador"])) {
       }
 
       querySnapshot.forEach((doc) => {
-  const progresso = (data.pessoaPresente / data.maxPessoas) * 100;
+        const progresso = (data.pessoaPresente / data.maxPessoas) * 100;
 
-  var card = document.createElement('div');
-  card.classList.add('card');
+        var card = document.createElement('div');
+        card.classList.add('card');
 
-  card.innerHTML = `
+        card.innerHTML = `
       <h2>${data.nome}</h2>
       <div class="card-progress">
           <progress value="${progresso}" max="100"></progress>
           <span>${Math.round(progresso)}% de ocupação</span>
       </div>
   `;
-  container.appendChild(card);
-});
+        container.appendChild(card);
+      });
 
 
       function atualizarDados() {
@@ -119,22 +119,23 @@ if (isset($_SESSION["verificador"])) {
             var pessoasPresentes = data.pessoaPresente || 0; // Pega o valor de pessoas presentes ou 0 se não existir
 
 
-            
+
             // Criação do card de cada academia
             var card = document.createElement('div');
             card.classList.add('card-academia');
             // Conteúdo do card
             card.innerHTML = `
-                <h2>${nomeAcademia}</h2>
-                <div class="card-icon">
-                    <img src="../../../estilizacao/images/svg/heart.svg" alt="Icone de coração" />
-                    <div>
-                        <h3>Pessoas Presentes</h3>
-                        <var>${pessoasPresentes}</var>
-                    </div>
-                </div>
-                <button class="btn-detalhes" onclick="verDetalhes('${doc.id}')">Ver Detalhes</button>
-            `;
+  <h2>${nomeAcademia}</h2>
+  <div class="card-icon">
+    <img src="../../../estilizacao/images/svg/heart.svg" alt="Icone de coração" />
+    <div>
+      <h3>Pessoas Presentes</h3>
+      <var>${pessoasPresentes}</var>
+    </div>
+  </div>
+  <a href="detalhes_academia.php?id=${doc.id}" class="btn-detalhes">Ver Detalhes</a>
+`;
+
 
             // Adiciona o card ao container
             container.appendChild(card);
@@ -156,13 +157,6 @@ if (isset($_SESSION["verificador"])) {
           }
         });
       });
-
-
-      // Função para redirecionar para a página de detalhes da academia
-      function verDetalhes(academiaId) {
-        // Você pode redirecionar para uma página de detalhes ou mostrar um modal
-        window.location.href = `detalhes_academia.php?id=${academiaId}`;
-      }
 
       function getTotalPessoas() {
         var userId = id_admin; // ID do usuário logado

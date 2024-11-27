@@ -182,31 +182,85 @@ public function inserirAcademia($razao_social, $cnpj, $status_academia, $descric
 }
 
 
-    public function favoritarAcademia($idAcademia)
-    {
-        session_start();
+public function favoritarAcademia($idAcademia)
+{
+    session_start();
 
-        if (!isset($_SESSION['id_usuario'])) {
-            echo "Erro: ID do usuário não está definido na sessão.";
-            print_r($_SESSION); 
-            exit;
-        }
-
-
-        try {
-
-            $favoritar = $this->pdo->prepare("INSERT INTO favoritos (id_usuario, id_academia) VALUES (:idUsuario, :idAcademia)");
-            $favoritar->execute([
-                ':idUsuario' => $_SESSION['id_usuario'],
-                ':idAcademia' => $idAcademia
-            ]);
-            echo "<script>console.log('Academia favoritada com sucesso!');</script>";
-        } catch (PDOException $erroFavoritos) {
-
-            echo "<script>console.log('" . $erroFavoritos->getMessage() . "');</script>";
-        }
+    if (!isset($_SESSION['id_usuario'])) {
+        echo "Erro: ID do usuário não está definido na sessão.";
+        print_r($_SESSION); 
+        exit;
     }
 
+    try {
+        // Verificar se a academia já foi favoritada
+        $verifica = $this->pdo->prepare("
+            SELECT COUNT(*) AS count 
+            FROM favoritos 
+            WHERE id_usuario = :idUsuario AND id_academia = :idAcademia
+        ");
+        $verifica->execute([
+            ':idUsuario' => $_SESSION['id_usuario'],
+            ':idAcademia' => $idAcademia
+        ]);
+        $result = $verifica->fetch(PDO::FETCH_ASSOC);
+
+        if ($result['count'] > 0) {
+            echo "<script>alert('Academia já está nos favoritos!');</script>";
+            return;
+        }
+
+        // Inserir na tabela favoritos
+        $favoritar = $this->pdo->prepare("
+            INSERT INTO favoritos (id_usuario, id_academia) 
+            VALUES (:idUsuario, :idAcademia)
+        ");
+        $favoritar->execute([
+            ':idUsuario' => $_SESSION['id_usuario'],
+            ':idAcademia' => $idAcademia
+        ]);
+        echo "<script>console.log('Academia favoritada com sucesso!');</script>";
+    } catch (PDOException $erroFavoritos) {
+        echo "<script>console.log('" . $erroFavoritos->getMessage() . "');</script>";
+    }
+}
+
+
+   
+
+public function getFavoritos($idUsuario)
+{
+    try {
+        $sql = "
+            SELECT 
+                f.id_academia, 
+                a.razao_social, 
+                a.capacidade_max, 
+                a.pessoaPresente,   
+                e.rua, 
+                e.numero, 
+                e.bairro, 
+                e.cidade, 
+                e.complemento, 
+                e.cep
+            FROM favoritos f
+            INNER JOIN academia a ON f.id_academia = a.id_academia
+            INNER JOIN endereco e ON a.endereco_id = e.id_endereco
+            WHERE f.id_usuario = :id_usuario
+        ";
+
+        $favoritos = $this->pdo->prepare($sql);
+        $favoritos->bindParam(':id_usuario', $idUsuario, PDO::PARAM_INT);
+        $favoritos->execute();
+
+        return $favoritos->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $error) {
+        error_log($error->getMessage(), 3, 'errors.log');
+        return [];
+    }
+}
+
+    
     public function desfavoritarAcademia($idUsuario, $idAcademia)
     {
         try {
@@ -226,39 +280,6 @@ public function inserirAcademia($razao_social, $cnpj, $status_academia, $descric
             echo "<script>console.log('Erro: " . $e->getMessage() . "');</script>";
         }
     }
-
-
-    public function getFavoritos($idUsuario)
-    {
-        try {
-            $sql = "
-                SELECT 
-                    f.id_academia, 
-                    a.razao_social, 
-                    a.capacidade_max, 
-                    e.rua, 
-                    e.numero, 
-                    e.bairro, 
-                    e.cidade, 
-                    e.complemento, 
-                    e.cep
-                FROM favoritos f
-                INNER JOIN academia a ON f.id_academia = a.id_academia
-                INNER JOIN endereco e ON a.endereco_id = e.id_endereco
-                WHERE f.id_usuario = :id_usuario
-            ";
-    
-            $favoritos = $this->pdo->prepare($sql);
-            $favoritos->bindParam(':id_usuario', $idUsuario, PDO::PARAM_INT);
-            $favoritos->execute();
-    
-            return $favoritos->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $error) {
-            error_log($error->getMessage(), 3, 'errors.log');
-            return [];
-        }
-    }
-    
 
     
 

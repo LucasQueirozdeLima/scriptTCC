@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro de Entrada e Saída</title>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 10px;
+        cursor: pointer;
+      }
+      .btn-entrada {
+        background-color: green;
+        color: white;
+      }
+      .btn-saida {
+        background-color: red;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Controle de Entrada e Saída</h1>
+
+    <p>Escolha a ação para registrar:</p>
+    <button class="btn-entrada" onclick="registrarEntrada('2')">
+      Registrar Entrada
+    </button>
+    <button class="btn-saida" onclick="registrarSaida('2')">
+      Registrar Saída
+    </button>
+
+    <script>
+      // Configuração do Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyDBdSRyaboQFVLZslagd8IeD197Ce05ZoM",
+        authDomain: "grafico-93b0a.firebaseapp.com",
+        projectId: "grafico-93b0a",
+        storageBucket: "grafico-93b0a.firebasestorage.app",
+        messagingSenderId: "546497332413",
+        appId: "1:546497332413:web:9192f88305926aa4b1a3d4",
+      };
+
+      // Inicializando o Firebase
+      const app = firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+
+      // Função para registrar entrada
+      function registrarEntrada(academiaId) {
+        const academiaRef = db.collection("ACADEMIAS").doc(academiaId);
+        const entradasRef = academiaRef.collection("entradas");
+
+        // Obtém o número atual de pessoas presentes
+        academiaRef
+          .get()
+          .then((doc) => {
+            if (doc.exists) {
+              const pessoaPresenteAtual = doc.data().pessoaPresente;
+              const novaPessoaPresente = pessoaPresenteAtual + 1; // Incrementa o número de pessoas presentes
+
+              // Atualiza o número de pessoas presentes
+              academiaRef.update({
+                pessoaPresente: novaPessoaPresente,
+              });
+
+              // Registra o log de entrada
+              entradasRef
+                .add({
+                  timestamp: firebase.firestore.Timestamp.now(),
+                  pessoaPresente: novaPessoaPresente,
+                })
+                .then(() => {
+                  alert("Entrada registrada com sucesso!");
+                })
+                .catch((error) => {
+                  console.error("Erro ao registrar a entrada:", error);
+                });
+            }
+          })
+          .catch((error) => {
+            console.error("Erro ao obter dados da academia:", error);
+          });
+      }
+
+      // Função para registrar saída
+      function registrarSaida(academiaId) {
+        const academiaRef = db.collection("ACADEMIAS").doc(academiaId);
+        const saidasRef = academiaRef.collection("saidas");
+
+        // Obtém o número atual de pessoas presentes
+        academiaRef
+          .get()
+          .then((doc) => {
+            if (doc.exists) {
+              const pessoaPresenteAtual = doc.data().pessoaPresente;
+              const novaPessoaPresente = pessoaPresenteAtual - 1; // Decrementa o número de pessoas presentes
+
+              // Atualiza o número de pessoas presentes
+              academiaRef.update({
+                pessoaPresente: novaPessoaPresente,
+              });
+
+              // Registra o log de saída
+              saidasRef
+                .add({
+                  timestamp: firebase.firestore.Timestamp.now(),
+                  pessoaPresente: novaPessoaPresente,
+                })
+                .then(() => {
+                  alert("Saída registrada com sucesso!");
+                })
+                .catch((error) => {
+                  console.error("Erro ao registrar a saída:", error);
+                });
+            }
+          })
+          .catch((error) => {
+            console.error("Erro ao obter dados da academia:", error);
+          });
+      }
+    </script>
+  </body>
+</html>

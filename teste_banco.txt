@@ -2,9 +2,7 @@
 create database fitrealtime;
 use fitrealtime;
 
-
 create table endereco (
-
     id_endereco int auto_increment primary key not null,
     rua varchar(100) not null,
     numero int(4) not null,
@@ -12,7 +10,6 @@ create table endereco (
     cidade varchar(30) not null,
     complemento varchar(200),
     cep int(9) not null
-
 );
 
 
@@ -38,7 +35,7 @@ create table usuario_admin(
 
 );
 
- 
+
 create table academia (
 
     id_academia int auto_increment primary key not null,
@@ -49,24 +46,8 @@ create table academia (
     descricao varchar(100) not null,
     capacidade_max int(4) not null,
     FOREIGN KEY (endereco_id) REFERENCES endereco(id_endereco)
-
 );
 
- 
-create table frequencia (
-
-    id_frequencia int auto_increment primary key not null,
-    num_atual int(4) not null,
-    data DATETIME not null,
-    academia_id INT,
-    FOREIGN KEY (academia_id) REFERENCES academia(id_academia)
-
-);
- ALTER TABLE frequencia ADD COLUMN capacidade_max INT;
-
-
- 
--- Relacionamento -- -- Relacionamento -- -- Relacionamento 
  
 CREATE TABLE admin_academia (
 
@@ -86,6 +67,8 @@ CREATE TABLE admin_academia (
     CONSTRAINT fk_usuario_favorito FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE,
     CONSTRAINT fk_academia_favorito FOREIGN KEY (id_academia) REFERENCES academia(id_academia) ON DELETE CASCADE
 );
+ ALTER TABLE academia ADD pessoaPresente INT DEFAULT 0;
+
 
 
 CREATE TABLE DicasAlimentacao (
@@ -105,10 +88,14 @@ INSERT INTO DicasAlimentacao (objetivo, dica) VALUES
 ('Engordar', 'Coma alimentos como: Abacate, Nozes, Peixes, Azeite de oliva, Peito de frango, Queijos.');
 
 
-select *from frequencia;
+select *from usuario_admin;
 select *from academia;
 select *from usuario;
-select *from usuario_admin;
+select*from favoritos;
 
-drop database fitrealtime
+update academia set capacidade_max = 100 where id_academia = 2;
+
+drop database fitrealtime;
+
+
   
