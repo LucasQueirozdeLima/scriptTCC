@@ -50,13 +50,13 @@ if (isset($_SESSION["verificador"])) {
       });
 
       function getTotalPessoasPresentes() {
-        var userId = id_admin; // ID do usuário logado
+        const id_admin = "<?php echo $_SESSION['id_admin']; ?>";
 
         // Refere-se à coleção 'ACADEMIAS' no Firestore
         var academiasRef = db.collection("ACADEMIAS");
 
         // Escuta as mudanças na coleção onde id_admin é igual ao usuário logado
-        academiasRef.where("id_admin", "==", userId).onSnapshot((querySnapshot) => {
+        academiasRef.where("id_admin", "==", id_admin).onSnapshot((querySnapshot) => {
           var totalPessoasPresentes = 0;
 
           // Itera sobre cada documento retornado na consulta
@@ -101,13 +101,13 @@ if (isset($_SESSION["verificador"])) {
 
 
       function gerarCardsAcademias() {
-        var userId = id_admin; // ID do usuário logado
+        const id_admin = "<?php echo $_SESSION['id_admin']; ?>";
 
         // Refere-se à coleção 'ACADEMIAS' no Firestore
         var academiasRef = db.collection("ACADEMIAS");
 
         // Escuta as mudanças na coleção onde id_admin é igual ao usuário logado
-        academiasRef.where("id_admin", "==", userId).onSnapshot((querySnapshot) => {
+        academiasRef.where("id_admin", "==", id_admin).onSnapshot((querySnapshot) => {
           // Limpa a área onde os cards serão inseridos (para não duplicar)
           var container = document.getElementById('containerAcademias');
           container.innerHTML = '';
@@ -115,8 +115,8 @@ if (isset($_SESSION["verificador"])) {
           // Itera sobre cada documento retornado na consulta e cria o card
           querySnapshot.forEach((doc) => {
             var data = doc.data();
-            var nomeAcademia = data.nome || "Academia sem nome"; // Caso o nome não exista, coloca um valor padrão
-            var pessoasPresentes = data.pessoaPresente || 0; // Pega o valor de pessoas presentes ou 0 se não existir
+            var nomeAcademia = data.nome || "Academia sem nome"; 
+            var pessoasPresentes = data.pessoaPresente || 0; 
 
 
 
@@ -158,14 +158,16 @@ if (isset($_SESSION["verificador"])) {
         });
       });
 
-      function getTotalPessoas() {
-        var userId = id_admin; // ID do usuário logado
+     
 
+      function getTotalPessoas() {
+       
+        const id_admin = "<?php echo $_SESSION['id_admin']; ?>";
         // Refere-se à coleção 'ACADEMIAS' no Firestore
         var academiasRef = db.collection("ACADEMIAS");
 
         // Escuta as mudanças na coleção onde id_admin é igual ao usuário logado
-        academiasRef.where("id_admin", "==", userId).onSnapshot((querySnapshot) => {
+        academiasRef.where("id_admin", "==", id_admin).onSnapshot((querySnapshot) => {
           var totalMaxPessoas = 0;
 
           // Itera sobre cada documento retornado na consulta
