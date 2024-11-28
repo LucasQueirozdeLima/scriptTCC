@@ -20,7 +20,7 @@ class Dao
         session_start();
 
         // Consulta para usuários comuns
-        $usuario = $this->pdo->prepare("SELECT * FROM usuario WHERE (nome_usuario=:verificador OR email=:verificador) AND senha=:senha");
+        $usuario = $this->pdo->prepare("SELECT * FROM usuario WHERE nome_usuario=:verificador AND senha=:senha");
         $usuario->execute([
             ':verificador' => $verificador,
             ':senha' => $senha
@@ -88,13 +88,13 @@ class Dao
 
     public function recuperarDadosUsuario($verificador)
     {
-        $usuario = $this->pdo->query("SELECT * FROM usuario WHERE nome_usuario='$verificador' OR email='$verificador'");
+        $usuario = $this->pdo->query("SELECT * FROM usuario WHERE nome_usuario='$verificador'");
         return $usuario;
     }
 
     public function recuperarDadosAdmin($verificador)
     {
-        $admin = $this->pdo->query("SELECT * FROM usuario_admin WHERE nome_usuario='$verificador' OR email='$verificador'");
+        $admin = $this->pdo->query("SELECT * FROM usuario_admin WHERE nome_usuario='$verificador'");
         return $admin;
     }
 
@@ -109,6 +109,19 @@ class Dao
 
         // Verifica se a senha foi alterada com sucesso
         return $stmt->rowCount() > 0;
+    }
+
+    public function atualizarUsuario($verificador, $nome, $nome_usuario, $email, $senha) 
+    {
+        $condicaoNome_usuario = "SELECT * FROM usuario WHERE nome_usuario='$nome_usuario'";
+        $condicaoEmail = "SELECT * FROM usuario WHERE email='$email'";
+
+
+        if ($condicaoNome_usuario->fetch() == null && $condicaoEmail->fetch() == null) {
+            $alterarDados = "UPDATE usuario SET nome='$nome', nome_usuario='$nome_usuario', email='$email',senha='$senha' WHERE nome_usuario='$verificador'";
+        } else {
+            header("Location: ../config_user.php?error=1");
+        }
     }
 
     //LOGOUT
