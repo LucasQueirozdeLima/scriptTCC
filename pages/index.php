@@ -53,7 +53,7 @@ require_once "../config/Dao.php";
         <form action="./auth/user/favoritar_academia.php" method="POST">
             <input type="hidden" id="selectedAcademyUid" name="selectedAcademyUid" value="">
 
-            <a href="login.php" style="color: red;" id="favoriteButton"><i class="fas fa-heart"> FAVORITAR</i></a>
+            <a href="login.php" style="color: red; background-color: white; padding:3px; " id="favoriteButton"><i class="fas fa-heart"> FAVORITAR</i></a>
             
         </form>
     </section>

@@ -23,7 +23,7 @@ include "../includes/navbar.php";
                     <input type="text" name="nome" id="nome" placeholder="Nome" required><br><br>
                     <input type="email" name="email" id="email" placeholder="Email*" required><br><br>
                     <input type="text" name="telefone" id="telefone" placeholder="Telefone*" required><br><br>
-                    <textarea name="msg_contato" id="msg_contato" cols="30" rows="10" placeholder="Entre em contato. Escreva sua mensagem*" required></textarea><br><br>
+                    <textarea name="msg_contato" id="msg_contato" cols="30" rows="10" placeholder="Escreva sua mensagem*" required></textarea><br><br>
                     <input type="submit" value="Enviar Mensagem" class="input_reset">
                 </div>
             </form>

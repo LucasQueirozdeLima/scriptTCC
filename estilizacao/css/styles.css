@@ -364,12 +364,13 @@ main {
   }
 
   #favoriteButton:hover {
-    border-color: rgb(255, 255, 255); 
-    color: darkred; 
-    background-color: white;
-    padding: 10px;
+    
   }
   
+  .fas.fa-heart:hover{
+    background-color: rgba(111, 173, 243, 0.911);
+    padding: 5px;
+  }
 
 /* Tamanho específico para telas maiores */
 @media (min-width: 1024px) {

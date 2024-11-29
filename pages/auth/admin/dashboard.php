@@ -21,7 +21,7 @@ if (isset($_SESSION["verificador"])) {
         <h2>Máximo de Pessoas</h2>
         <h3>Dia</h3>
         <var>
-          100
+          0
           <abbr>pessoas</abbr>
         </var>
       </div>
@@ -29,7 +29,7 @@ if (isset($_SESSION["verificador"])) {
         <h2>Máximo Alcançado</h2>
         <h3>Dia</h3>
         <var>
-          80
+          0
           <abbr>pessoas</abbr>
         </var>
       </div>
