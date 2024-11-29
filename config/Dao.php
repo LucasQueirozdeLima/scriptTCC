@@ -57,7 +57,7 @@ class Dao
         exit;
     }
 
-    
+
 
 
     //inserção de dados
@@ -86,9 +86,10 @@ class Dao
 
     //RECUPERAR DADOS
 
-    public function recuperarDadosUsuario($verificador)
+
+    public function recuperarDadosUsuario($verificadorID)
     {
-        $usuario = $this->pdo->query("SELECT * FROM usuario WHERE nome_usuario='$verificador'");
+        $usuario = $this->pdo->query("SELECT * FROM usuario WHERE id_usuario=$verificadorID");
         return $usuario;
     }
 
@@ -111,17 +112,37 @@ class Dao
         return $stmt->rowCount() > 0;
     }
 
-    public function atualizarUsuario($verificador, $nome, $nome_usuario, $email, $senha) 
+    public function atualizarUsuario($nome, $nome_usuario, $email, $senha, $verificadorID)
     {
-        $condicaoNome_usuario = "SELECT * FROM usuario WHERE nome_usuario='$nome_usuario'";
-        $condicaoEmail = "SELECT * FROM usuario WHERE email='$email'";
+        // Preparar consultas para verificar duplicidade
+        $condicaoNome_usuario = $this->pdo->prepare("SELECT id_usuario FROM usuario WHERE nome_usuario = :nome_usuario AND id_usuario != :id_usuario");
+        $condicaoNome_usuario->execute([':nome_usuario' => $nome_usuario, ':id_usuario' => $verificadorID]);
 
+        $condicaoEmail = $this->pdo->prepare("SELECT id_usuario FROM usuario WHERE email = :email AND id_usuario != :id_usuario");
+        $condicaoEmail->execute([':email' => $email, ':id_usuario' => $verificadorID]);
 
-        if ($condicaoNome_usuario->fetch() == null && $condicaoEmail->fetch() == null) {
-            $alterarDados = "UPDATE usuario SET nome='$nome', nome_usuario='$nome_usuario', email='$email',senha='$senha' WHERE nome_usuario='$verificador'";
-        } else {
-            header("Location: ../config_user.php?error=1");
+        // Verificar se há conflitos
+        if ($condicaoNome_usuario->fetch() || $condicaoEmail->fetch()) {
+            header("Location: ../pages/auth/user/config_user.php?error=1");
+            exit;
         }
+
+        // Atualizar os dados do usuário
+        $alterarDados = $this->pdo->prepare("UPDATE usuario SET nome = :nome, nome_usuario = :nome_usuario, email = :email, senha = :senha WHERE id_usuario = :id_usuario");
+        $alterarDados->execute([
+            ':nome' => $nome,
+            ':nome_usuario' => $nome_usuario,
+            ':email' => $email,
+            ':senha' => $senha,
+            ':id_usuario' => $verificadorID
+        ]);
+
+        // Atualizar a sessão
+        $_SESSION['verificador'] = $nome_usuario;
+
+        // Redirecionar após a atualização
+        header("Location: ../pages/auth/user/config_user.php");
+        exit;
     }
 
     //LOGOUT
@@ -135,116 +156,116 @@ class Dao
     }
 
 
-   public function removerAcademia($idAcademia)
-{
-    try {
-        $query = $this->pdo->prepare("DELETE FROM academia WHERE id_academia = :idAcademia");
-        $query->bindParam(':idAcademia', $idAcademia, PDO::PARAM_INT);
+    public function removerAcademia($idAcademia)
+    {
+        try {
+            $query = $this->pdo->prepare("DELETE FROM academia WHERE id_academia = :idAcademia");
+            $query->bindParam(':idAcademia', $idAcademia, PDO::PARAM_INT);
 
-        if ($query->execute()) {
-            return ['success' => true, 'message' => 'Academia removida com sucesso'];
-        } else {
-            return ['success' => false, 'message' => 'Falha ao remover a academia'];
+            if ($query->execute()) {
+                return ['success' => true, 'message' => 'Academia removida com sucesso'];
+            } else {
+                return ['success' => false, 'message' => 'Falha ao remover a academia'];
+            }
+        } catch (PDOException $e) {
+            error_log("Erro ao remover academia: " . $e->getMessage());
+            return ['success' => false, 'message' => 'Erro ao remover a academia'];
         }
-    } catch (PDOException $e) {
-        error_log("Erro ao remover academia: " . $e->getMessage());
-        return ['success' => false, 'message' => 'Erro ao remover a academia'];
     }
-}
 
-    
 
-public function inserirAcademia($razao_social, $cnpj, $status_academia, $descricao, $capacidade, $rua, $numero, $bairro, $cidade, $cep)
-{
-    try {
 
-        $sqlEndereco = "INSERT INTO endereco (rua, numero, bairro, cidade, cep) VALUES (:rua, :numero, :bairro, :cidade, :cep)";
-        $stmtEndereco = $this->pdo->prepare($sqlEndereco);
+    public function inserirAcademia($razao_social, $cnpj, $status_academia, $descricao, $capacidade, $rua, $numero, $bairro, $cidade, $cep)
+    {
+        try {
 
-        $stmtEndereco->bindParam(':rua', $rua);
-        $stmtEndereco->bindParam(':numero', $numero);
-        $stmtEndereco->bindParam(':bairro', $bairro);
-        $stmtEndereco->bindParam(':cidade', $cidade);
-        $stmtEndereco->bindParam(':cep', $cep);
+            $sqlEndereco = "INSERT INTO endereco (rua, numero, bairro, cidade, cep) VALUES (:rua, :numero, :bairro, :cidade, :cep)";
+            $stmtEndereco = $this->pdo->prepare($sqlEndereco);
 
-        $stmtEndereco->execute();
+            $stmtEndereco->bindParam(':rua', $rua);
+            $stmtEndereco->bindParam(':numero', $numero);
+            $stmtEndereco->bindParam(':bairro', $bairro);
+            $stmtEndereco->bindParam(':cidade', $cidade);
+            $stmtEndereco->bindParam(':cep', $cep);
 
-        $idEndereco = $this->pdo->lastInsertId();
+            $stmtEndereco->execute();
 
-        $sql = "INSERT INTO academia (razao_social, cnpj, status_academia, descricao,endereco_id, capacidade_max)
+            $idEndereco = $this->pdo->lastInsertId();
+
+            $sql = "INSERT INTO academia (razao_social, cnpj, status_academia, descricao,endereco_id, capacidade_max)
                 VALUES (:razao_social, :cnpj, :status_academia, :descricao, :endereco, :capacidade)";
-        $stmt = $this->pdo->prepare($sql);
+            $stmt = $this->pdo->prepare($sql);
 
 
-        $stmt->bindParam(':razao_social', $razao_social);
-        $stmt->bindParam(':cnpj', $cnpj);
-        $stmt->bindParam(':status_academia', $status_academia);
-        $stmt->bindParam(':descricao', $descricao);
-        $stmt->bindParam(':capacidade', $capacidade, PDO::PARAM_INT);
-        $stmt->bindParam(':endereco', $idEndereco);
+            $stmt->bindParam(':razao_social', $razao_social);
+            $stmt->bindParam(':cnpj', $cnpj);
+            $stmt->bindParam(':status_academia', $status_academia);
+            $stmt->bindParam(':descricao', $descricao);
+            $stmt->bindParam(':capacidade', $capacidade, PDO::PARAM_INT);
+            $stmt->bindParam(':endereco', $idEndereco);
 
 
-        $stmt->execute();
+            $stmt->execute();
 
 
-        return $this->pdo->lastInsertId();
-    } catch (PDOException $e) {
+            return $this->pdo->lastInsertId();
+        } catch (PDOException $e) {
 
-        throw new Exception("Erro ao inserir academia: " . $e->getMessage());
-    }
-}
-
-
-public function favoritarAcademia($idAcademia)
-{
-    session_start();
-
-    if (!isset($_SESSION['id_usuario'])) {
-        echo "Erro: ID do usuário não está definido na sessão.";
-        print_r($_SESSION); 
-        exit;
+            throw new Exception("Erro ao inserir academia: " . $e->getMessage());
+        }
     }
 
-    try {
-        
-        $verifica = $this->pdo->prepare("
+
+    public function favoritarAcademia($idAcademia)
+    {
+        session_start();
+
+        if (!isset($_SESSION['id_usuario'])) {
+            echo "Erro: ID do usuário não está definido na sessão.";
+            print_r($_SESSION);
+            exit;
+        }
+
+        try {
+
+            $verifica = $this->pdo->prepare("
             SELECT COUNT(*) AS count 
             FROM favoritos 
             WHERE id_usuario = :idUsuario AND id_academia = :idAcademia
         ");
-        $verifica->execute([
-            ':idUsuario' => $_SESSION['id_usuario'],
-            ':idAcademia' => $idAcademia
-        ]);
-        $result = $verifica->fetch(PDO::FETCH_ASSOC);
+            $verifica->execute([
+                ':idUsuario' => $_SESSION['id_usuario'],
+                ':idAcademia' => $idAcademia
+            ]);
+            $result = $verifica->fetch(PDO::FETCH_ASSOC);
 
-        if ($result['count'] > 0) {
-            echo "<script>alert('Academia já está nos favoritos!');</script>";
-            return;
-        }
+            if ($result['count'] > 0) {
+                echo "<script>alert('Academia já está nos favoritos!');</script>";
+                return;
+            }
 
-      
-        $favoritar = $this->pdo->prepare("
+
+            $favoritar = $this->pdo->prepare("
             INSERT INTO favoritos (id_usuario, id_academia) 
             VALUES (:idUsuario, :idAcademia)
         ");
-        $favoritar->execute([
-            ':idUsuario' => $_SESSION['id_usuario'],
-            ':idAcademia' => $idAcademia
-        ]);
-        echo "<script>console.log('Academia favoritada com sucesso!');</script>";
-    } catch (PDOException $erroFavoritos) {
-        echo "<script>console.log('" . $erroFavoritos->getMessage() . "');</script>";
+            $favoritar->execute([
+                ':idUsuario' => $_SESSION['id_usuario'],
+                ':idAcademia' => $idAcademia
+            ]);
+            echo "<script>console.log('Academia favoritada com sucesso!');</script>";
+        } catch (PDOException $erroFavoritos) {
+            echo "<script>console.log('" . $erroFavoritos->getMessage() . "');</script>";
+        }
     }
-}
 
 
-   
 
-public function getFavoritos($idUsuario)
-{
-    try {
-        $sql = "
+
+    public function getFavoritos($idUsuario)
+    {
+        try {
+            $sql = "
             SELECT 
                 f.id_academia, 
                 a.razao_social, 
@@ -262,18 +283,18 @@ public function getFavoritos($idUsuario)
             WHERE f.id_usuario = :id_usuario
         ";
 
-        $favoritos = $this->pdo->prepare($sql);
-        $favoritos->bindParam(':id_usuario', $idUsuario, PDO::PARAM_INT);
-        $favoritos->execute();
+            $favoritos = $this->pdo->prepare($sql);
+            $favoritos->bindParam(':id_usuario', $idUsuario, PDO::PARAM_INT);
+            $favoritos->execute();
 
-        return $favoritos->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $error) {
-        error_log($error->getMessage(), 3, 'errors.log');
-        return [];
+            return $favoritos->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $error) {
+            error_log($error->getMessage(), 3, 'errors.log');
+            return [];
+        }
     }
-}
 
-    
+
     public function desfavoritarAcademia($idUsuario, $idAcademia)
     {
         try {
@@ -294,7 +315,7 @@ public function getFavoritos($idUsuario)
         }
     }
 
-    
+
 
     public function recuperarDicas($objetivo)
     {
@@ -313,7 +334,7 @@ public function getFavoritos($idUsuario)
             $index = array_rand($dicas);
             return $dicas[$index]['dica'];
         } else {
-            return null; 
+            return null;
         }
     }
 
@@ -321,23 +342,23 @@ public function getFavoritos($idUsuario)
     public function inserirContato($nome, $email, $telefone, $mensagem)
     {
         try {
-           
+
             $query = "INSERT INTO contatos (nome, email, telefone, mensagem) VALUES (:nome, :email, :telefone, :mensagem)";
             $stmt = $this->pdo->prepare($query);
-    
+
             // Bind dos parâmetros
             $stmt->bindParam(':nome', $nome);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':telefone', $telefone);
             $stmt->bindParam(':mensagem', $mensagem);
-    
-            
+
+
             $stmt->execute();
-    
-            
+
+
             return $this->pdo->lastInsertId();
         } catch (PDOException $e) {
-            
+
             error_log("Erro ao inserir mensagem de contato: " . $e->getMessage());
             return false;
         }

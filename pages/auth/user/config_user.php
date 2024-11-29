@@ -6,13 +6,13 @@ if (isset($_SESSION["verificador"])) {
     require_once '../../../config/Dao.php';
     include "sidebar.php";
 
-    $verificador = $_SESSION["verificador"];
+    $verificadorID = $_SESSION['id_usuario'];
 
     $dao = new Dao();
-   $usuario = $dao->recuperarDadosUsuario($verificador);
+    $usuario = $dao->recuperarDadosUsuario($verificadorID);
     $dados = $usuario->fetch();
 
-?>
+    ?>
 
     <div class="boxbox">
         <div class="box">
@@ -22,23 +22,28 @@ if (isset($_SESSION["verificador"])) {
                 <form action="../../../intermediarios/atualizarUsuario.php" method="POST">
                     <div class="form-group">
                         <label for="nome">Nome Completo:</label>
-                        <input type="text" id="nome" name="nome" required  minlength="2" maxlength="50" value="<?php echo $dados['nome'] ?>"/>
+                        <input type="text" id="nome" name="nome" required minlength="2" maxlength="50"
+                            value="<?php echo $dados['nome'] ?>" />
                     </div>
                     <div class="form-group">
                         <label for="nome_usuario">Nome de Usuário:</label>
-                        <input type="text" id="nome_usuario" name="nome_usuario" required  minlength="2" maxlength="20" value="<?php echo $dados['nome_usuario'] ?>"/>
+                        <input type="text" id="nome_usuario" name="nome_usuario" required minlength="2" maxlength="20"
+                            value="<?php echo $dados['nome_usuario'] ?>" />
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required  minlength="2" maxlength="50" value="<?php echo $dados['email'] ?>"/>
+                        <input type="email" id="email" name="email" required minlength="2" maxlength="50"
+                            value="<?php echo $dados['email'] ?>" />
                     </div>
                     <div class="form-group">
                         <label for="senha">Senha:</label>
-                        <input type="password" id="senha" name="senha" required  minlength="2" maxlength="20" value="<?php echo $dados['senha'] ?>"/>
+                        <input type="password" id="senha" name="senha" required minlength="2" maxlength="20"
+                            value="<?php echo $dados['senha'] ?>" />
                     </div>
                     <div class="form-group">
                         <label for="senha">Nova senha:</label>
-                        <input type="password" id="senha" name="senha" required minlength="2" maxlength="20" value="<?php echo $dados['senha'] ?>"/>
+                        <input type="password" id="senha" name="senha" required minlength="2" maxlength="20"
+                            value="<?php echo $dados['senha'] ?>" />
                     </div>
                     <button type="submit">Atualizar</button>
                 </form>
@@ -48,7 +53,7 @@ if (isset($_SESSION["verificador"])) {
         </div>
     </div>
 
-<?php
+    <?php
 } else {
     header("Location: ../../index.php?error=auth");
 }
