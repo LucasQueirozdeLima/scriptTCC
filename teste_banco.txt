@@ -36,6 +36,17 @@ create table usuario_admin(
 );
 
 
+CREATE TABLE contatos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
+    mensagem TEXT NOT NULL,
+    data_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
 create table academia (
 
     id_academia int auto_increment primary key not null,
@@ -92,6 +103,7 @@ select *from usuario_admin;
 select *from academia;
 select *from usuario;
 select*from favoritos;
+select*from contatos;
 
 update academia set capacidade_max = 100 where id_academia = 2;
 

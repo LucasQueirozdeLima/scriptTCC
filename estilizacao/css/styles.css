@@ -1002,6 +1002,113 @@ img, video {
     height: auto;
 }
 
+
+
+/* CONTATO PAGE */
+
+.contato_b{
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.contato_main {
+    display: flex;
+    justify-content: center;
+    padding: 3em 1em;
+}
+
+.contato_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    width: 100%;
+    padding: 2em;
+    gap: 2em;
+}
+
+.contatos_textos {
+    flex: 1;
+    min-width: 280px;
+}
+
+.contatos_textos h1 {
+    font-size: 28px;
+    color: #18f259;
+    margin-bottom: 1em;
+}
+
+.contatos_textos h3 {
+    font-size: 18px;
+    margin-bottom: 1em;
+    color: #555;
+}
+
+.contatos_textos p {
+    font-size: 18px;
+    margin: 0.5em 0;
+    color: #333;
+}
+
+.input_reset {
+    display: inline-block;
+    background-color: #18f259;
+    border: none;
+    border-radius: 25px;
+    color: #080606;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0.8em 2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.input_reset:hover {
+    background-color: #0dc448;
+}
+
+.contatos_inputs {
+    flex: 1;
+    min-width: 280px;
+}
+
+.contatos_inputs input,
+.contatos_inputs textarea {
+    width: 100%;
+    padding: 0.8em 1em;
+    margin-bottom: 1em;
+    font-size: 16px;
+    border: 1px solid #070606;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.contatos_inputs input:focus,
+.contatos_inputs textarea:focus {
+    border-color: #18f259;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(24, 242, 89, 0.2);
+}
+
+.contatos_inputs input::placeholder,
+.contatos_inputs textarea::placeholder {
+    color: #140d0d; 
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.contatos_inputs textarea {
+    resize: none;
+    height: 150px;
+}
+
+
 /* Footer */
 
 footer {

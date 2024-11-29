@@ -1156,24 +1156,24 @@ label {
 @media (max-width: 320px) {
   .box_detalhes {
     width: 100%;
-    padding: 10px; /* Menos padding */
-    font-size: 0.85rem; /* Fonte menor */
+    padding: 10px; 
+    font-size: 0.85rem; 
     margin-top: 5px;
   }
 
   #academia-details,
   #logs-entrada-saida {
-    padding: 8px; /* Menos padding */
+    padding: 8px; 
     height: auto;
   }
 
   #academia-details h3,
   #logs-entrada-saida h4 {
-    font-size: 0.9rem; /* Reduzir mais os títulos */
+    font-size: 0.9rem;
   }
 
   #logs-entrada-saida li {
-    font-size: 12px; /* Fontes menores para logs */
+    font-size: 12px; 
   }
 }
 

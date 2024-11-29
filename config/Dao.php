@@ -57,7 +57,7 @@ class Dao
         exit;
     }
 
-
+    
 
 
     //inserção de dados
@@ -206,7 +206,7 @@ public function favoritarAcademia($idAcademia)
     }
 
     try {
-        // Verificar se a academia já foi favoritada
+        
         $verifica = $this->pdo->prepare("
             SELECT COUNT(*) AS count 
             FROM favoritos 
@@ -223,7 +223,7 @@ public function favoritarAcademia($idAcademia)
             return;
         }
 
-        // Inserir na tabela favoritos
+      
         $favoritar = $this->pdo->prepare("
             INSERT INTO favoritos (id_usuario, id_academia) 
             VALUES (:idUsuario, :idAcademia)
@@ -316,6 +316,36 @@ public function getFavoritos($idUsuario)
             return null; 
         }
     }
+
+
+    public function inserirContato($nome, $email, $telefone, $mensagem)
+    {
+        try {
+           
+            $query = "INSERT INTO contatos (nome, email, telefone, mensagem) VALUES (:nome, :email, :telefone, :mensagem)";
+            $stmt = $this->pdo->prepare($query);
+    
+            // Bind dos parâmetros
+            $stmt->bindParam(':nome', $nome);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':telefone', $telefone);
+            $stmt->bindParam(':mensagem', $mensagem);
+    
+            
+            $stmt->execute();
+    
+            
+            return $this->pdo->lastInsertId();
+        } catch (PDOException $e) {
+            
+            error_log("Erro ao inserir mensagem de contato: " . $e->getMessage());
+            return false;
+        }
+    }
+
 }
+
+
+
 
 
