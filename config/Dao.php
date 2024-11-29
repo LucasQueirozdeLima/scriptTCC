@@ -93,9 +93,9 @@ class Dao
         return $usuario;
     }
 
-    public function recuperarDadosAdmin($verificador)
+    public function recuperarDadosAdmin($verificadorID)
     {
-        $admin = $this->pdo->query("SELECT * FROM usuario_admin WHERE nome_usuario='$verificador'");
+        $admin = $this->pdo->query("SELECT * FROM usuario_admin WHERE id_admin='$verificadorID'");
         return $admin;
     }
 
@@ -115,7 +115,42 @@ class Dao
     public function atualizarUsuario($nome, $nome_usuario, $email, $senha, $verificadorID)
     {
         // Preparar consultas para verificar duplicidade
-        $condicaoNome_usuario = $this->pdo->prepare("SELECT id_usuario FROM usuario WHERE nome_usuario = :nome_usuario AND id_usuario != :id_usuario");
+        $condicaoNome_usuario = $this->pdo->prepare("SELECT id_admin FROM usuario_admin WHERE nome_usuario = :nome_usuario AND id_admin != :id_admin");
+        $condicaoNome_usuario->execute([':nome_usuario' => $nome_usuario, ':id_admin' => $verificadorID]);
+
+        $condicaoEmail = $this->pdo->prepare("SELECT id_admin FROM usuario_admin WHERE email = :email AND id_admin != :id_admin");
+        $condicaoEmail->execute([':email' => $email, ':id_admin' => $verificadorID]);
+
+        // Verificar se há conflitos
+        if ($condicaoNome_usuario->fetch() || $condicaoEmail->fetch()) {
+            header("Location: ../pages/auth/user/config_user.php?error=1");
+            exit;
+        }
+
+        // Atualizar os dados do usuário
+        $alterarDados = $this->pdo->prepare("UPDATE usuario_admin SET nome = :nome, nome_usuario = :nome_usuario, email = :email, senha = :senha WHERE id_admin = :id_admin");
+        $alterarDados->execute([
+            ':nome' => $nome,
+            ':nome_usuario' => $nome_usuario,
+            ':email' => $email,
+            ':senha' => $senha,
+            ':id_usuario' => $verificadorID
+
+            //FALTA AQ
+        ]);
+
+        // Atualizar a sessão
+        $_SESSION['verificador'] = $nome_usuario;
+
+        // Redirecionar após a atualização
+        header("Location: ../pages/auth/user/config_user.php");
+        exit;
+    }
+
+    public function atualizarAdmin($nome, $nome_usuario, $documento, $email, $cargo, $senha, $verificadorID)
+    {
+        // Preparar consultas para verificar duplicidade
+        $condicaoNome_usuario = $this->pdo->prepare("SELECT id_admin FROM usuario WHERE nome_usuario = :nome_usuario AND id_usuario != :id_usuario");
         $condicaoNome_usuario->execute([':nome_usuario' => $nome_usuario, ':id_usuario' => $verificadorID]);
 
         $condicaoEmail = $this->pdo->prepare("SELECT id_usuario FROM usuario WHERE email = :email AND id_usuario != :id_usuario");

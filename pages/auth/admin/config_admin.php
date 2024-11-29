@@ -2,40 +2,47 @@
 session_start();
 if (isset($_SESSION["verificador"])) {
     include "cabecalho_admin.php";
+    require_once '../../../config/Dao.php';
     include "sidebar_admin.php";
+
+    $verificadorID = $_SESSION['id_usuario'];
+
+    $dao = new Dao();
+    $usuario = $dao->recuperarDadosAdmin($verificadorID);
+    $dados = $usuario->fetch();
 ?>
 
     <div class="main-content">
         <div class="form-container">
             <h2>Alterar Dados</h2>
-            <form action="processar_cadastro_usuario.php" method="POST">
+            <form action="../../../intermediarios/atualizarAdmin.php" method="POST">
                 <div class="form-group">
                     <label for="nome">Nome Completo:</label>
-                    <input type="text" id="nome" name="nome" required>
+                    <input type="text" id="nome" name="nome" value="<?php echo $dados['nome'] ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="nome_usuario">Nome de Usuário:</label>
-                    <input type="text" id="nome_usuario" name="nome_usuario" required>
+                    <input type="text" id="nome_usuario" name="nome_usuario" value="<?php echo $dados['nome_usuario'] ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="documento">Documento (CPF):</label>
-                    <input type="text" id="documento" name="documento" required>
+                    <input type="text" id="documento" name="documento" value="<?php echo $dados['documento'] //desable necessario?>" required >
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" value="<?php echo $dados['email'] ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="cargo">Cargo:</label>
-                    <input type="text" id="cargo" name="cargo" required>
+                    <input type="text" id="cargo" name="cargo" value="<?php echo $dados['cargo'] ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" required>
+                    <input type="password" id="senha" name="senha" value="<?php echo $dados['senha'] ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="senha">Nova senha:</label>
-                    <input type="password" id="senha" name="senha" required>
+                    <input type="password" id="senha" name="senha" value="<?php echo $dados['senha'] ?>" required>
                 </div>
                 <button type="submit">Atualizar</button>
             </form>
