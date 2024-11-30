@@ -47,6 +47,7 @@ if (isset($_SESSION["verificador"])) {
         getTotalPessoasPresentes();
         getTotalPessoas();
         gerarCardsAcademias();
+        getMaxAlcancado();
       });
 
       function getTotalPessoasPresentes() {
@@ -94,6 +95,7 @@ if (isset($_SESSION["verificador"])) {
         getTotalPessoasPresentes();
         getTotalPessoas();
         gerarCardsAcademias();
+        getMaxAlcancado();
       }
 
       // Atualiza os dados a cada 30 segundos
@@ -115,8 +117,8 @@ if (isset($_SESSION["verificador"])) {
           // Itera sobre cada documento retornado na consulta e cria o card
           querySnapshot.forEach((doc) => {
             var data = doc.data();
-            var nomeAcademia = data.nome || "Academia sem nome"; 
-            var pessoasPresentes = data.pessoaPresente || 0; 
+            var nomeAcademia = data.nome || "Academia sem nome";
+            var pessoasPresentes = data.pessoaPresente || 0;
 
 
 
@@ -158,10 +160,29 @@ if (isset($_SESSION["verificador"])) {
         });
       });
 
-     
+      function getMaxAlcancado() {
+        const id_admin = "<?php echo $_SESSION['id_admin']; ?>";
+        var academiasRef = db.collection("ACADEMIAS");
+
+        academiasRef.where("id_admin", "==", id_admin).onSnapshot((querySnapshot) => {
+          let maxAlcancado = 0;
+
+          querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            const maximoPessoas = data.maxAlcancado || 0;
+            maxAlcancado = Math.max(maxAlcancado, maximoPessoas); // Verifica o maior valor de pessoas presentes
+          });
+
+          // Atualiza o conteúdo do card de "Máximo Alcançado" com o valor atualizado
+          document.querySelector('.dashboard .card:nth-child(3) var').innerText = maxAlcancado + " pessoas";
+        }, (error) => {
+          console.error("Erro ao ouvir mudanças nas academias para o máximo alcançado: ", error);
+        });
+      }
+
 
       function getTotalPessoas() {
-       
+
         const id_admin = "<?php echo $_SESSION['id_admin']; ?>";
         // Refere-se à coleção 'ACADEMIAS' no Firestore
         var academiasRef = db.collection("ACADEMIAS");
