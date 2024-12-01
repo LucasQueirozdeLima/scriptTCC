@@ -5,11 +5,11 @@ if (isset($_SESSION["verificador"])) {
     require_once '../../../config/Dao.php';
     include "sidebar_admin.php";
 
-    $verificadorID = $_SESSION['id_usuario'];
+    $verificadorID = $_SESSION['id_admin'];
 
     $dao = new Dao();
-    $usuario = $dao->recuperarDadosAdmin($verificadorID);
-    $dados = $usuario->fetch();
+    $admin = $dao->recuperarDadosAdmin($verificadorID);
+    $dados = $admin->fetch();
 ?>
 
     <div class="main-content">
