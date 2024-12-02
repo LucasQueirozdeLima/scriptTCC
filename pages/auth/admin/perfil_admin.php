@@ -26,7 +26,7 @@ include "sidebar_admin.php";
 
 <div class="boxbox">
   <div class="box">
-    <h2 style="color: #0d47a1; background-color:white; border-radius:4px;">Perfil do Administrador</h2>
+    <h2 style="color: #0d47a1; background-color:white; border-radius:4px; box-shadow: 5px 5px 8px black;">Perfil do Administrador</h2>
     <p style="color:black;">Visualize e gerencie as informações do seu perfil.</p>
 
 

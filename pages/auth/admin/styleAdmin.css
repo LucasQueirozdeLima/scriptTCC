@@ -41,6 +41,13 @@ body {
   transition: 0.4s;
 }
 
+.titulo-bem-vindo {
+  color: #111010;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
 
 /* DASHBOARD */
 
@@ -941,8 +948,9 @@ label {
   background-color: #ffffff; /* Fundo branco para destaque */
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
+  
 }
 
 .highlight h3 {

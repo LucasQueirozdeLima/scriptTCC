@@ -61,7 +61,7 @@ if (isset($_SESSION["verificador"])) {
       margin-top: 10px;
       padding: 10px 15px;
       background-color: #dc3545;
-    
+
       color: white;
       border: none;
       border-radius: 5px;
@@ -72,150 +72,151 @@ if (isset($_SESSION["verificador"])) {
 
     .academia-card .btn-remover:hover {
       background-color: #a71d2a;
-   
+
     }
 
 
-/* Estilizando o modal para abrir abaixo dos cards */
-#modal-editar {
-  position: relative; /* Removido o 'absolute' para ele ser posicionado naturalmente no fluxo */
-  background-color: #fff;
-  padding: 20px 30px;
-  width: 400px;
-  max-width: 90%;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  display: none;
-  margin-top: 20px; /* Espaço acima para separá-lo dos cards */
-  
-}
+    /* Estilizando o modal para abrir abaixo dos cards */
+    #modal-editar {
+      position: relative;
+      /* Removido o 'absolute' para ele ser posicionado naturalmente no fluxo */
+      background-color: #fff;
+      padding: 20px 30px;
+      width: 400px;
+      max-width: 90%;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      display: none;
+      margin-top: 20px;
+      /* Espaço acima para separá-lo dos cards */
 
-#modal-editar.open {
-  display: block;
-}
+    }
 
-/* Estilo para o fundo escurecido */
-#modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 999;
-  display: none;
-}
+    #modal-editar.open {
+      display: block;
+    }
 
-/* Responsividade */
-@media (max-width: 600px) {
-  #modal-editar {
-    width: 90%;
-    padding: 15px;
-  }
+    /* Estilo para o fundo escurecido */
+    #modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 999;
+      display: none;
+    }
 
-  .modal-content button {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-}
+    /* Responsividade */
+    @media (max-width: 600px) {
+      #modal-editar {
+        width: 90%;
+        padding: 15px;
+      }
 
-
-/* Estilização do Formulário */
-.modal-content h3 {
-  margin-bottom: 15px;
-  font-size: 20px;
-  color: #333;
-  text-align: center;
-}
-
-.modal-content .form-group {
-  margin-bottom: 15px;
-}
-
-.modal-content label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  font-size: 14px;
-  color: #555;
-}
-
-.modal-content input {
-  width: 100%;
-  padding: 8px 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
-.modal-content input:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
-}
-
-.modal-content button {
-  width: 48%;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-top: 10px;
-}
-
-.modal-content button[type="submit"] {
-  background-color: #28a745;
-  color: white;
-  transition: background-color 0.3s ease;
-}
-
-.modal-content button[type="submit"]:hover {
-  background-color: #218838;
-}
-
-.modal-content button[type="button"] {
-  background-color: #dc3545;
-  color: white;
-  transition: background-color 0.3s ease;
-}
-
-.modal-content button[type="button"]:hover {
-  background-color: #c82333;
-}
+      .modal-content button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
 
 
+    /* Estilização do Formulário */
+    .modal-content h3 {
+      margin-bottom: 15px;
+      font-size: 20px;
+      color: #333;
+      text-align: center;
+    }
 
-.modal-content input {
-  width: 100%;
-  padding: 8px 10px;
-  border: 1px solid #333;
-  border-radius: 5px;
-  font-size: 14px;
-  background-color: #fff; 
-  color: #333;
-}
+    .modal-content .form-group {
+      margin-bottom: 15px;
+    }
 
-.modal-content input:focus {
-  border-color: #007bff; 
-  outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
-}
+    .modal-content label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      font-size: 14px;
+      color: #555;
+    }
 
-.modal-content label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  font-size: 14px;
-  color: #333; 
-}
+    .modal-content input {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .modal-content input:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    }
+
+    .modal-content button {
+      width: 48%;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .modal-content button[type="submit"] {
+      background-color: #28a745;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    .modal-content button[type="submit"]:hover {
+      background-color: #218838;
+    }
+
+    .modal-content button[type="button"] {
+      background-color: #dc3545;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    .modal-content button[type="button"]:hover {
+      background-color: #c82333;
+    }
 
 
-.modal-content .form-group {
-  margin-bottom: 15px;
-}
 
+    .modal-content input {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #333;
+      border-radius: 5px;
+      font-size: 14px;
+      background-color: #fff;
+      color: #333;
+    }
+
+    .modal-content input:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    .modal-content label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      font-size: 14px;
+      color: #333;
+    }
+
+
+    .modal-content .form-group {
+      margin-bottom: 15px;
+    }
   </style>
 
   <div class="boxbox">
@@ -223,9 +224,9 @@ if (isset($_SESSION["verificador"])) {
 
       <h2 style="color: black;">Minhas Academias</h2>
       <div class="academias-container" id="lista-academias">
-     
+
       </div>
-    <div id="modal-editar" style="display: none;">
+      <div id="modal-editar" style="display: none;">
         <div class="modal-content">
           <h3>Alterar Academia</h3>
           <form id="formEditarAcademia" method="POST">
@@ -243,6 +244,10 @@ if (isset($_SESSION["verificador"])) {
               <input type="text" id="editar_rua" required minlength="3" maxlength="100" />
             </div>
             <div class="form-group">
+              <label for="editar_numero">Número:</label>
+              <input type="number" id="editar_numero" required />
+            </div>
+            <div class="form-group">
               <label for="editar_bairro">Bairro:</label>
               <input type="text" id="editar_bairro" required minlength="3" maxlength="50" />
             </div>
@@ -254,9 +259,10 @@ if (isset($_SESSION["verificador"])) {
             <button type="button" onclick="fecharModal()">Cancelar</button>
           </form>
         </div>
-        
+        <div class="academias-container" id="lista-academias"></div>
+
       </div>
-  
+
 
     </div>
   </div>
@@ -277,8 +283,8 @@ if (isset($_SESSION["verificador"])) {
       }
 
       querySnapshot.forEach((doc) => {
-  const academia = doc.data();
-  const card = `
+        const academia = doc.data();
+        const card = `
     <div class="academia-card">
         <h3>${academia.nome}</h3>
         <p><strong>Capacidade Máxima:</strong> ${academia.maxPessoas}</p>
@@ -288,61 +294,72 @@ if (isset($_SESSION["verificador"])) {
         <button class="btn-remover" onclick="removerAcademia('${doc.id}')">Remover</button>
     </div>
   `; // Fechamento correto do template string
-  container.innerHTML += card;
-});
+        container.innerHTML += card;
+      });
 
     }
 
     async function removerAcademia(idAcademia) {
-    if (confirm("Tem certeza de que deseja remover esta academia?")) {
+      if (confirm("Tem certeza de que deseja remover esta academia?")) {
         try {
-            // Remover do Firebase
-            await db.collection("ACADEMIAS").doc(idAcademia).delete();
+          // Remover do Firebase
+          await db.collection("ACADEMIAS").doc(idAcademia).delete();
 
-            // Fazer requisição ao servidor para remover do MySQL
-            const response = await fetch('remover_academia.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id_academia: idAcademia }) 
-            });
+          // Fazer requisição ao servidor para remover do MySQL
+          const response = await fetch('remover_academia.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              id_academia: idAcademia
+            })
+          });
 
-            const result = await response.json();
+          const result = await response.json();
 
-            if (result.success) {
-                alert("Academia removida com sucesso!");
-            } else {
-                alert("Erro ao remover do banco de dados: " + result.message);
-            }
+          if (result.success) {
+            alert("Academia removida com sucesso!");
+          } else {
+            alert("Erro ao remover do banco de dados: " + result.message);
+          }
 
-            listarAcademias(); 
+          listarAcademias();
         } catch (error) {
-            console.error("Erro ao remover academia:", error);
-            alert("Ocorreu um erro ao tentar remover a academia.");
+          console.error("Erro ao remover academia:", error);
+          alert("Ocorreu um erro ao tentar remover a academia.");
         }
+      }
     }
-}
 
 
 
 
     function abrirModalEditar(idAcademia, dados) {
-      
-      console.log("Modal aberto com:", idAcademia, dados); // Verifica se a função foi chamada
-    
+      console.log("Modal aberto com:", idAcademia, dados);
+
+      // Ocultar os cards
+      document.getElementById("lista-academias").style.display = "none";
+
+      // Mostrar o formulário
       document.getElementById("modal-editar").style.display = "block";
-      document.getElementById("modal-overlay").style.display = "block";
       document.getElementById("editar_id_academia").value = idAcademia;
       document.getElementById("editar_nome").value = dados.nome || "";
-      document.getElementById("editar_capacidade").value = dados.maxPessoas  ;
+      document.getElementById("editar_capacidade").value = dados.maxPessoas;
       document.getElementById("editar_rua").value = dados.rua || "";
+      document.getElementById("editar_numero").value = dados.numero || "";
       document.getElementById("editar_bairro").value = dados.bairro || "";
       document.getElementById("editar_cidade").value = dados.cidade || "";
     }
 
     function fecharModal() {
-  document.getElementById("modal-editar").style.display = "none";
-  document.getElementById("modal-overlay").style.display = "none"; // Esconde o fundo escurecido
-}
+      // Reexibir os cards
+      document.getElementById("lista-academias").style.display = "flex";
+
+      // Ocultar o formulário
+      document.getElementById("modal-editar").style.display = "none";
+    }
+
 
     async function atualizarAcademia() {
       const idAcademia = document.getElementById("editar_id_academia").value;
@@ -372,29 +389,29 @@ if (isset($_SESSION["verificador"])) {
 
 
     document.getElementById("formEditarAcademia").addEventListener("submit", async (e) => {
-    e.preventDefault(); // Evitar recarregar a página
+      e.preventDefault(); // Evitar recarregar a página
 
-    const idAcademia = document.getElementById("editarIdAcademia").value;
-    const nome = document.getElementById("editarNome").value;
-    const maxPessoas = parseInt(document.getElementById("editarMaxPessoas").value);
-    const pessoasPresentes = parseInt(document.getElementById("editarPessoasPresentes").value);
+      const idAcademia = document.getElementById("editarIdAcademia").value;
+      const nome = document.getElementById("editarNome").value;
+      const maxPessoas = parseInt(document.getElementById("editarMaxPessoas").value);
+      const pessoasPresentes = parseInt(document.getElementById("editarPessoasPresentes").value);
 
-    try {
+      try {
         // Atualizar os dados no Firebase
         await db.collection("ACADEMIAS").doc(idAcademia).update({
-            nome: nome,
-            maxPessoas: maxPessoas,
-            pessoaPresente: pessoasPresentes,
+          nome: nome,
+          maxPessoas: maxPessoas,
+          pessoaPresente: pessoasPresentes,
         });
 
         alert("Academia atualizada com sucesso!");
         fecharModal();
         listarAcademias(); // Atualiza a lista de academias
-    } catch (error) {
+      } catch (error) {
         console.error("Erro ao atualizar academia:", error);
         alert("Erro ao atualizar a academia.");
-    }
-});
+      }
+    });
     listarAcademias();
   </script>
 
