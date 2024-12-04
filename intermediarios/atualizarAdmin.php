@@ -2,7 +2,7 @@
 
 session_start();
 $verificador = $_SESSION["verificador"];
-$verificadorID = $_SESSION['id_usuario'];
+$verificadorID = $_SESSION['id_admin'];
 
 require_once '../config/Dao.php';
 $dao = new Dao();
