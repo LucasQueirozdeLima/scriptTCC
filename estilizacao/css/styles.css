@@ -228,6 +228,7 @@ main {
 
 
 
+
 /* Responsividade */
 @media (max-width: 600px) {
     .input-wrapper {
@@ -888,6 +889,7 @@ main > form >  a{
     width: 100%;
 }
 
+
 .textbox input {
     width: 100%;
     height: 50px;
@@ -955,6 +957,7 @@ main > form >  a{
 }
 
 
+  
 
 /* Responsividade */
 @media (max-width: 768px) {

@@ -28,7 +28,7 @@ create table usuario_admin(
     id_admin int auto_increment primary key not null,
     nome varchar(50) not null,
     nome_usuario varchar (30) not null unique,
-    documento varchar(11)  not null,
+    documento varchar(14)  not null,
     email varchar(250) unique not null,
     cargo varchar(40) not null,
     senha varchar(30) not null

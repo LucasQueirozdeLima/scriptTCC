@@ -8,13 +8,13 @@
     <h2 style="text-align: center; color:white; margin-bottom: 20px; font-family: Euclid Circular A;">CRIAR CADASTRO ADMINISTRADOR</h2>
 
     <div class="md-textbox">
-      <input oninput="handleChange(event)" id="nome_admin" type="text" name="nome" placeholder="Digite seu nome" required minlength="3" maxlength="15" />
+      <input oninput="handleChange(event)" id="nome_admin" type="text" name="nome" placeholder="Digite seu nome" required minlength="1" maxlength="15" />
       <span class="material-symbols-outlined">account_circle</span>
       <label for="nome_admin">Nome</label>
     </div>
 
     <div class="md-textbox">
-      <input oninput="handleChange(event)" id="nome_usuario_admin" type="text" name="nome_usuario" placeholder="Digite seu nome de usuário" required minlength="2" maxlength="15" />
+      <input oninput="handleChange(event)" id="nome_usuario_admin" type="text" name="nome_usuario" placeholder="Digite seu nome de usuário " required minlength="1" maxlength="15" />
       <span class="material-symbols-outlined">account_circle</span>
       <label for="nome_usuario_admin">Apelido</label>
     </div>
@@ -26,19 +26,19 @@
     </div>
 
     <div class="md-textbox">
-      <input oninput="handleChange(event)" id="documento_admin" type="text" name="documento" placeholder="Digite seu documento" required />
+      <input oninput="handleChange(event)" id="documento_admin" type="text" name="documento" placeholder="Digite seu CPF" required />
       <span class="material-symbols-outlined">account_circle</span>
       <label for="documento_admin">Documento</label>
     </div>
 
     <div class="md-textbox">
-      <input oninput="handleChange(event)" id="cargo_admin" type="text" name="cargo" placeholder="Digite seu cargo" required minlength="2" maxlength="30" />
+      <input oninput="handleChange(event)" id="cargo_admin" type="text" name="cargo" placeholder="Digite seu cargo " required minlength="2" maxlength="30" />
       <span class="material-symbols-outlined">account_circle</span>
       <label for="cargo_admin">Cargo</label>
     </div>
 
     <div class="md-textbox">
-      <input oninput="handleChange(event)" id="senha_admin" type="password" name="senha" placeholder="Digite sua senha" required minlength="3" maxlength="20" />
+      <input oninput="handleChange(event)" id="senha_admin" type="password" name="senha" placeholder="Digite sua senha " required minlength="3" maxlength="20" />
       <span class="material-symbols-outlined">account_circle</span>
       <label for="senha_admin">Senha</label>
     </div>
@@ -92,6 +92,9 @@
 
   // Inicializa a verificação ao carregar a página
   handleChange();
+
 });
+
+
 
 </script>

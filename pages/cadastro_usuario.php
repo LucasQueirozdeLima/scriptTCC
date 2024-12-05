@@ -12,7 +12,7 @@
     </div>
 
     <div class="md-textbox">
-      <input id="nome_usuario" type="text" name="nome_usuario" placeholder="Digite seu nome de usuário" required minlength="2" maxlength="15" />
+      <input id="nome_usuario" type="text" name="nome_usuario" placeholder="Digite seu nome de usuário " required minlength="2" maxlength="15" />
       <span class="material-symbols-outlined">account_circle</span>
       <label for="nome_usuario">Apelido</label>
     </div>
